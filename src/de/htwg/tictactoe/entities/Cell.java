@@ -1,4 +1,4 @@
-package de.htwg.se.tictactoe.model;
+package de.htwg.tictactoe.entities;
 
 public class Cell {
     private int row;

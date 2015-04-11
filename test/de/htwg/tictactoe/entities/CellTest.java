@@ -1,4 +1,4 @@
-package de.htwg.se.tictactoe.model;
+package de.htwg.tictactoe.entities;
 
 import static org.junit.Assert.*;
 
