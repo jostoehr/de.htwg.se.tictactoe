@@ -17,4 +17,20 @@ public class Cell {
     public char getValue() {
         return value;
     }
+    
+    public int getRow() {
+        return row;
+    }
+    
+    public int getColumn() {
+        return column;
+    }
+    
+    public boolean isSet() {
+        return value != '-';
+    }
+    
+    public boolean isUnSet() {
+        return !isSet();
+    }
 }
