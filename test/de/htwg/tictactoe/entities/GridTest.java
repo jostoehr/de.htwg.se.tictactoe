@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
  */
 public class GridTest {
     private Grid grid; 
+    private Cell cell[][];
     @Before
     public void setUp() throws Exception {
         grid = new Grid();
@@ -25,5 +26,10 @@ public class GridTest {
 
     @Test
     public void testGetValue(){
+    }
+    
+    @Test
+    public void testGetSetCell(){
+        grid.setCell(0, 0, 'x');
     }
 }

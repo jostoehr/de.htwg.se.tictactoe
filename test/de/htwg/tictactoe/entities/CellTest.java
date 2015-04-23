@@ -19,6 +19,22 @@ public class CellTest {
         cell.setValue('x');
         assertEquals('x', cell.getValue());
     }
-
+    
+    @Test
+	public void testIsSetOrUnSet() {
+	/*	assertFalse(cell.isSet());
+		assertTrue(cell.isUnSet());
+		cell.setValue('x');
+		assertTrue(cell.isSet());
+		assertFalse(cell.isUnSet());
+		cell.setValue('o');
+		assertFalse(cell.isSet());
+		assertTrue(cell.isUnSet());*/
+	}
+    @Test
+    public void testClear(){
+       cell.clear();
+       assertEquals(' ', cell.getValue());
+    }
 
 }

@@ -36,4 +36,14 @@ public class ControllerTest {
         
     }
     
+    @Test
+    public void testGetStatus(){
+        assertEquals("Welcome to HTWG TicTacToe!", controller.getStatus());
+    }
+    
+    @Test
+    public void testGetGridString(){
+        assertEquals(grid.toString(), controller.getGridString());
+    }
+    
 }
