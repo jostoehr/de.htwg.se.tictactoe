@@ -26,6 +26,8 @@ public class TextUI implements IObserver {
     public void printTUI() {
         System.out.println(controller.getGridString());
 	System.out.println(controller.getStatus());
+        System.out
+                .println("Please enter a command( q - quit, n - new, xyz - set cell(x,y) with x or o)");
     }
     
     public boolean processInputLine(String line){
