@@ -3,9 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/johannes/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/tictactoe/entities/Grid.java</file>
-            <file>file:/home/johannes/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/tictactoe/entities/Cell.java</file>
-            <file>file:/home/johannes/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/tictactoe/controller/TictactoeController.java</file>
+            <file>file:/home/siegfried/NetBeansProjects/de.htwg.se.tictactoe/test/de/htwg/tictactoe/controller/ControllerTest.java</file>
+            <file>file:/home/siegfried/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/tictactoe/Tictactoe.java</file>
+            <file>file:/home/siegfried/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/tictactoe/entities/Cell.java</file>
+            <file>file:/home/siegfried/NetBeansProjects/de.htwg.se.tictactoe/test/de/htwg/tictactoe/entities/CellTest.java</file>
+            <file>file:/home/siegfried/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/util/observer/IObserver.java</file>
+            <file>file:/home/siegfried/NetBeansProjects/de.htwg.se.tictactoe/test/de/htwg/util/observer/ObservableTest.java</file>
+            <file>file:/home/siegfried/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/util/observer/Observable.java</file>
+            <file>file:/home/siegfried/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/tictactoe/tui/TextUI.java</file>
+            <file>file:/home/siegfried/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/tictactoe/entities/Grid.java</file>
+            <file>file:/home/siegfried/NetBeansProjects/de.htwg.se.tictactoe/test/de/htwg/tictactoe/entities/GridTest.java</file>
+            <file>file:/home/siegfried/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/tictactoe/controller/TictactoeController.java</file>
         </group>
     </open-files>
 </project-private>
