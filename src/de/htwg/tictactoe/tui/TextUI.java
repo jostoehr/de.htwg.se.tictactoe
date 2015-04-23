@@ -23,7 +23,16 @@ public class TextUI implements IObserver {
         printTUI();
     }
 
-    private void printTUI() {
+    public void printTUI() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public boolean processInputLine(String line){
+        boolean continu = true;
+        if (line.equalsIgnoreCase("q"))
+        {
+            continu = false;
+        } 
+        return continu;
     }
 }
