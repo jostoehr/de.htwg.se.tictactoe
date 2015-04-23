@@ -40,13 +40,13 @@ public class Grid {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
-                sb.append(cells[row][col].getValue());   
+                sb.append(cells[row][col].getValue()).append(" ");   
                 if (col < COLS - 1) 
                     sb.append("|");
             }
             sb.append("\n");
             if (row < ROWS - 1) {
-                sb.append("-----------");
+                sb.append("----------\n");
             }
         }
         return sb.toString();

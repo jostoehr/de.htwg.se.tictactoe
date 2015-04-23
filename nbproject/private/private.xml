@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/johannes/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/tictactoe/entities/Grid.java</file>
             <file>file:/home/johannes/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/tictactoe/entities/Cell.java</file>
+            <file>file:/home/johannes/NetBeansProjects/de.htwg.se.tictactoe/src/de/htwg/tictactoe/controller/TictactoeController.java</file>
         </group>
     </open-files>
 </project-private>

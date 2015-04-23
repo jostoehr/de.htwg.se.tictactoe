@@ -24,7 +24,8 @@ public class TextUI implements IObserver {
     }
 
     public void printTUI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(controller.getGridString());
+	System.out.println(controller.getStatus());
     }
     
     public boolean processInputLine(String line){
