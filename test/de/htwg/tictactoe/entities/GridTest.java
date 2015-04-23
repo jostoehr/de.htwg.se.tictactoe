@@ -17,9 +17,10 @@ import static org.junit.Assert.*;
  * @author siegfried
  */
 public class GridTest {
-    
+    private Grid grid; 
     @Before
     public void setUp() throws Exception {
+        grid = new Grid();
     }
 
     @Test

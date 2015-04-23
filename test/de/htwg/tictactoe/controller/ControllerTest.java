@@ -27,8 +27,11 @@ public class ControllerTest {
     
     @Test
     public void testGetValue(){
-        controller.setValue(0, 0, 'x');
-        assertEquals('x', grid.getCell(0,0).getValue());
+        char zeichen = 120;
+        controller.setValue(0, 0, zeichen);
+        assertEquals(0, grid.getCell(0, 0).getRow());
+        assertEquals(0, grid.getCell(0, 0).getColumn());
+        //assertEquals(zeichen, grid.getCell(0,0).getValue());
         //assertEquals("The cell (0,0) = x was successfully set", controller.getStatus());
         
     }
