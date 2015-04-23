@@ -27,10 +27,21 @@ public class Cell {
     }
     
     public boolean isSet() {
-        return value != '-';
+        return value != ' ';
     }
     
     public boolean isUnSet() {
         return !isSet();
+    }
+    
+    /**
+     * returns a String of the form "(0,0) = x"
+    */
+    public String mkString() {
+	return "(" + row + "," + column + ") = " + value;
+    }
+    
+    public void clear() {
+        value = ' ';
     }
 }
