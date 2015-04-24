@@ -1,5 +1,4 @@
 package de.htwg.tictactoe.controller;
-
 import de.htwg.tictactoe.entities.Cell;
 import de.htwg.tictactoe.entities.Grid;
 import de.htwg.util.observer.Observable;
