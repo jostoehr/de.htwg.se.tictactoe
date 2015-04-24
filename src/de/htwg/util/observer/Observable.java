@@ -6,13 +6,14 @@
 package de.htwg.util.observer;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
  * @author siegfried
  */
 public class Observable {
-    protected LinkedList<IObserver> subscribers = new LinkedList<IObserver>();
+    protected List<IObserver> subscribers = new LinkedList<IObserver>();
     
     public void addObserver(IObserver s){
         subscribers.add(s);
