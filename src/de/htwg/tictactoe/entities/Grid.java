@@ -1,5 +1,4 @@
 package de.htwg.tictactoe.entities;
-
 /**
  *
  * @author johannes
@@ -36,6 +35,7 @@ public class Grid {
 	cells[row][column].setValue(value);
     }
     
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < ROWS; ++row) {

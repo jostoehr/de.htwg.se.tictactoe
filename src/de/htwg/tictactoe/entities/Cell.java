@@ -4,7 +4,7 @@ public class Cell {
     private int row;
     private int column;
     private char value;
-
+    
     public Cell(int row, int column) {
         this.row=row;
         this.column=column;
