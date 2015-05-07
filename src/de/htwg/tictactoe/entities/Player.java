@@ -6,7 +6,7 @@ package de.htwg.tictactoe.entities;
  */
 public class Player {
     private String name;
-    private Enum character;
+    private Enum character = Enum.EMPTY;
     
     public Player(String name, Enum character) {
         this.name = name;
