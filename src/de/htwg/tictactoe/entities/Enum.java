@@ -6,12 +6,33 @@ package de.htwg.tictactoe.entities;
  */
 
 public enum Enum {
-    EMPTY(0),
-    CROSS(1), 
-    NOUGHT(2);
+    EMPTY, CROSS, NOUGHT;
     
-    private final int value;
-    Enum(int value) {
-        this.value = value;
+    /**EMPTY(' '),
+    CROSS('x'), 
+    NOUGHT('o');
+    
+    private final char character;
+    Enum(char character) {
+        this.character = character;
+    }
+    
+    public char getCharacter() {
+        return character;
+    }
+    */
+                
+    @Override 
+    public String toString() {
+        switch(this) {
+            case EMPTY:
+                return " ";
+            case CROSS:
+                return "x";
+            case NOUGHT:
+                return "o";
+            default:
+                return null;
+        }
     }
 }

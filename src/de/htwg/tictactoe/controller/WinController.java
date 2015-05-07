@@ -24,7 +24,6 @@ public class WinController extends Observable {
     public WinController(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
-        win();
     }
     
     public Player win() {

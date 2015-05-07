@@ -77,14 +77,14 @@ public class Grid {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < ROWS; ++row) {
-            for (int col = 0; col < COLS; ++col) {
-                sb.append(cells[row][col].getValue()).append(" ");   
+            for (int col = 0; col < COLS; ++col) { 
+                sb.append(cells[row][col].getValue()).append("  ");   
                 if (col < COLS - 1) 
                     sb.append("|");
             }
             sb.append("\n");
             if (row < ROWS - 1) {
-                sb.append("----------\n");
+                sb.append("-----------\n");
             }
         }
         return sb.toString();

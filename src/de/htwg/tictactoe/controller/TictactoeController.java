@@ -15,6 +15,7 @@ public class TictactoeController extends Observable {
     
     public TictactoeController(Grid grid) {
         this.grid = grid;
+        grid.init();
     }
     
     public void setValue(int row, int column, Enum value) {
