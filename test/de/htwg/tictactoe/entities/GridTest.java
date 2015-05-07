@@ -30,6 +30,6 @@ public class GridTest {
     
     @Test
     public void testGetSetCell(){
-        grid.setCell(0, 0, 'x');
+        grid.setCell(0, 0, Enum.CROSS);
     }
 }

@@ -7,6 +7,7 @@ package de.htwg.tictactoe.controller;
 
 import de.htwg.tictactoe.entities.Cell;
 import de.htwg.tictactoe.entities.Grid;
+import de.htwg.tictactoe.entities.Enum;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -27,12 +28,12 @@ public class ControllerTest {
     
     @Test
     public void testGetValue(){
-        char zeichen = 120;
-        controller.setValue(0, 0, zeichen);
+        Enum value = Enum.CROSS;
+        controller.setValue(0, 0,value );
         assertEquals(0, grid.getCell(0, 0).getRow());
         assertEquals(0, grid.getCell(0, 0).getColumn());
-        //assertEquals(zeichen, grid.getCell(0,0).getValue());
-        //assertEquals("The cell (0,0) = x was successfully set", controller.getStatus());
+        assertEquals(value, grid.getCell(0,0).getValue());
+        assertEquals("The cell (0,0) = x was successfully set", controller.getStatus());
         
     }
     

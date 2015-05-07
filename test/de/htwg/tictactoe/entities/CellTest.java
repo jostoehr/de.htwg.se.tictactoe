@@ -14,22 +14,24 @@ public class CellTest {
 
     @Test
     public void testGetValue(){
-        cell.Enum('o');
+        Enum value = Enum.NOUGHT;
+        cell.setValue(value);
         assertEquals('o', cell.getValue());
-        cell.Enum('x');
+        value = Enum.CROSS;
+        cell.setValue(value);
         assertEquals('x', cell.getValue());
     }
     
     @Test
 	public void testIsSetOrUnSet() {
-	/*	assertFalse(cell.isSet());
+		assertFalse(cell.isSet());
 		assertTrue(cell.isUnSet());
-		cell.setValue('x');
+		cell.setValue(Enum.CROSS);
 		assertTrue(cell.isSet());
 		assertFalse(cell.isUnSet());
-		cell.setValue('o');
+		cell.setValue(Enum.NOUGHT);
 		assertFalse(cell.isSet());
-		assertTrue(cell.isUnSet());*/
+		assertTrue(cell.isUnSet());
 	}
     @Test
     public void testClear(){
