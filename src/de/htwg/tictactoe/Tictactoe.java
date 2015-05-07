@@ -1,5 +1,6 @@
 package de.htwg.tictactoe;
 
+import de.htwg.tictactoe.controller.PlayerController;
 import de.htwg.tictactoe.controller.TictactoeController;
 import de.htwg.tictactoe.entities.Grid;
 import de.htwg.tictactoe.tui.TextUI;
@@ -10,7 +11,7 @@ public class Tictactoe {
     String line = "";
     
     public static void main(final String[] args) {
-        TextUI tui = new TextUI(new TictactoeController(new Grid()));
+        TextUI tui = new TextUI(new TictactoeController(new Grid()), new PlayerController());
         tui.printTUI();
 
         boolean continu = true;
