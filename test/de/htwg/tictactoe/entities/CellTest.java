@@ -14,9 +14,9 @@ public class CellTest {
 
     @Test
     public void testGetValue(){
-        cell.setValue('o');
+        cell.Enum('o');
         assertEquals('o', cell.getValue());
-        cell.setValue('x');
+        cell.Enum('x');
         assertEquals('x', cell.getValue());
     }
     

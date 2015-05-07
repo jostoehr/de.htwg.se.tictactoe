@@ -1,6 +1,7 @@
 package de.htwg.tictactoe.controller;
 import de.htwg.tictactoe.entities.Cell;
 import de.htwg.tictactoe.entities.Grid;
+import de.htwg.tictactoe.entities.Enum;
 import de.htwg.util.observer.Observable;
 
 /**
@@ -16,7 +17,7 @@ public class TictactoeController extends Observable {
         this.grid = grid;
     }
     
-    public void setValue(int row, int column, char value) {
+    public void setValue(int row, int column, Enum value) {
 	Cell cell = grid.getCell(row, column);
 	if (cell.isUnSet()) {
 		cell.setValue(value);

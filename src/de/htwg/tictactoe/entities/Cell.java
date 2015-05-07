@@ -3,18 +3,18 @@ package de.htwg.tictactoe.entities;
 public class Cell {
     private int row;
     private int column;
-    private char value;
+    private Enum value;
     
     public Cell(int row, int column) {
         this.row=row;
         this.column=column;
     }
 
-    public void setValue(char value) {
+    public void setValue(Enum value) {
         this.value = value;
     }
 
-    public char getValue() {
+    public Enum getValue() {
         return value;
     }
     
@@ -27,7 +27,7 @@ public class Cell {
     }
     
     public boolean isSet() {
-        return value != ' ';
+        return value != Enum.EMPTY;
     }
     
     public boolean isUnSet() {
@@ -42,6 +42,6 @@ public class Cell {
     }
     
     public void clear() {
-        value = ' ';
+        value = Enum.EMPTY;
     }
 }

@@ -31,9 +31,47 @@ public class Grid {
     }
     
     	
-    public void setCell(int row, int column, char value) {
+    public void setCell(int row, int column, Enum value) {
 	cells[row][column].setValue(value);
     }
+    
+    public boolean isDraw() {
+        for (int row = 0; row < ROWS; ++row) {
+            for (int col = 0; col < COLS; ++col) {
+                if (cells[row][col].getValue() == Enum.EMPTY) {
+                    return false; // an empty content found, not a draw
+                }
+            }
+        }
+        return true; // no empty cell, draw!
+    }    
+    
+    public boolean hasWon(Enum p) {
+        return (cells[0][0].getValue() == p &&
+                cells[0][1].getValue() == p &&
+                cells[0][2].getValue() == p ||
+                cells[1][0].getValue() == p &&
+                cells[1][1].getValue() == p &&
+                cells[1][2].getValue() == p ||
+                cells[2][0].getValue() == p &&
+                cells[2][1].getValue() == p &&
+                cells[2][2].getValue() == p ||
+                cells[0][0].getValue() == p &&
+                cells[1][0].getValue() == p &&
+                cells[2][0].getValue() == p ||
+                cells[0][1].getValue() == p &&
+                cells[1][1].getValue() == p &&
+                cells[2][1].getValue() == p ||
+                cells[0][2].getValue() == p &&
+                cells[1][2].getValue() == p &&
+                cells[2][2].getValue() == p ||
+                cells[0][0].getValue() == p &&
+                cells[1][1].getValue() == p &&
+                cells[2][2].getValue() == p ||
+                cells[2][0].getValue() == p &&
+                cells[1][1].getValue() == p &&
+                cells[0][2].getValue() == p);
+    }    
     
     @Override
     public String toString() {
