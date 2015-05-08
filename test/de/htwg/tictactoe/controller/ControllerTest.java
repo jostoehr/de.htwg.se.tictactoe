@@ -28,12 +28,18 @@ public class ControllerTest {
     
     @Test
     public void testGetValue(){
-        Enum value = Enum.CROSS;
-        controller.setValue(0, 0,value );
-        assertEquals(0, grid.getCell(0, 0).getRow());
+        controller.setValue(0, 0,Enum.CROSS );
+        
+      /*  assertEquals(0, grid.getCell(0, 0).getRow());
         assertEquals(0, grid.getCell(0, 0).getColumn());
-        assertEquals(value, grid.getCell(0,0).getValue());
+        assertEquals(Enum.CROSS, grid.getCell(0,0).getValue());
         assertEquals("The cell (0,0) = x was successfully set", controller.getStatus());
+        Enum value2 = Enum.EMPTY;
+        controller.setValue(0, 1,value2 );
+        assertEquals(0, grid.getCell(0, 1).getRow());
+        assertEquals(1, grid.getCell(0, 1).getColumn());
+        assertEquals(value2, grid.getCell(0,1).getValue());
+        assertEquals("The cell (0,1) = x was successfully set", controller.getStatus());*/
         
     }
     
