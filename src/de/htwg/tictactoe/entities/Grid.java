@@ -79,8 +79,9 @@ public class Grid {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) { 
                 sb.append(cells[row][col].getValue()).append("  ");   
-                if (col < COLS - 1) 
+                if (col < COLS - 1){
                     sb.append("|");
+                } 
             }
             sb.append("\n");
             if (row < ROWS - 1) {
