@@ -23,8 +23,9 @@ public class TictactoeController extends Observable {
 	if (cell.isUnSet()) {
 		cell.setValue(value);
 		setStatusMessage("The cell " + cell.mkString() + " was successfully set");
-	} else 
+	} else {
             setStatusMessage("The cell " + cell.mkString() + " is already set");
+        }
 	notifyObservers();
     }
     
