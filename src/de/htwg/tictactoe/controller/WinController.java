@@ -1,6 +1,5 @@
 package de.htwg.tictactoe.controller;
 
-import de.htwg.tictactoe.entities.Enum;
 import de.htwg.tictactoe.entities.Grid;
 import de.htwg.tictactoe.entities.Player;
 import de.htwg.util.observer.Observable;
