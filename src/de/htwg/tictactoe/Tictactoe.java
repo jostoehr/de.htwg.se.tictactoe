@@ -6,7 +6,7 @@ import de.htwg.tictactoe.entities.Grid;
 import de.htwg.tictactoe.tui.TextUI;
 import java.util.Scanner;
 
-public class Tictactoe {
+public final class Tictactoe {
     private Tictactoe(){}
     private static Scanner scanner;
     
