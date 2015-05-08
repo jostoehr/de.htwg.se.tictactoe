@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class Tictactoe {
     private static Scanner scanner;
-    private String line = "";
     
     public static void main(final String[] args) {
         TextUI tui = new TextUI(new TictactoeController(new Grid()), new PlayerController());
