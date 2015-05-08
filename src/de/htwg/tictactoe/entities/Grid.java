@@ -21,7 +21,8 @@ public class Grid {
     public void init() {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
-                cells[row][col].clear();  // clear the cell content
+                /* clear the cell content */
+                cells[row][col].clear();  
             }
         }
     }
@@ -39,11 +40,13 @@ public class Grid {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
                 if (cells[row][col].getValue() == Enum.EMPTY) {
-                    return false; // an empty content found, not a draw
+                    /* an empty content found, not a draw */
+                    return false; 
                 }
             }
         }
-        return true; // no empty cell, draw!
+        /* no empty cell, draw! */
+        return true; 
     }    
     
     public boolean hasWon(Enum p) {
