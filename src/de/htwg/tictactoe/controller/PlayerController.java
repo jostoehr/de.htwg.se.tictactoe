@@ -8,8 +8,8 @@ import de.htwg.tictactoe.entities.Player;
  * @author johannes
  */
 public class PlayerController {
-    Player player1;
-    Player player2;
+    private Player player1;
+    private Player player2;
     
     
     public Player getPlayer1() {
