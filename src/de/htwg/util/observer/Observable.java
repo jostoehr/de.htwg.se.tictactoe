@@ -13,7 +13,7 @@ import java.util.List;
  * @author siegfried
  */
 public class Observable {
-    protected List<IObserver> subscribers = new LinkedList<IObserver>();
+    private List<IObserver> subscribers = new LinkedList<IObserver>();
     
     public void addObserver(IObserver s){
         subscribers.add(s);
