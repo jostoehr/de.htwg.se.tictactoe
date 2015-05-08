@@ -28,9 +28,15 @@ public class WinController extends Observable {
     
     public Player win() {
         if(grid.hasWon(player1.getCharacter()))
+        {
             return player1;
+        }
+            
         if(grid.hasWon(player2.getCharacter()))
+        {
             return player2;
+        }
+            
         return null;
     }
 
