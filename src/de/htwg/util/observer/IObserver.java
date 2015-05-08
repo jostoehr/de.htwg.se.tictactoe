@@ -10,5 +10,5 @@ package de.htwg.util.observer;
  * @author siegfried
  */
 public interface IObserver {
-    public void update();
+    void update();
 }
