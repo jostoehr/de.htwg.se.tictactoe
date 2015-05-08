@@ -19,9 +19,7 @@ public class TextUI implements IObserver {
     private TictactoeController controller;
     private PlayerController pcontroller;
     private Grid grid;
-    private Player player1;
-    private Player player2;
-    Scanner scanner;
+    private Scanner scanner;
     
     public TextUI(TictactoeController controller, PlayerController pcontroller) {
         this.controller = controller;
@@ -36,8 +34,8 @@ public class TextUI implements IObserver {
     }
 
     public void printTUI() {
-        System.out.println(controller.getGridString());
-	System.out.println(controller.getStatus());
+        System.out.print(controller.getGridString());
+	System.out.print(controller.getStatus());
         printHelp();
     }
     
@@ -89,12 +87,12 @@ public class TextUI implements IObserver {
         }
         pcontroller.setPlayer1(playername[0], Enum.CROSS);
         pcontroller.setPlayer2(playername[1], Enum.NOUGHT);
-        player1 = pcontroller.getPlayer1();
-        player2 = pcontroller.getPlayer2();
+        Player player1 = pcontroller.getPlayer1();
+        Player player2 = pcontroller.getPlayer2();
     }
     
     private void printHelp() {
-        System.out.println("\n-----MENU-----\nh\t-\tHelp\nn\t-\tNew Game\n"
+        System.out.print("\n-----MENU-----\nh\t-\tHelp\nn\t-\tNew Game\n"
                 + "s\t-\tSet Cell((x,y) = x or 0) like 1 2 x\n"
                 + "q\t-\tquit");
     }
