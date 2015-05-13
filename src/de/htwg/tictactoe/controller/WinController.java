@@ -20,24 +20,24 @@ public class WinController extends Observable {
         this.grid = grid;
     }
     
-    public WinController(Player player1, Player player2) {
+    public WinController(Grid grid, Player player1, Player player2) {
+        this.grid = grid;
         this.player1 = player1;
         this.player2 = player2;
     }
     
     public Player win() {
-        if(grid.hasWon(player1.getCharacter()))
-        {
-            return player1;
+        Player win = null;
+        if(!grid.isDraw()) {
+            if(grid.hasWon(player1.getCharacter())){
+                win =  player1;
+            } else if(grid.hasWon(player2.getCharacter())){
+                win =  player2;
+            }
+        } else {
+            win = null;
         }
-            
-        if(grid.hasWon(player2.getCharacter()))
-        {
-            return player2;
-        }
-            
-        return null;
+        return win;
     }
-
 }
 
