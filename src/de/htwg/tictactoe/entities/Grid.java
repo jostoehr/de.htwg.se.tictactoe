@@ -79,9 +79,10 @@ public class Grid {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("\n");
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) { 
-                sb.append(cells[row][col].getValue()).append("  ");   
+                sb.append(" ").append(cells[row][col].getValue()).append(" ");   
                 if (col < COLS - 1){
                     sb.append("|");
                 } 
@@ -91,6 +92,7 @@ public class Grid {
                 sb.append("-----------\n");
             }
         }
+        sb.append("\n");
         return sb.toString();
     }
     
