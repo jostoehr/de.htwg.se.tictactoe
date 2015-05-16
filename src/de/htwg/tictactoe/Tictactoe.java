@@ -12,7 +12,7 @@ public final class Tictactoe {
     private static Scanner scanner;
     
     public static void main(final String[] args) {
-        TextUI tui = new TextUI(new TictactoeController(new Grid()), new PlayerController(), new WinController(new Grid()));
+        TextUI tui = new TextUI(new TictactoeController(new Grid()), new PlayerController(2), new WinController(new Grid()));
         tui.printTUI();
 
         boolean continu = true;
