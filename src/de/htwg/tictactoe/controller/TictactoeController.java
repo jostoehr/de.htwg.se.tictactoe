@@ -22,9 +22,9 @@ public class TictactoeController extends Observable {
 	Cell cell = grid.getCell(row, column);
 	if (cell.isUnSet()) {
 		cell.setValue(value);
-		setStatusMessage("The cell " + cell.mkString() + " was successfully set");
+		setStatusMessage("The cell " + cell.mkString() + " was successfully set\n");
 	} else {
-            setStatusMessage("The cell " + cell.mkString() + " is already set");
+            setStatusMessage("The cell " + cell.mkString() + " is already set\n");
         }
 	notifyObservers();
     }
