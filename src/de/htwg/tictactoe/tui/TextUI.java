@@ -107,6 +107,9 @@ public class TextUI implements IObserver {
         //new WinController(grid, player1, player2);
         System.out.println(player1.getName() + " is " + player1.getCharacter() 
                 + ", " + player2.getName() + " is " + player2.getCharacter());
+        pcontroller.playerItsYourTurn();
+        System.out.println(pcontroller);
+        
     }
     
     private void printHelp() {
