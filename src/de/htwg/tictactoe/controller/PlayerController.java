@@ -20,7 +20,7 @@ public class PlayerController {
     int zustand = ATTACK;
     /*
     * Mit 'anzahl' wird verfolgt wie viele 
-    * Zeichen, der Spieler noch besitzt
+    * Spieler, das Spiel besitzt
     */
     int anzahl = 0;
     /*Ist 'anzahl' nicht null, wird der Zustand
@@ -37,6 +37,7 @@ public class PlayerController {
         if(zustand == ATTACK){
             System.out.println("Spieler Sie sind dran!");
         } else {
+            zustand = ATTACK;
             System.out.println("Spieler Sie sind nicht dran!");
         }
     }
@@ -45,6 +46,7 @@ public class PlayerController {
         if(zustand == WAITING) {
             System.out.println("Spieler Sie müssen warten!");
         } else {
+            zustand = WAITING;
             System.out.println("Spieler Sie müssen nicht warten!");
         }
     }
