@@ -1,5 +1,6 @@
 package de.htwg.tictactoe.controller;
 
+import de.htwg.tictactoe.entities.Enum;
 import de.htwg.tictactoe.entities.Grid;
 import de.htwg.tictactoe.entities.Player;
 import de.htwg.util.observer.Observable;
@@ -26,16 +27,16 @@ public class WinController extends Observable {
         this.player2 = player2;
     }
     
-    public Player win() {
-        Player win = null;
-        if(!grid.isDraw()) {
-            if(grid.hasWon(player1.getCharacter())){
-                win =  player1;
-            } else if(grid.hasWon(player2.getCharacter())){
-                win =  player2;
-            }
+    public String win() {
+        String win = null;
+        if(grid.hasWon(player1.getCharacter()))
+            win =  player1.getName();
+        else if(grid.hasWon(player2.getCharacter()))
+            win =  player2.getName();
+        else if(grid.isDraw()) {
+            win = "draw";
         } else {
-            win = null;
+            return "playing";
         }
         return win;
     }
