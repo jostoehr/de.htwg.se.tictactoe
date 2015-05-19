@@ -13,19 +13,9 @@ public class Player {
         this.character = character;
     }
     
-   /* public final void setCharacter(Enum character) {
-        this.character = character;
-    }*/
-    
     public Enum getCharacter() {
         return character;
     }
-    
-    /*public final void setName(String name) {
-        if(this.name.isEmpty()) {
-            this.name = name;
-        }
-    }*/
     
     public String getName() {
         return this.name;
