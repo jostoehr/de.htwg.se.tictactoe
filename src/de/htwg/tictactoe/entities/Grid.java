@@ -22,7 +22,7 @@ public class Grid {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
                 /* clear the cell content */
-                cells[row][col].clear();  
+                cells[row][col].clear();
             }
         }
     }
@@ -39,7 +39,7 @@ public class Grid {
     public boolean isDraw() {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
-                if (cells[row][col].getValue() == Enum.EMPTY) {
+                if (cells[row][col].isUnSet()) {
                     /* an empty content found, not a draw */
                     return false; 
                 }
