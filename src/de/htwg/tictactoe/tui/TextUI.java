@@ -53,27 +53,28 @@ public class TextUI implements IObserver {
             grid = new Grid();
             controller = new TictactoeController(grid);
             controller.addObserver(this);
+            wcontroller = new WinController(grid, player1, player2);
+            wcontroller.addObserver(this);
             System.out.println("New Game is created");
             System.out.println(player1.getName() + " it's your turn!");
         }
         if (line.equalsIgnoreCase("s")) {
-            line = scanner.next();
-            if (line.matches("[0-9][0-9][0-1]")){
-                int[] arg = readToArray(line);
-                Enum value;
-                if(arg[2] == 0) {
-                    value = Enum.CROSS;
-                } else {
-                    value = Enum.NOUGHT;
-                } 
-                controller.setValue(arg[0], arg[1], value);
+            if(wcontroller.win().equals("playing")) {    
+                line = scanner.next();
+                if (line.matches("[0-9][0-9][0-1]")){
+                    int[] arg = readToArray(line);
+                    Enum value;
+                    if(arg[2] == 0) {
+                        value = Enum.CROSS;
+                    } else {
+                        value = Enum.NOUGHT;
+                    } 
+                    controller.setValue(arg[0], arg[1], value);
+                }
+            } else {
+                System.out.println("Game is over, press 'n' to restart");
             }
-//            if(wcontroller.win().equals(player1))
-//                System.out.println(player1.getCharacter() + " wins");
-//            else if(wcontroller.win().equals(player2))
-//                System.out.println(player2.getCharacter() + " wins");
-//            else if(wcontroller.win().equals(null))
-//                System.out.println("Game is Draw! Press 'n' to restart");
+            checkGame();
         }
         
         if (line.equalsIgnoreCase("q")) { 
@@ -104,7 +105,6 @@ public class TextUI implements IObserver {
         this.player1 = player1;
         Player player2 = pcontroller.getPlayer2();
         this.player2 = player2;
-        //new WinController(grid, player1, player2);
         System.out.println(player1.getName() + " is " + player1.getCharacter() 
                 + ", " + player2.getName() + " is " + player2.getCharacter());
     }
@@ -113,5 +113,20 @@ public class TextUI implements IObserver {
         System.out.print("\n-----MENU-----\nh\t-\tHelp\nn\t-\tNew Game\n"
                 + "s\t-\tSet Cell((x,y) = 0 for x or 1 for o) like 1 2 0\n"
                 + "q\t-\tquit\n");
+    }
+
+    private void checkGame() {
+        String win = wcontroller.win();
+        if(win.equals(player1.getName()))
+            System.out.println(player1.getCharacter() + " wins!"
+                    + " Press 'n' to restart");
+        else if(win.equals(player2.getName()))
+            System.out.println(player2.getCharacter() + " wins!"
+                    + " Press 'n' to restart");
+        else if(win.equals("draw")) {
+            System.out.println("Game is Draw! Press 'n' to restart");
+        } else if(win.equals("playing")) {
+            System.out.println("Game is not finished!");
+        }
     }
 }
