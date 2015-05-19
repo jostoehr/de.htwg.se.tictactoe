@@ -31,5 +31,8 @@ public class EnumTest {
         assertEquals("x", cross.toString());
         assertEquals("o", nought.toString());
         assertEquals(" ", empty.toString());
+        assertEquals(Enum.EMPTY, Enum.valueOf("EMPTY"));
+        assertEquals(Enum.CROSS, Enum.valueOf("CROSS"));
+        assertEquals(Enum.NOUGHT, Enum.valueOf("NOUGHT"));
     }
 }
