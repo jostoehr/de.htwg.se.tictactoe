@@ -11,8 +11,8 @@ public class PlayerController {
     private Player player1;
     private Player player2;
     /*Zustände für das State-Pattern*/
-    final static int ATTACK = 1;
-    final static int WAITING = 0;
+    static final int ATTACK = 1;
+    static final int WAITING = 0;
     
     /*Instanzvariable 'zustand' zum festhalten
     * in welchem Zustand wir gerade sind.
