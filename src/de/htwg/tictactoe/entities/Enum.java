@@ -28,10 +28,13 @@ public enum Enum {
         switch(this) {
             case EMPTY:
                 value = " ";
+                break;
             case CROSS:
                 value = "x";
+                break;
             case NOUGHT:
                 value = "o";
+                break;
         }
         return value;
     }
