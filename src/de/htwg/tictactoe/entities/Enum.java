@@ -24,15 +24,15 @@ public enum Enum {
                 
     @Override 
     public String toString() {
+        String value = null;
         switch(this) {
             case EMPTY:
-                return " ";
+                value = " ";
             case CROSS:
-                return "x";
+                value = "x";
             case NOUGHT:
-                return "o";
-            default:
-                return null;
+                value = "o";
         }
+        return value;
     }
 }
