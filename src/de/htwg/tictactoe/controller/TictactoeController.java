@@ -11,7 +11,7 @@ import de.htwg.util.observer.Observable;
 public class TictactoeController extends Observable {
     
     private String statusMessage = "Welcome to HTWG TicTacToe!";
-    private Grid grid;
+    private final Grid grid;
     
     public TictactoeController(Grid grid) {
         this.grid = grid;
