@@ -17,12 +17,12 @@ public class PlayerController {
     /*Instanzvariable 'zustand' zum festhalten
     * in welchem Zustand wir gerade sind.
     */
-    int zustand = ATTACK;
+    private int zustand = ATTACK;
     /*
     * Mit 'anzahl' wird verfolgt wie viele 
     * Spieler, das Spiel besitzt
     */
-    int anzahl = 0;
+    private int anzahl = 0;
     /*Ist 'anzahl' nicht null, wird der Zustand
     * auf WAITING gesetzt. 
     */
