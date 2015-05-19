@@ -57,9 +57,9 @@ public class TextUI implements IObserver {
             System.out.println(player1.getName() + " it's your turn!");
         }
         if (line.equalsIgnoreCase("s")) {
-            line = scanner.next();
-            if (line.matches("[0-9][0-9][0-1]")){
-                int[] arg = readToArray(line);
+            String zeile = scanner.next();
+            if (zeile.matches("[0-9][0-9][0-1]")){
+                int[] arg = readToArray(zeile);
                 Enum value;
                 if(arg[2] == 0) {
                     value = Enum.CROSS;
