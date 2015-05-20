@@ -23,10 +23,12 @@ public class TextUI implements IObserver {
     private TictactoeController controller;
     private Grid grid;
     private Scanner scanner;
+    private String mode;
     
     public TextUI(TictactoeController controller) {
         this.controller = controller;
         scanner = new Scanner(System.in);
+        mode();
         player();        
     }
     
@@ -50,6 +52,13 @@ public class TextUI implements IObserver {
         if (line.equalsIgnoreCase("n")) {
             controller.init();
             System.out.println("New Game is created");
+            controller.setCurrentState(new StateCrossPlaying(controller));
+        }
+        
+        if (line.equalsIgnoreCase("m")) {
+            mode();
+            player();
+            controller.init();
             controller.setCurrentState(new StateCrossPlaying(controller));
         }
         
@@ -108,7 +117,10 @@ public class TextUI implements IObserver {
 
     
     private void printHelp() {
-        System.out.print("\n-----MENU-----\nh\t-\tHelp\nn\t-\tNew Game\n"
+        System.out.print("\n-----MENU-----\n"
+                + "h\t-\tHelp\n"
+                + "n\t-\tNew Game\n"
+                + "m\t-\tGame Mode\n"
                 + "c\t-\tChange Player1 to o, Player2 to x\n"
                 + "s\t-\tSet Cell((x,y) like: 10\n"
                 + "p\t-\tprint Statistics\n"
@@ -156,16 +168,43 @@ public class TextUI implements IObserver {
         }
     }
     
-    public void player() {
-        String playername[] = new String[2];
-        for (int i = 0; i < 2; i++) {
+    private void player() {
+        int j = 0;
+        if(mode.equals("p"))
+            j = 2;
+        else 
+            j = 1;
+        String playername[] = new String[j];
+        for (int i = 0; i < j; i++) {
             System.out.println("Type in Playername" + (i + 1) + ": ");
             playername[i] = scanner.next();
         }
         controller.setPlayer1(playername[0], Enum.CROSS);
-        controller.setPlayer2(playername[1], Enum.NOUGHT);
-
-        System.out.println(controller.getPlayer1().getName() + " is " + controller.getPlayer1().getCharacter()
+        if(j == 2) {
+            controller.setPlayer2(playername[1], Enum.NOUGHT);
+            System.out.println(controller.getPlayer1().getName() + " is " + controller.getPlayer1().getCharacter()
                 + ", " + controller.getPlayer2().getName() + " is " + controller.getPlayer2().getCharacter());
+        } else
+            controller.setPlayer2("Artificial Intelligence", Enum.NOUGHT);
+            System.out.println(controller.getPlayer1().getName() + " is " + controller.getPlayer1().getCharacter()
+                + ", " + controller.getPlayer2().getName() + " is " + controller.getPlayer2().getCharacter());
+    }
+    
+    private void mode() {
+        String mode;
+        while(true) {
+            System.out.println("Choose your game Mode:\n"
+                + "a\t-\tvs Artificial Intelligence\n"
+                + "p\t-\tvs Player");
+            mode = scanner.next();
+            if(mode.equalsIgnoreCase("a")) {
+                this.mode = mode;
+                break;
+            }
+            if(mode.equalsIgnoreCase("p")) {
+                this.mode = mode;            
+                break;
+            }
+        }
     }
 }
