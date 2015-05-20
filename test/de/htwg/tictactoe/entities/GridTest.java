@@ -5,6 +5,8 @@
  */
 package de.htwg.tictactoe.entities;
 
+import static de.htwg.tictactoe.entities.Grid.COLS;
+import static de.htwg.tictactoe.entities.Grid.ROWS;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,18 +20,26 @@ import static org.junit.Assert.*;
  */
 public class GridTest {
     private Grid grid; 
+    private Grid grid2;
     private Cell cell[][];
     @Before
     public void setUp() throws Exception {
         grid = new Grid();
+        grid2 = new Grid();
+        
     }
 
     @Test
     public void testGetValue(){
+        grid.setCell(0, 0, Enum.NOUGHT);
+        grid2.setCell(1, 1, Enum.EMPTY);
+        assertEquals(grid.getCell(0, 0), grid.getCell(0, 0));
+        
+    }
+    @Test
+    public void testIsDraw(){
+        assertTrue(grid.isDraw());
+       // assertFalse(grid2.isDraw());
     }
     
-    @Test
-    public void testGetSetCell(){
-        grid.setCell(0, 0, Enum.CROSS);
-    }
 }
