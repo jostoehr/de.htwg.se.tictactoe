@@ -32,14 +32,16 @@ public class GridTest {
     @Test
     public void testGetValue(){
         grid.setCell(0, 0, Enum.NOUGHT);
-        grid2.setCell(1, 1, Enum.EMPTY);
+        grid2.setCell(0, 0, Enum.EMPTY);
         assertEquals(grid.getCell(0, 0), grid.getCell(0, 0));
         
     }
     @Test
     public void testIsDraw(){
         assertTrue(grid.isDraw());
-       // assertFalse(grid2.isDraw());
+        grid2.init();
+        System.out.println(grid2.isDraw());
+        //assertFalse(grid.isDraw());
     }
     
 }
