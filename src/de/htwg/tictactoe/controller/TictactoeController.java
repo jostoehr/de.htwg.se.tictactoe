@@ -12,7 +12,6 @@ import static de.htwg.tictactoe.entities.Grid.COLS;
 import static de.htwg.tictactoe.entities.Grid.ROWS;
 import de.htwg.tictactoe.entities.Player;
 import de.htwg.util.observer.Observable;
-import java.util.Scanner;
 
 /**
  *
@@ -25,11 +24,9 @@ public class TictactoeController extends Observable {
     private IGameState currentState;
     private Player player1;
     private Player player2;
-    private Scanner scanner;
 
     public TictactoeController(Grid grid) {
         this.grid = grid;
-        scanner = new Scanner(System.in);
         init();
     }
 
@@ -45,6 +42,10 @@ public class TictactoeController extends Observable {
             setStatusMessage("The cell " + cell.mkString() + " is already set\n");
         }
         getCurrentState().change();
+        if(this.currentState instanceof StateNoughtWon
+                || this.currentState instanceof StateCrossWon
+                || this.currentState instanceof StateDraw)
+            updateStatistic();
         notifyObservers();
     }
 
@@ -84,20 +85,6 @@ public class TictactoeController extends Observable {
         this.player2 = new Player(name, character);
     }
 
-    public void player() {
-        String playername[] = new String[2];
-        for (int i = 0; i < 2; i++) {
-            System.out.println("Type in Playername" + (i + 1) + ": ");
-            playername[i] = scanner.next();
-        }
-        setPlayer1(playername[0], Enum.CROSS);
-        setPlayer2(playername[1], Enum.NOUGHT);
-
-        System.out.println(player1.getName() + " is " + player1.getCharacter()
-                + ", " + player2.getName() + " is " + player2.getCharacter());
-
-    }
-
     public void init() {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
@@ -111,6 +98,19 @@ public class TictactoeController extends Observable {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
                 if (grid.getCell(row, col).isUnSet()) {
+                    /* an empty content found, not a draw */
+                    return false;
+                }
+            }
+        }
+        /* no empty cell, draw! */
+        return true;
+    }
+    
+    public boolean isEmpty() {
+        for (int row = 0; row < ROWS; ++row) {
+            for (int col = 0; col < COLS; ++col) {
+                if (grid.getCell(row, col).isSet()) {
                     /* an empty content found, not a draw */
                     return false;
                 }
@@ -160,6 +160,19 @@ public class TictactoeController extends Observable {
         }
         return win;
     }
+    
+    private void updateStatistic() {
+        if(win().equals(player1.getName())) {
+            player1.setWinCount(player1.getWinCount() +1);
+            player2.setLooseCount(player2.getLooseCount() + 1);
+        } else if(win().equals(player2.getName())) {
+            player2.setWinCount(player2.getWinCount() +1);
+            player1.setLooseCount(player1.getLooseCount() +1);
+        } else {
+            player1.setDrawCount(player1.getDrawCount() + 1);
+            player2.setDrawCount(player2.getDrawCount() + 1);
+        }
+    }    
 
     public void endGame() {
         if (this.currentState instanceof StateNoughtWon
