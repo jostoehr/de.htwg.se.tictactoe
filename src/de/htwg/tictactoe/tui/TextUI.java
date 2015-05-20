@@ -3,6 +3,7 @@ package de.htwg.tictactoe.tui;
 import de.htwg.tictactoe.controller.PlayerController;
 import de.htwg.tictactoe.controller.TictactoeController;
 import de.htwg.tictactoe.controller.WinController;
+import de.htwg.tictactoe.controller.impl.StateCrossPlaying;
 import de.htwg.tictactoe.entities.Enum;
 import de.htwg.tictactoe.entities.Grid;
 import de.htwg.tictactoe.entities.Player;
@@ -56,22 +57,20 @@ public class TextUI implements IObserver {
             wcontroller = new WinController(grid, player1, player2);
             wcontroller.addObserver(this);
             System.out.println("New Game is created");
+            controller.setCurrentState(new StateCrossPlaying(controller, 
+                    pcontroller, wcontroller));
             System.out.println(player1.getName() + " it's your turn!");
+
+            
         }
         if (line.equalsIgnoreCase("s")) {
             if(wcontroller.win().equals("playing")) {
                 String line2;
                 line2 = scanner.next();
-                if (line2.matches("[0-9][0-9][0-1]")){
-                    int[] arg = readToArray(line);
-                    Enum value;
-                    if(arg[2] == 0) {
-                        value = Enum.CROSS;
-                    } else {
-                        value = Enum.NOUGHT;
-                    } 
-                    controller.setValue(arg[0], arg[1], value);
-                }
+                if (line2.matches("[0-9][0-9]")){
+                    int[] arg = readToArray(line2);
+                    controller.setValue(arg[0], arg[1]);
+                } 
             } else {
                 System.out.println("Game is over, press 'n' to restart");
             }
@@ -108,8 +107,8 @@ public class TextUI implements IObserver {
         this.player2 = player2;
         System.out.println(player1.getName() + " is " + player1.getCharacter() 
                 + ", " + player2.getName() + " is " + player2.getCharacter());
-        pcontroller.playerItsYourTurn();
-        System.out.println(pcontroller);
+        //pcontroller.playerItsYourTurn();
+        //System.out.println(pcontroller);
         
     }
     
