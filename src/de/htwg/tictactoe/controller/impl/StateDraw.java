@@ -1,30 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.htwg.tictactoe.controller.impl;
 
 import de.htwg.tictactoe.controller.IGameState;
-import de.htwg.tictactoe.controller.PlayerController;
 import de.htwg.tictactoe.controller.TictactoeController;
-import de.htwg.tictactoe.controller.WinController;
 
 /**
  *
- * @author johannes
+ * @author Johannes Stöhr
  */
 public class StateDraw implements IGameState {
 
     private TictactoeController controller;
-    private PlayerController pcontroller;
-    private WinController wcontroller;
     
-    public StateDraw(final TictactoeController controller,
-            final PlayerController pcontroller, final WinController wcontroller) {
+    public StateDraw(final TictactoeController controller) {
         this.controller = controller;
-        this.pcontroller = pcontroller;
-        this.wcontroller = wcontroller;
     }
     
     @Override
