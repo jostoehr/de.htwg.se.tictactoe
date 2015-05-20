@@ -10,33 +10,30 @@ public class CellTest {
     @Before
     public void setUp() throws Exception {
         cell = new Cell(3,3);
+        cell.setValue(Enum.CROSS);
     }
 
     @Test
     public void testGetValue(){
-        /*Enum value = Enum.NOUGHT;
-        cell.setValue(value);
-        assertEquals(value, cell.getValue());
-        value = Enum.CROSS;
-        cell.setValue(value);
-        assertEquals(value, cell.getValue());*/
+        assertEquals(Enum.CROSS, cell.getValue());
     }
     
     @Test
     public void testIsSetOrUnSet() {
-       /* assertFalse(cell.isSet());
-        assertTrue(cell.isUnSet());
-	cell.setValue(Enum.CROSS);
-	assertTrue(cell.isSet());
-	assertFalse(cell.isUnSet());
-	cell.setValue(Enum.NOUGHT);
-	assertFalse(cell.isSet());
-	assertTrue(cell.isUnSet());*/
     }
     @Test
     public void testClear(){
        cell.clear();
        assertEquals(Enum.EMPTY, cell.getValue());
     }
+    @Test
+    public void testGetRow(){
+        assertEquals(3, cell.getRow());
+    }
+    @Test
+    public void testGetColumn(){
+        assertEquals(3, cell.getColumn());
+    }
+    
 
 }
