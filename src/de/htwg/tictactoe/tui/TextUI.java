@@ -122,9 +122,10 @@ public class TextUI implements IObserver {
     private void checkGame() {
         String win = wcontroller.win();
         if(win.equals(player1.getName()))
+        {
             System.out.println(player1.getCharacter() + " wins!"
                     + " Press 'n' to restart");
-        else if(win.equals(player2.getName()))
+        } else if(win.equals(player2.getName()))
             System.out.println(player2.getCharacter() + " wins!"
                     + " Press 'n' to restart");
         else if(win.equals("draw")) {
