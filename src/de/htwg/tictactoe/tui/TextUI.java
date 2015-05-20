@@ -59,9 +59,10 @@ public class TextUI implements IObserver {
             System.out.println(player1.getName() + " it's your turn!");
         }
         if (line.equalsIgnoreCase("s")) {
-            if(wcontroller.win().equals("playing")) {    
-                line = scanner.next();
-                if (line.matches("[0-9][0-9][0-1]")){
+            if(wcontroller.win().equals("playing")) {
+                String line2;
+                line2 = scanner.next();
+                if (line2.matches("[0-9][0-9][0-1]")){
                     int[] arg = readToArray(line);
                     Enum value;
                     if(arg[2] == 0) {
