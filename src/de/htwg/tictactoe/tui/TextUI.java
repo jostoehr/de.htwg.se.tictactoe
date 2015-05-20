@@ -1,8 +1,6 @@
 package de.htwg.tictactoe.tui;
 
-import de.htwg.tictactoe.controller.PlayerController;
 import de.htwg.tictactoe.controller.TictactoeController;
-import de.htwg.tictactoe.controller.WinController;
 import de.htwg.tictactoe.controller.impl.StateCrossPlaying;
 import de.htwg.tictactoe.entities.Enum;
 import de.htwg.tictactoe.entities.Grid;
@@ -19,19 +17,13 @@ import java.util.regex.Pattern;
 public class TextUI implements IObserver {
 
     private TictactoeController controller;
-    private PlayerController pcontroller;
-    private WinController wcontroller;
     private Grid grid;
     private Scanner scanner;
-    private Player player1;
-    private Player player2;
     
-    public TextUI(TictactoeController controller, PlayerController pcontroller, WinController wcontroller) {
+    public TextUI(TictactoeController controller) {
         this.controller = controller;
-        this.pcontroller = pcontroller;
-        this.wcontroller = wcontroller;
         scanner = new Scanner(System.in);
-        player();        
+        controller.player();        
     }
     
     @Override
@@ -51,20 +43,18 @@ public class TextUI implements IObserver {
             printHelp();
         } 
         if (line.equalsIgnoreCase("n")) {
-            grid = new Grid();
-            controller = new TictactoeController(grid);
-            controller.addObserver(this);
-            wcontroller = new WinController(grid, player1, player2);
-            wcontroller.addObserver(this);
+            controller.init();
             System.out.println("New Game is created");
-            controller.setCurrentState(new StateCrossPlaying(controller, 
-                    pcontroller, wcontroller));
-            System.out.println(player1.getName() + " it's your turn!");
-
-            
+            controller.setCurrentState(new StateCrossPlaying(controller));
+            System.out.println(controller.getPlayer1().getName() + " it's your turn!");
         }
+        
+        /**if (line.equalsIgnoreCase("u"))
+            controller.test();
+        */
+        
         if (line.equalsIgnoreCase("s")) {
-            if(wcontroller.win().equals("playing")) {
+            if(controller.win().equals("playing")) {
                 String line2;
                 line2 = scanner.next();
                 if (line2.matches("[0-9][0-9]")){
@@ -93,39 +83,21 @@ public class TextUI implements IObserver {
 		return arg;
 	}
 
-    private void player() {
-        String playername[] = new String[2];
-        for(int i = 0; i < 2; i++) {
-            System.out.println("Type in Playername" + (i + 1) + ": ");
-            playername[i] = scanner.next();
-        }
-        pcontroller.setPlayer1(playername[0], Enum.CROSS);
-        pcontroller.setPlayer2(playername[1], Enum.NOUGHT);
-        Player player1 = pcontroller.getPlayer1();
-        this.player1 = player1;
-        Player player2 = pcontroller.getPlayer2();
-        this.player2 = player2;
-        System.out.println(player1.getName() + " is " + player1.getCharacter() 
-                + ", " + player2.getName() + " is " + player2.getCharacter());
-        //pcontroller.playerItsYourTurn();
-        //System.out.println(pcontroller);
-        
-    }
+
     
     private void printHelp() {
         System.out.print("\n-----MENU-----\nh\t-\tHelp\nn\t-\tNew Game\n"
-                + "s\t-\tSet Cell((x,y) = 0 for x or 1 for o) like 1 2 0\n"
+                + "s\t-\tSet Cell((x,y) like: 10\n"
                 + "q\t-\tquit\n");
     }
 
     private void checkGame() {
-        String win = wcontroller.win();
-        if(win.equals(player1.getName()))
-        {
-            System.out.println(player1.getCharacter() + " wins!"
+        String win = controller.win();
+        if(win.equals(controller.getPlayer1().getName())) {
+            System.out.println(controller.getPlayer1().getCharacter() + " wins!"
                     + " Press 'n' to restart");
-        } else if(win.equals(player2.getName())) {
-            System.out.println(player2.getCharacter() + " wins!"
+        } else if(win.equals(controller.getPlayer2().getName())) {
+            System.out.println(controller.getPlayer2().getCharacter() + " wins!"
                     + " Press 'n' to restart");
         } else if(win.equals("draw")) {
             System.out.println("Game is Draw! Press 'n' to restart");
