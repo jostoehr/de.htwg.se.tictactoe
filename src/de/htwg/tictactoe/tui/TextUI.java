@@ -59,9 +59,10 @@ public class TextUI implements IObserver {
             System.out.println(player1.getName() + " it's your turn!");
         }
         if (line.equalsIgnoreCase("s")) {
-            if(wcontroller.win().equals("playing")) {    
-                line = scanner.next();
-                if (line.matches("[0-9][0-9][0-1]")){
+            if(wcontroller.win().equals("playing")) {
+                String line2;
+                line2 = scanner.next();
+                if (line2.matches("[0-9][0-9][0-1]")){
                     int[] arg = readToArray(line);
                     Enum value;
                     if(arg[2] == 0) {
@@ -121,12 +122,13 @@ public class TextUI implements IObserver {
     private void checkGame() {
         String win = wcontroller.win();
         if(win.equals(player1.getName()))
+        {
             System.out.println(player1.getCharacter() + " wins!"
                     + " Press 'n' to restart");
-        else if(win.equals(player2.getName()))
+        } else if(win.equals(player2.getName())) {
             System.out.println(player2.getCharacter() + " wins!"
                     + " Press 'n' to restart");
-        else if(win.equals("draw")) {
+        } else if(win.equals("draw")) {
             System.out.println("Game is Draw! Press 'n' to restart");
         } else if(win.equals("playing")) {
             System.out.println("Game is not finished!");

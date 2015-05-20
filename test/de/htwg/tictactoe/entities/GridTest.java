@@ -40,8 +40,7 @@ public class GridTest {
     public void testIsDraw(){
         assertTrue(grid.isDraw());
         grid2.init();
-        System.out.println(grid2.isDraw());
-        //assertFalse(grid.isDraw());
+        assertFalse(grid2.isDraw());
     }
     
 }
