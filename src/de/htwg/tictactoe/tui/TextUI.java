@@ -70,6 +70,7 @@ public class TextUI implements IObserver {
                         value = Enum.NOUGHT;
                     } 
                     controller.setValue(arg[0], arg[1], value);
+                    //wcontroller.winCheck(arg[0], arg[1]);
                 }
             } else {
                 System.out.println("Game is over, press 'n' to restart");
@@ -107,6 +108,9 @@ public class TextUI implements IObserver {
         this.player2 = player2;
         System.out.println(player1.getName() + " is " + player1.getCharacter() 
                 + ", " + player2.getName() + " is " + player2.getCharacter());
+        pcontroller.playerItsYourTurn();
+        System.out.println(pcontroller);
+        
     }
     
     private void printHelp() {

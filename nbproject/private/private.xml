@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/johannes/NetBeansProjects/htwg.se.tictactoe/src/de/htwg/tictactoe/entities/Grid.java</file>
             <file>file:/home/johannes/NetBeansProjects/htwg.se.tictactoe/src/de/htwg/tictactoe/tui/TextUI.java</file>
+            <file>file:/home/johannes/NetBeansProjects/htwg.se.tictactoe/src/de/htwg/tictactoe/entities/Enum.java</file>
             <file>file:/home/johannes/NetBeansProjects/htwg.se.tictactoe/src/de/htwg/tictactoe/controller/PlayerController.java</file>
             <file>file:/home/johannes/NetBeansProjects/htwg.se.tictactoe/src/de/htwg/tictactoe/Tictactoe.java</file>
             <file>file:/home/johannes/NetBeansProjects/htwg.se.tictactoe/src/de/htwg/tictactoe/controller/WinController.java</file>

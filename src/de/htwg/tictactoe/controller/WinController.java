@@ -40,5 +40,20 @@ public class WinController extends Observable {
         }
         return win;
     }
+    
+    /*
+    public void winCheck(int row, int column) {
+        try {
+            grid.getCell(row, column);
+        } catch {
+            
+        } finally {
+            
+        }
+    }
+     * neue Gewinnüberprüfungsidee:
+     * letzten gesetzten Wert übergeben und von 
+     * diesem aus in alle Richtungen überprüfen
+     */
 }
 
