@@ -71,7 +71,6 @@ public class TextUI implements IObserver {
                         value = Enum.NOUGHT;
                     } 
                     controller.setValue(arg[0], arg[1], value);
-                    //wcontroller.winCheck(arg[0], arg[1]);
                 }
             } else {
                 System.out.println("Game is over, press 'n' to restart");
@@ -126,10 +125,10 @@ public class TextUI implements IObserver {
         {
             System.out.println(player1.getCharacter() + " wins!"
                     + " Press 'n' to restart");
-        } else if(win.equals(player2.getName()))
+        } else if(win.equals(player2.getName())) {
             System.out.println(player2.getCharacter() + " wins!"
                     + " Press 'n' to restart");
-        else if(win.equals("draw")) {
+        } else if(win.equals("draw")) {
             System.out.println("Game is Draw! Press 'n' to restart");
         } else if(win.equals("playing")) {
             System.out.println("Game is not finished!");
