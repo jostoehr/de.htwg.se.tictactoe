@@ -18,15 +18,6 @@ public class Grid {
         }
     }
     
-    public void init() {
-        for (int row = 0; row < ROWS; ++row) {
-            for (int col = 0; col < COLS; ++col) {
-                /* clear the cell content */
-                cells[row][col].clear();
-            }
-        }
-    }
-    
     public Cell getCell(int row, int column) {
 	return cells[row][column];
     }
@@ -35,47 +26,7 @@ public class Grid {
     public void setCell(int row, int column, Enum value) {
 	cells[row][column].setValue(value);
     }
-    
-    public boolean isDraw() {
-        for (int row = 0; row < ROWS; ++row) {
-            for (int col = 0; col < COLS; ++col) {
-                if (cells[row][col].isUnSet()) {
-                    /* an empty content found, not a draw */
-                    return false; 
-                }
-            }
-        }
-        /* no empty cell, draw! */
-        return true; 
-    }    
-    
-    public boolean hasWon(Enum p) {
-        return (cells[0][0].getValue() == p &&
-                cells[0][1].getValue() == p &&
-                cells[0][2].getValue() == p ||
-                cells[1][0].getValue() == p &&
-                cells[1][1].getValue() == p &&
-                cells[1][2].getValue() == p ||
-                cells[2][0].getValue() == p &&
-                cells[2][1].getValue() == p &&
-                cells[2][2].getValue() == p ||
-                cells[0][0].getValue() == p &&
-                cells[1][0].getValue() == p &&
-                cells[2][0].getValue() == p ||
-                cells[0][1].getValue() == p &&
-                cells[1][1].getValue() == p &&
-                cells[2][1].getValue() == p ||
-                cells[0][2].getValue() == p &&
-                cells[1][2].getValue() == p &&
-                cells[2][2].getValue() == p ||
-                cells[0][0].getValue() == p &&
-                cells[1][1].getValue() == p &&
-                cells[2][2].getValue() == p ||
-                cells[2][0].getValue() == p &&
-                cells[1][1].getValue() == p &&
-                cells[0][2].getValue() == p);
-    }    
-    
+       
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
