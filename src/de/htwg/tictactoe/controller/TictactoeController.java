@@ -172,12 +172,4 @@ public class TictactoeController extends Observable {
             player2.setDrawCount(player2.getDrawCount() + 1);
         }
     }    
-
-    public void endGame() {
-        if (this.currentState instanceof StateNoughtWon
-                || this.currentState instanceof StateCrossWon
-                || this.currentState instanceof StateDraw) {
-
-        }
-    }
 }

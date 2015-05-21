@@ -180,10 +180,11 @@ public class TextUI implements IObserver {
     
     private void player() {
         int j = 0;
-        if(mode.equals("p"))
+        if(mode.equals("p")) {
             j = 2;
-        else 
+        } else { 
             j = 1;
+        }   
         String playername[] = new String[j];
         for (int i = 0; i < j; i++) {
             System.out.println("Type in Playername" + (i + 1) + ": ");
@@ -194,10 +195,11 @@ public class TextUI implements IObserver {
             controller.setPlayer2(playername[1], Enum.NOUGHT);
             System.out.println(controller.getPlayer1().getName() + is + controller.getPlayer1().getCharacter()
                 + ", " + controller.getPlayer2().getName() + is + controller.getPlayer2().getCharacter());
-        } else
+        } else {
             controller.setPlayer2("Artificial Intelligence", Enum.NOUGHT);
             System.out.println(controller.getPlayer1().getName() + is + controller.getPlayer1().getCharacter()
                 + ", " + controller.getPlayer2().getName() + is + controller.getPlayer2().getCharacter());
+        }
     }
     
     private void modeChange() {
