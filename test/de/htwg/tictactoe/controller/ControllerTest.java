@@ -5,9 +5,13 @@
  */
 package de.htwg.tictactoe.controller;
 
+import de.htwg.tictactoe.controller.impl.StateCrossPlaying;
 import de.htwg.tictactoe.entities.Cell;
 import de.htwg.tictactoe.entities.Grid;
 import de.htwg.tictactoe.entities.Enum;
+import static de.htwg.tictactoe.entities.Grid.COLS;
+import static de.htwg.tictactoe.entities.Grid.ROWS;
+import de.htwg.tictactoe.entities.Player;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -24,6 +28,10 @@ public class ControllerTest {
     public void setUp() throws Exception {
         grid = new Grid();
         controller = new TictactoeController(grid);
+        controller.setPlayer1("Hans", Enum.CROSS);
+        controller.setPlayer2("Karle", Enum.NOUGHT);
+        controller.init();
+        controller.setCurrentState(new StateCrossPlaying(controller));
     }
     
     @Test
@@ -55,6 +63,13 @@ public class ControllerTest {
     
     @Test
     public void testIsDraw(){
+        controller.init();
+        
+        for(int i = 0; i < ROWS; i++) {
+            for(int j = 0; j < COLS; j++) {
+                controller.setValue(i, j);
+            }
+        }
         assertTrue(controller.isDraw());
         controller.init();
         assertFalse(controller.isDraw());
