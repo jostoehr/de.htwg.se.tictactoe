@@ -36,11 +36,4 @@ public class GridTest {
         assertEquals(grid.getCell(0, 0), grid.getCell(0, 0));
         
     }
-    @Test
-    public void testIsDraw(){
-        assertTrue(grid.isDraw());
-        grid2.init();
-        assertFalse(grid2.isDraw());
-    }
-    
 }

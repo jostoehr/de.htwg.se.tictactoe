@@ -28,7 +28,7 @@ public class ControllerTest {
     
     @Test
     public void testGetValue(){
-        controller.setValue(0, 0,Enum.CROSS );
+        controller.setValue(0, 0);
         
       /*  assertEquals(0, grid.getCell(0, 0).getRow());
         assertEquals(0, grid.getCell(0, 0).getColumn());
@@ -52,5 +52,13 @@ public class ControllerTest {
     public void testGetGridString(){
         assertEquals(grid.toString(), controller.getGridString());
     }
+    
+    @Test
+    public void testIsDraw(){
+        assertTrue(controller.isDraw());
+        controller.init();
+        assertFalse(controller.isDraw());
+    }
+    
     
 }
