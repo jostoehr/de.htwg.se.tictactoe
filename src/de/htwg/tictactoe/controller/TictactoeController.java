@@ -26,9 +26,8 @@ public class TictactoeController extends Observable {
 
     public TictactoeController(Grid grid) {
         this.grid = grid;
-        init();
     }
-
+    
     public void setValue(int row, int column) {
         Cell cell = grid.getCell(row, column);
         if (cell.isUnSet()) {

@@ -201,7 +201,6 @@ public class TextUI implements IObserver {
     }
     
     private void modeChange() {
-        String mode;
         while(true) {
             System.out.println("Choose your game Mode:\n"
                 + "a\t-\tvs Artificial Intelligence\n"
