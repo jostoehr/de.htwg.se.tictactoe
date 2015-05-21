@@ -1,6 +1,5 @@
 package de.htwg.tictactoe.controller;
 
-import de.htwg.tictactoe.controller.impl.StateCrossPlaying;
 import de.htwg.tictactoe.controller.impl.StateCrossWon;
 import de.htwg.tictactoe.controller.impl.StateDraw;
 import de.htwg.tictactoe.controller.impl.StateNoughtPlaying;
@@ -44,8 +43,9 @@ public class TictactoeController extends Observable {
         getCurrentState().change();
         if(this.currentState instanceof StateNoughtWon
                 || this.currentState instanceof StateCrossWon
-                || this.currentState instanceof StateDraw)
+                || this.currentState instanceof StateDraw) {
             updateStatistic();
+        }
         notifyObservers();
     }
 

@@ -7,8 +7,6 @@ import de.htwg.tictactoe.controller.impl.StateDraw;
 import de.htwg.tictactoe.controller.impl.StateNoughtPlaying;
 import de.htwg.tictactoe.controller.impl.StateNoughtWon;
 import de.htwg.tictactoe.entities.Enum;
-import de.htwg.tictactoe.entities.Grid;
-import de.htwg.tictactoe.entities.Player;
 import de.htwg.util.observer.IObserver;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -21,14 +19,23 @@ import java.util.regex.Pattern;
 public class TextUI implements IObserver {
 
     private TictactoeController controller;
-    private Grid grid;
     private Scanner scanner;
     private String mode;
+    
+    /**
+     * String literal for printStatus
+     */
+    private String turn = " it's your turn!";
+    
+    /**
+     * String literal is
+     */
+    private String is = " is ";
     
     public TextUI(TictactoeController controller) {
         this.controller = controller;
         scanner = new Scanner(System.in);
-        mode();
+        modeChange();
         player();        
     }
     
@@ -56,7 +63,7 @@ public class TextUI implements IObserver {
         }
         
         if (line.equalsIgnoreCase("m")) {
-            mode();
+            modeChange();
             player();
             controller.init();
             controller.setCurrentState(new StateCrossPlaying(controller));
@@ -75,8 +82,8 @@ public class TextUI implements IObserver {
                     controller.getPlayer2().setCharacter(Enum.NOUGHT);                
                 }
                 System.out.println("Changed Characters x and o");
-                System.out.println(controller.getPlayer1().getName() + " is " + controller.getPlayer1().getCharacter()
-                + ", " + controller.getPlayer2().getName() + " is " + controller.getPlayer2().getCharacter());
+                System.out.println(controller.getPlayer1().getName() + is + controller.getPlayer1().getCharacter()
+                + ", " + controller.getPlayer2().getName() + is + controller.getPlayer2().getCharacter());
             } else {
                 System.out.println("Can't change Cross and Nought while playing!");
             }
@@ -96,8 +103,9 @@ public class TextUI implements IObserver {
             checkGame();
         }
         
-        if (line.equalsIgnoreCase("p"))
+        if (line.equalsIgnoreCase("p")) {
             printStatistic();
+        }
         if (line.equalsIgnoreCase("q")) { 
             continu = false;
         }
@@ -113,8 +121,6 @@ public class TextUI implements IObserver {
 		}
 		return arg;
 	}
-
-
     
     private void printHelp() {
         System.out.print("\n-----MENU-----\n"
@@ -128,16 +134,20 @@ public class TextUI implements IObserver {
     }
     
     private void printStatus() {
-        if(controller.getCurrentState() instanceof StateCrossPlaying)
-            if(controller.getPlayer1().getCharacter().equals(Enum.CROSS))
-                System.out.println(controller.getPlayer1().getName() + " it's your turn!");
-            else
-                System.out.println(controller.getPlayer2().getName() + " it's your turn!");
-        if(controller.getCurrentState() instanceof StateNoughtPlaying)
-            if(controller.getPlayer2().getCharacter().equals(Enum.NOUGHT))
-                System.out.println(controller.getPlayer2().getName() + " it's your turn!");
-            else
-                System.out.println(controller.getPlayer1().getName() + " it's your turn!");
+        if(controller.getCurrentState() instanceof StateCrossPlaying) {
+            if(controller.getPlayer1().getCharacter().equals(Enum.CROSS)) {
+                System.out.println(controller.getPlayer1().getName() + turn);
+            } else {
+                System.out.println(controller.getPlayer2().getName() + turn);
+            }
+        }
+        if(controller.getCurrentState() instanceof StateNoughtPlaying) {
+            if(controller.getPlayer2().getCharacter().equals(Enum.NOUGHT)) {
+                System.out.println(controller.getPlayer2().getName() + turn);
+            } else {
+                System.out.println(controller.getPlayer1().getName() + turn);
+            }
+        }
     }
     
     private void printStatistic() {
@@ -182,15 +192,15 @@ public class TextUI implements IObserver {
         controller.setPlayer1(playername[0], Enum.CROSS);
         if(j == 2) {
             controller.setPlayer2(playername[1], Enum.NOUGHT);
-            System.out.println(controller.getPlayer1().getName() + " is " + controller.getPlayer1().getCharacter()
-                + ", " + controller.getPlayer2().getName() + " is " + controller.getPlayer2().getCharacter());
+            System.out.println(controller.getPlayer1().getName() + is + controller.getPlayer1().getCharacter()
+                + ", " + controller.getPlayer2().getName() + is + controller.getPlayer2().getCharacter());
         } else
             controller.setPlayer2("Artificial Intelligence", Enum.NOUGHT);
-            System.out.println(controller.getPlayer1().getName() + " is " + controller.getPlayer1().getCharacter()
-                + ", " + controller.getPlayer2().getName() + " is " + controller.getPlayer2().getCharacter());
+            System.out.println(controller.getPlayer1().getName() + is + controller.getPlayer1().getCharacter()
+                + ", " + controller.getPlayer2().getName() + is + controller.getPlayer2().getCharacter());
     }
     
-    private void mode() {
+    private void modeChange() {
         String mode;
         while(true) {
             System.out.println("Choose your game Mode:\n"

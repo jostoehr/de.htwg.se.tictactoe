@@ -17,9 +17,9 @@ public class StateNoughtPlaying implements IGameState {
         
     @Override
     public void change() {
-        if(controller.win().equals("playing"))
+        if(controller.win().equals("playing")) {
             controller.setCurrentState(new StateCrossPlaying(controller));
-        else {
+        } else {
             if(controller.win().equals(controller.getPlayer1().getName())) {
                 controller.setCurrentState(new StateCrossWon(controller));
                 controller.getCurrentState().change();

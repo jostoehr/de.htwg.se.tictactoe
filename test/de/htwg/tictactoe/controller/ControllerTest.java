@@ -71,7 +71,9 @@ public class ControllerTest {
             }
         }
         assertTrue(controller.isDraw());
+        assertFalse(controller.isEmpty());
         controller.init();
+        assertTrue(controller.isEmpty());
         assertFalse(controller.isDraw());
     }
     
