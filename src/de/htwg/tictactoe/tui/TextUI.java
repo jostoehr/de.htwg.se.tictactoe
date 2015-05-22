@@ -34,6 +34,8 @@ public class TextUI implements IObserver {
     
     public TextUI(TictactoeController controller) {
         this.controller = controller;
+        controller.init();
+        controller.setCurrentState(new StateCrossPlaying(controller));
         scanner = new Scanner(System.in);
         modeChange();
         player();        

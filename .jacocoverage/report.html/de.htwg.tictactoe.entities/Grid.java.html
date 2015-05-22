@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Grid.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;htwg.se.tictactoe&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">de.htwg.tictactoe.entities</a> &gt; <span class="el_source">Grid.java</span></div><h1>Grid.java</h1><pre class="source lang-java linenums">package de.htwg.tictactoe.entities;
+/**
+ *
+ * @author johannes
+ */
+public class Grid {
+    public static final int ROWS = 3;
+    public static final int COLS = 3;
+    
+    private Cell[][] cells;
+    
+<span class="fc" id="L12">    public Grid() {</span>
+<span class="fc" id="L13">        cells = new Cell[ROWS][COLS];</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        for (int row = 0; row &lt; ROWS; ++row) {</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">            for (int col = 0; col &lt; COLS; ++col) {</span>
+<span class="fc" id="L16">                cells[row][col] = new Cell(row, col); </span>
+            }
+        }
+<span class="fc" id="L19">    }</span>
+    
+    public Cell getCell(int row, int column) {
+<span class="fc" id="L22">	return cells[row][column];</span>
+    }
+    
+    	
+    public void setCell(int row, int column, Enum value) {
+<span class="fc" id="L27">	cells[row][column].setValue(value);</span>
+<span class="fc" id="L28">    }</span>
+       
+    @Override
+    public String toString() {
+<span class="fc" id="L32">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L33">        sb.append(&quot;\n&quot;);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for (int row = 0; row &lt; ROWS; ++row) {</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            for (int col = 0; col &lt; COLS; ++col) { </span>
+<span class="fc" id="L36">                sb.append(&quot; &quot;).append(cells[row][col].getValue()).append(&quot; &quot;);   </span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">                if (col &lt; COLS - 1){</span>
+<span class="fc" id="L38">                    sb.append(&quot;|&quot;);</span>
+                } 
+            }
+<span class="fc" id="L41">            sb.append(&quot;\n&quot;);</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            if (row &lt; ROWS - 1) {</span>
+<span class="fc" id="L43">                sb.append(&quot;-----------\n&quot;);</span>
+            }
+        }
+<span class="fc" id="L46">        sb.append(&quot;\n&quot;);</span>
+<span class="fc" id="L47">        return sb.toString();</span>
+    }
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

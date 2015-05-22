@@ -5,14 +5,38 @@
  * @author johannes
  */
 
-<span class="pc" id="L8">public enum Enum {</span>
-<span class="fc" id="L9">    EMPTY(0),</span>
-<span class="fc" id="L10">    CROSS(1), </span>
-<span class="fc" id="L11">    NOUGHT(2);</span>
+<span class="fc" id="L8">public enum Enum {</span>
+<span class="fc" id="L9">    EMPTY, CROSS, NOUGHT;</span>
     
-    private final int value;
-<span class="fc" id="L14">    Enum(int value) {</span>
-<span class="fc" id="L15">        this.value = value;</span>
-<span class="fc" id="L16">    }</span>
+    /**EMPTY(' '),
+    CROSS('x'), 
+    NOUGHT('o');
+    
+    private final char character;
+    Enum(char character) {
+        this.character = character;
+    }
+    
+    public char getCharacter() {
+        return character;
+    }
+    */
+                
+    @Override 
+    public String toString() {
+<span class="fc" id="L27">        String value = null;</span>
+<span class="pc bpc" id="L28" title="1 of 4 branches missed.">        switch(this) {</span>
+            case EMPTY:
+<span class="fc" id="L30">                value = &quot; &quot;;</span>
+<span class="fc" id="L31">                break;</span>
+            case CROSS:
+<span class="fc" id="L33">                value = &quot;x&quot;;</span>
+<span class="fc" id="L34">                break;</span>
+            case NOUGHT:
+<span class="fc" id="L36">                value = &quot;o&quot;;</span>
+<span class="fc" id="L37">                break;</span>
+        }
+<span class="fc" id="L39">        return value;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

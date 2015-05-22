@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Cell.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;htwg.se.tictactoe&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">de.htwg.tictactoe.entities</a> &gt; <span class="el_source">Cell.java</span></div><h1>Cell.java</h1><pre class="source lang-java linenums">package de.htwg.tictactoe.entities;
+
+public class Cell {
+    private int row;
+    private int column;
+    private Enum value;
+    
+<span class="fc" id="L8">    public Cell(int row, int column) {</span>
+<span class="fc" id="L9">        this.row=row;</span>
+<span class="fc" id="L10">        this.column=column;</span>
+<span class="fc" id="L11">    }</span>
+
+    public void setValue(Enum value) {
+<span class="fc" id="L14">        this.value = value;</span>
+<span class="fc" id="L15">    }</span>
+
+    public Enum getValue() {
+<span class="fc" id="L18">        return value;</span>
+    }
+    
+    public int getRow() {
+<span class="fc" id="L22">        return row;</span>
+    }
+    
+    public int getColumn() {
+<span class="fc" id="L26">        return column;</span>
+    }
+    
+    public boolean isSet() {
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        return value != Enum.EMPTY;</span>
+    }
+    
+    public boolean isUnSet() {
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        return !isSet();</span>
+    }
+    
+    /**
+     * returns a String of the form &quot;(0,0) = x&quot;
+    */
+    public String mkString() {
+<span class="fc" id="L41">	return &quot;(&quot; + row + &quot;,&quot; + column + &quot;) = &quot; + value;</span>
+    }
+    
+    public void clear() {
+<span class="fc" id="L45">        value = Enum.EMPTY;</span>
+<span class="fc" id="L46">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>
