@@ -32,6 +32,11 @@ public class TextUI implements IObserver {
      */
     private String is = " is ";
     
+    /**
+     * String literal -->
+     */
+    private String in = "--> "; 
+    
     public TextUI(TictactoeController controller) {
         this.controller = controller;
         controller.init();
@@ -96,12 +101,12 @@ public class TextUI implements IObserver {
                 String line2;
                 do {
                     System.out.print("Type in the Cell you want to set "
-                        + "(example: 00, choose 'h' to get a Indizes Help\n--> ");
+                        + "(example: 00, choose 'h' to get a Indizes Help\n" + in);
                     line2 = scanner.next();
                     if (line2.equalsIgnoreCase("h")) {
                         printIndexHelp();
                         System.out.print("Type in the Cell you want to set\n"
-                            + "--> ");
+                            + in);
                         line2 = scanner.next();
                     } 
                     if (line2.matches("[0-9][0-9]")){
@@ -143,7 +148,7 @@ public class TextUI implements IObserver {
                 + "s\t-\tSet Cell((x,y) like: 10\n"
                 + "p\t-\tprint Statistics\n"
                 + "q\t-\tquit\n");
-        System.out.print("--> ");
+        System.out.print(in);
     }
     
     private void printIndexHelp() {
@@ -209,8 +214,8 @@ public class TextUI implements IObserver {
         }   
         String playername[] = new String[j];
         for (int i = 0; i < j; i++) {
-            System.out.println("Type in Playername" + (i + 1) + ": ");
-            System.out.print("--> ");
+            System.out.println("Type in Playername" + (i + 1) + ":\n"
+                    + in);
             playername[i] = scanner.next();
         }
         controller.setPlayer1(playername[0], Enum.CROSS);
@@ -229,8 +234,8 @@ public class TextUI implements IObserver {
         while(true) {
             System.out.println("Choose your game Mode:\n"
                 + "a\t-\tvs Artificial Intelligence\n"
-                + "p\t-\tvs Player");
-            System.out.print("--> ");
+                + "p\t-\tvs Player\n"
+                + in);
             mode = scanner.next();
             if(mode.equalsIgnoreCase("a")) {
                 this.mode = mode;

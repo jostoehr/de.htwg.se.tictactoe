@@ -120,7 +120,7 @@ public class TictactoeController extends Observable {
     }
 
     public boolean hasWon(Enum p) {
-        for (int i=0; i<3; i++) {
+        for (int i=0; i<ROWS; i++) {
             if (grid.getCell(i,0).getValue() == p && equal(i,0, i,1, i,2)) {
                 return true;
             }
