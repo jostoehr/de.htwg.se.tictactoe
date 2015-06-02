@@ -100,10 +100,10 @@ public class TextUI implements IObserver {
                     line2 = scanner.next();
                     if (line2.equalsIgnoreCase("h")) {
                         printIndexHelp();
-                    }
-                    System.out.print("Type in the Cell you want to set\n"
-                        + "--> ");
-                    line2 = scanner.next();
+                        System.out.print("Type in the Cell you want to set\n"
+                            + "--> ");
+                        line2 = scanner.next();
+                    } 
                     if (line2.matches("[0-9][0-9]")){
                         int[] arg = readToArray(line2);
                         controller.setValue(arg[0], arg[1]);

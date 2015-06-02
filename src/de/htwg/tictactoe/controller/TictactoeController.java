@@ -120,30 +120,26 @@ public class TictactoeController extends Observable {
     }
 
     public boolean hasWon(Enum p) {
-        return (grid.getCell(0, 0).getValue() == p
-                && grid.getCell(0, 1).getValue() == p
-                && grid.getCell(0, 2).getValue() == p
-                || grid.getCell(1, 0).getValue() == p
-                && grid.getCell(1, 1).getValue() == p
-                && grid.getCell(1, 2).getValue() == p
-                || grid.getCell(2, 0).getValue() == p
-                && grid.getCell(2, 1).getValue() == p
-                && grid.getCell(2, 2).getValue() == p
-                || grid.getCell(0, 0).getValue() == p
-                && grid.getCell(1, 0).getValue() == p
-                && grid.getCell(2, 0).getValue() == p
-                || grid.getCell(0, 1).getValue() == p
-                && grid.getCell(1, 1).getValue() == p
-                && grid.getCell(2, 1).getValue() == p
-                || grid.getCell(0, 2).getValue() == p
-                && grid.getCell(1, 2).getValue() == p
-                && grid.getCell(2, 2).getValue() == p
-                || grid.getCell(0, 0).getValue() == p
-                && grid.getCell(1, 1).getValue() == p
-                && grid.getCell(2, 2).getValue() == p
-                || grid.getCell(2, 0).getValue() == p
-                && grid.getCell(1, 1).getValue() == p
-                && grid.getCell(0, 2).getValue() == p);
+        for (int i=0; i<3; i++) {
+            if (grid.getCell(i,0).getValue() == p && equal(i,0, i,1, i,2)) {
+                return true;
+            }
+            if (grid.getCell(0,i).getValue() == p && equal(0,i, 1,i, 2,i)) {
+                return true;
+            }
+        }
+        if (grid.getCell(0,0).getValue() == p && equal(0,0, 1,1, 2,2)) {
+            return true;
+        }
+        if (grid.getCell(0,2).getValue() == p && equal(0,2, 1,1, 2,0)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean equal(int r0, int c0, int r1, int c1, int r2, int c2) {
+        return(grid.getCell(r0, c0).getValue() == grid.getCell(r1, c1).getValue() &&
+                grid.getCell(r1, c1).getValue() == grid.getCell(r2, c2).getValue());
     }
 
     public String win() {
