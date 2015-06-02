@@ -56,7 +56,7 @@ public class TextUI implements IObserver {
     public boolean processInputLine(String line){
         boolean continu = true;
         if (line.equalsIgnoreCase("h")) {
-            printHelp();
+            printIndexHelp();
         } 
         if (line.equalsIgnoreCase("n")) {
             controller.init();
@@ -94,11 +94,21 @@ public class TextUI implements IObserver {
         if (line.equalsIgnoreCase("s")) {
             if(controller.win().equals("playing")) {
                 String line2;
-                line2 = scanner.next();
-                if (line2.matches("[0-9][0-9]")){
-                    int[] arg = readToArray(line2);
-                    controller.setValue(arg[0], arg[1]);
-                } 
+                do {
+                    System.out.print("Type in the Cell you want to set "
+                        + "(example: 00, choose 'h' to get a Indizes Help\n--> ");
+                    line2 = scanner.next();
+                    if (line2.equalsIgnoreCase("h")) {
+                        printIndexHelp();
+                    }
+                    System.out.print("Type in the Cell you want to set\n"
+                        + "--> ");
+                    line2 = scanner.next();
+                    if (line2.matches("[0-9][0-9]")){
+                        int[] arg = readToArray(line2);
+                        controller.setValue(arg[0], arg[1]);
+                    } 
+                } while(!line2.matches("[0-9][0-9]")); 
             } else {
                 System.out.println("Game is over, press 'n' to restart");
             }
@@ -126,13 +136,23 @@ public class TextUI implements IObserver {
     
     private void printHelp() {
         System.out.print("\n-----MENU-----\n"
-                + "h\t-\tHelp\n"
+                + "h\t-\tMatrix Indizes Help\n"
                 + "n\t-\tNew Game\n"
                 + "m\t-\tGame Mode\n"
                 + "c\t-\tChange Player1 to o, Player2 to x\n"
                 + "s\t-\tSet Cell((x,y) like: 10\n"
                 + "p\t-\tprint Statistics\n"
                 + "q\t-\tquit\n");
+        System.out.print("--> ");
+    }
+    
+    private void printIndexHelp() {
+        System.out.println("Matrix Indizes to set a cell:\n\n"
+            + "00 | 01 | 02\n"
+            + "------------\n"
+            + "10 | 11 | 12\n"
+            + "------------\n"
+            + "20 | 21 | 22\n");
     }
     
     private void printStatus() {
@@ -153,7 +173,7 @@ public class TextUI implements IObserver {
     }
     
     private void printStatistic() {
-        System.out.println(controller.getPlayer1().getName() + "(" 
+        System.out.println("\n" + controller.getPlayer1().getName() + "(" 
                 + controller.getPlayer1().getCharacter() + ")\t" 
                 + controller.getPlayer2().getName() + "(" 
                 + controller.getPlayer2().getCharacter() + ")");
@@ -162,7 +182,7 @@ public class TextUI implements IObserver {
         System.out.println("Lost: " + controller.getPlayer1().getLooseCount()
                 + "\t\tLost: " + controller.getPlayer2().getLooseCount());
         System.out.println("Draw: " + controller.getPlayer1().getDrawCount()
-                + "\t\tDraw: " + controller.getPlayer2().getDrawCount());
+                + "\t\tDraw: " + controller.getPlayer2().getDrawCount() + "\n");
     }
 
     private void checkGame() {
@@ -190,6 +210,7 @@ public class TextUI implements IObserver {
         String playername[] = new String[j];
         for (int i = 0; i < j; i++) {
             System.out.println("Type in Playername" + (i + 1) + ": ");
+            System.out.print("--> ");
             playername[i] = scanner.next();
         }
         controller.setPlayer1(playername[0], Enum.CROSS);
@@ -209,6 +230,7 @@ public class TextUI implements IObserver {
             System.out.println("Choose your game Mode:\n"
                 + "a\t-\tvs Artificial Intelligence\n"
                 + "p\t-\tvs Player");
+            System.out.print("--> ");
             mode = scanner.next();
             if(mode.equalsIgnoreCase("a")) {
                 this.mode = mode;

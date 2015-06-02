@@ -46,6 +46,4 @@ public class Grid {
         sb.append("\n");
         return sb.toString();
     }
-    
-    
 }
