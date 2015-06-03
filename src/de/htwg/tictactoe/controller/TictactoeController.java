@@ -1,12 +1,9 @@
 package de.htwg.tictactoe.controller;
 
-import de.htwg.tictactoe.controller.impl.StateCrossWon;
-import de.htwg.tictactoe.controller.impl.StateDraw;
-import de.htwg.tictactoe.controller.impl.StateNoughtPlaying;
-import de.htwg.tictactoe.controller.impl.StateNoughtWon;
+import de.htwg.tictactoe.controller.impl.State;
 import de.htwg.tictactoe.entities.Cell;
 import de.htwg.tictactoe.entities.Grid;
-import de.htwg.tictactoe.entities.Enum;
+import de.htwg.tictactoe.entities.Value;
 import static de.htwg.tictactoe.entities.Grid.COLS;
 import static de.htwg.tictactoe.entities.Grid.ROWS;
 import de.htwg.tictactoe.entities.Player;
@@ -20,29 +17,31 @@ public class TictactoeController extends Observable {
 
     private String statusMessage = "Welcome to HTWG TicTacToe!";
     private final Grid grid;
-    private IGameState currentState;
+    private State currentState;
     private Player player1;
     private Player player2;
 
     public TictactoeController(Grid grid) {
         this.grid = grid;
+        setPlayer1("default", Value.CROSS);
+        setPlayer2("default", Value.NOUGHT);
     }
     
     public void setValue(int row, int column) {
         Cell cell = grid.getCell(row, column);
         if (cell.isUnSet()) {
-            cell.setValue(Enum.CROSS);
-            if (currentState instanceof StateNoughtPlaying) {
-                cell.setValue(Enum.NOUGHT);
+            cell.setValue(Value.CROSS);
+            if (currentState == State.StateNoughtPlaying) {
+                cell.setValue(Value.NOUGHT);
             }
-            setStatusMessage("The cell " + cell.mkString() + " was successfully set\n");
+            setStatusMessage("The cell " + cell.toString() + " was successfully set\n");
         } else {
-            setStatusMessage("The cell " + cell.mkString() + " is already set\n");
+            setStatusMessage("The cell " + cell.toString() + " is already set\n");
         }
-        getCurrentState().change();
-        if(this.currentState instanceof StateNoughtWon
-                || this.currentState instanceof StateCrossWon
-                || this.currentState instanceof StateDraw) {
+        change();
+        if(this.currentState == State.StateNoughtWon
+                || this.currentState == State.StateCrossWon
+                || this.currentState == State.StateDraw) {
             updateStatistic();
         }
         notifyObservers();
@@ -60,11 +59,11 @@ public class TictactoeController extends Observable {
         return grid.toString();
     }
 
-    public void setCurrentState(IGameState currentState) {
+    public void setCurrentState(State currentState) {
         this.currentState = currentState;
     }
 
-    public IGameState getCurrentState() {
+    public State getCurrentState() {
         return currentState;
     }
 
@@ -76,12 +75,30 @@ public class TictactoeController extends Observable {
         return player2;
     }
 
-    public final void setPlayer1(String name, Enum character) {
+    public final void setPlayer1(String name, Value character) {
         this.player1 = new Player(name, character);
     }
 
-    public final void setPlayer2(String name, Enum character) {
+    public final void setPlayer2(String name, Value character) {
         this.player2 = new Player(name, character);
+    }
+    
+    public Player getCurrentPlayer() {
+        if(getCurrentState() == State.StateCrossPlaying) {
+            if(getPlayer1().getCharacter().equals(Value.CROSS)) {
+                return getPlayer1();
+            } else {
+                return getPlayer2();
+            }
+        } else if(getCurrentState() == State.StateNoughtPlaying) {
+            if(getPlayer2().getCharacter().equals(Value.NOUGHT)) {
+                return getPlayer2();
+            } else {
+                return getPlayer1();
+            }
+        } else {
+            return null;
+        }
     }
 
     public void init() {
@@ -119,6 +136,10 @@ public class TictactoeController extends Observable {
         return true;
     }
 
+    /**
+     * Win Ceck with hasWon and equal idea from:
+     * Quelle: http://wiki.byte-welt.net/wiki/Entwurfsmuster_%28Design_Patterns%29#Beispiel_von_TicTacToe 
+     */
     public boolean hasWon(Enum p) {
         for (int i=0; i<ROWS; i++) {
             if (grid.getCell(i,0).getValue() == p && equal(i,0, i,1, i,2)) {
@@ -167,5 +188,25 @@ public class TictactoeController extends Observable {
             player1.setDrawCount(player1.getDrawCount() + 1);
             player2.setDrawCount(player2.getDrawCount() + 1);
         }
-    }    
+    }
+    
+    public void change() {
+        if(win().equals("playing")) {
+            if(getCurrentState() == State.StateCrossPlaying) {
+                setCurrentState(State.StateNoughtPlaying);
+            } else {
+                setCurrentState(State.StateCrossPlaying);
+            }
+        } else {
+            if(win().equals(getPlayer1().getName())) {
+                setCurrentState(State.StateCrossWon);
+            }
+            if(win().equals(getPlayer2().getName())) {
+                setCurrentState(State.StateNoughtWon);
+            }
+            if(win().equals("draw")) {
+                setCurrentState(State.StateDraw);
+            }
+        }
+    }      
 }

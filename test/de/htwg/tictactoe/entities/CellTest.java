@@ -10,12 +10,12 @@ public class CellTest {
     @Before
     public void setUp() throws Exception {
         cell = new Cell(3,3);
-        cell.setValue(Enum.CROSS);
+        cell.setValue(Value.CROSS);
     }
 
     @Test
     public void testGetValue(){
-        assertEquals(Enum.CROSS, cell.getValue());
+        assertEquals(Value.CROSS, cell.getValue());
     }
     
     @Test
@@ -24,7 +24,7 @@ public class CellTest {
     @Test
     public void testClear(){
        cell.clear();
-       assertEquals(Enum.EMPTY, cell.getValue());
+       assertEquals(Value.EMPTY, cell.getValue());
     }
     @Test
     public void testGetRow(){

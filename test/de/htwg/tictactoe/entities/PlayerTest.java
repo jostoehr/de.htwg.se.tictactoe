@@ -19,8 +19,8 @@ import static org.junit.Assert.*;
 public class PlayerTest {
     private String name;
     private String name2;
-    private Enum character;
-    private Enum character2;
+    private Value character;
+    private Value character2;
     private Player player1;
     private Player player2;
     
@@ -28,8 +28,8 @@ public class PlayerTest {
     public void setUp() {
         name = "Peter";
         name2 = "Hans";
-        character2 = Enum.EMPTY;
-        character = Enum.CROSS;
+        character2 = Value.EMPTY;
+        character = Value.CROSS;
         player1 = new Player(name, character);
         player2 = new Player(name2, character2);
     }
@@ -42,8 +42,8 @@ public class PlayerTest {
     
     @Test
     public void TestGetCharacter(){
-        assertEquals(Enum.CROSS, player1.getCharacter());
-        assertEquals(Enum.EMPTY, player2.getCharacter());
+        assertEquals(Value.CROSS, player1.getCharacter());
+        assertEquals(Value.EMPTY, player2.getCharacter());
     }
     
     

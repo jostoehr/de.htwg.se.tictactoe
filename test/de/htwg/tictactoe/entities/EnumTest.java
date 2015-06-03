@@ -22,17 +22,17 @@ public class EnumTest {
     private Enum empty;
     @Before
     public void setUp() {
-        cross = Enum.CROSS;
-        nought = Enum.NOUGHT;
-        empty = Enum.EMPTY;
+        cross = Value.CROSS;
+        nought = Value.NOUGHT;
+        empty = Value.EMPTY;
     }
     @Test
     public void TestToString(){
         assertEquals("x", cross.toString());
         assertEquals("o", nought.toString());
         assertEquals(" ", empty.toString());
-        assertEquals(Enum.EMPTY, Enum.valueOf("EMPTY"));
-        assertEquals(Enum.CROSS, Enum.valueOf("CROSS"));
-        assertEquals(Enum.NOUGHT, Enum.valueOf("NOUGHT"));
+        assertEquals(Value.EMPTY, Value.valueOf("EMPTY"));
+        assertEquals(Value.CROSS, Value.valueOf("CROSS"));
+        assertEquals(Value.NOUGHT, Value.valueOf("NOUGHT"));
     }
 }

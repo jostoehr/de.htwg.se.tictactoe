@@ -31,8 +31,8 @@ public class GridTest {
 
     @Test
     public void testGetValue(){
-        grid.setCell(0, 0, Enum.NOUGHT);
-        grid2.setCell(0, 0, Enum.EMPTY);
+        grid.setCell(0, 0, Value.NOUGHT);
+        grid2.setCell(0, 0, Value.EMPTY);
         assertEquals(grid.getCell(0, 0), grid.getCell(0, 0));
         
     }
