@@ -5,7 +5,7 @@ package de.htwg.tictactoe.entities;
  * @author johannes
  */
 
-public enum Enum {
+public enum Value {
     EMPTY, CROSS, NOUGHT;
     
     /**EMPTY(' '),

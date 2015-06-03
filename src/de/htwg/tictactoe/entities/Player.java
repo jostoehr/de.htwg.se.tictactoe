@@ -6,17 +6,17 @@ package de.htwg.tictactoe.entities;
  */
 public class Player {
     private String name;
-    private Enum character = Enum.EMPTY;
+    private Value character;
     private int draw = 0;
     private int win = 0;
     private int loose = 0;
     
-    public Player(String name, Enum character) {
+    public Player(String name, Value character) {
         this.name = name;
         this.character = character;
     }
     
-    public void setCharacter(Enum character) {
+    public void setCharacter(Value character) {
         this.character = character;
     }
     

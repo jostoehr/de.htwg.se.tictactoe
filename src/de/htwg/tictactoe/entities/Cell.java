@@ -1,16 +1,21 @@
 package de.htwg.tictactoe.entities;
 
+/**
+ *
+ * @author Johannes Stöhr
+ */
 public class Cell {
     private int row;
     private int column;
-    private Enum value;
+    private Value value;
     
     public Cell(int row, int column) {
         this.row=row;
         this.column=column;
+        clear();
     }
 
-    public void setValue(Enum value) {
+    public void setValue(Value value) {
         this.value = value;
     }
 
@@ -27,7 +32,7 @@ public class Cell {
     }
     
     public boolean isSet() {
-        return value != Enum.EMPTY;
+        return value != Value.EMPTY;
     }
     
     public boolean isUnSet() {
@@ -37,11 +42,12 @@ public class Cell {
     /**
      * returns a String of the form "(0,0) = x"
     */
-    public String mkString() {
+    @Override
+    public String toString() {
 	return "(" + row + "," + column + ") = " + value;
     }
     
     public void clear() {
-        value = Enum.EMPTY;
+        value = Value.EMPTY;
     }
 }

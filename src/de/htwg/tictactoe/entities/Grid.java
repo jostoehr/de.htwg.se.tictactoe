@@ -23,7 +23,7 @@ public class Grid {
     }
     
     	
-    public void setCell(int row, int column, Enum value) {
+    public void setCell(int row, int column, Value value) {
 	cells[row][column].setValue(value);
     }
        
