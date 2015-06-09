@@ -1,8 +1,9 @@
 package de.htwg.tictactoe.entities;
 
 /**
- *
- * @author johannes
+ * model class to save an player with name and character
+ * saves the win statistics of a player
+ * @author Johannes Stöhr
  */
 public class Player {
     private String name;
