@@ -97,7 +97,7 @@ public class TextUI implements IObserver {
                 String line2;
                 do {
                     System.out.print("Type in the Cell you want to set "
-                        + "(example: 00, choose 'h' to get a Indizes Help\n" + in);
+                        + "(example: 00, choose 'h' to get a Indizes Help)\n" + in);
                     line2 = scanner.next();
                     if (line2.equalsIgnoreCase("h")) {
                         printIndexHelp();
@@ -105,11 +105,11 @@ public class TextUI implements IObserver {
                             + in);
                         line2 = scanner.next();
                     } 
-                    if (line2.matches("[0-9][0-9]")){
+                    if (line2.matches("[0-2][0-2]")){
                         int[] arg = readToArray(line2);
                         controller.setValue(arg[0], arg[1]);
                     } 
-                } while(!line2.matches("[0-9][0-9]")); 
+                } while(!line2.matches("[0-2][0-2]")); 
             } else {
                 System.out.println("Game is over, press 'n' to restart");
             }
@@ -125,7 +125,7 @@ public class TextUI implements IObserver {
         return continu;
     }
     private int[] readToArray(String line) {
-		Pattern p = Pattern.compile("[0-9]");
+		Pattern p = Pattern.compile("[0-2]");
 		Matcher m = p.matcher(line);
 		int[] arg = new int[line.length()];
 		for (int i = 0; i < arg.length; i++) {
