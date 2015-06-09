@@ -4,6 +4,7 @@ import de.htwg.tictactoe.controller.TictactoeController;
 import de.htwg.tictactoe.controller.impl.State;
 import de.htwg.tictactoe.entities.Value;
 import de.htwg.util.observer.IObserver;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -112,6 +113,15 @@ public class TextUI implements IObserver {
                 } while(!line2.matches("[0-2][0-2]")); 
             } else {
                 System.out.println("Game is over, press 'n' to restart");
+            }
+            checkGame();
+            if(mode == 1) {
+                printTUI();
+                List<String> l = controller.getUnSetCells();
+                int random = controller.randInt(0, l.size());
+                int arg0 = Integer.parseInt(String.valueOf(l.get(random).charAt(0)));
+                int arg1 = Integer.parseInt(String.valueOf(l.get(random).charAt(1)));                
+                controller.setValue(arg0, arg1);
             }
             checkGame();
         }
