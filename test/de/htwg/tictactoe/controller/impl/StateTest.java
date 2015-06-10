@@ -37,7 +37,6 @@ public class StateTest {
         assertEquals(State.StateCrossWon, State.valueOf("StateCrossWon"));
         assertEquals(State.StateNoughtWon, State.valueOf("StateNoughtWon"));
         assertEquals(State.StateDraw, State.valueOf("StateDraw"));
-        //assertEquals(State.valueOf("StateCrossPlaying"));
     }
     
     
