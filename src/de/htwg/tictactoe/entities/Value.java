@@ -8,19 +8,11 @@ package de.htwg.tictactoe.entities;
 public enum Value {
     EMPTY, CROSS, NOUGHT;
     
-    /**EMPTY(' '),
-    CROSS('x'), 
-    NOUGHT('o');
-    
-    private final char character;
-    Enum(char character) {
-        this.character = character;
-    }
-    
-    public char getCharacter() {
-        return character;
-    }
+    /*
+    * Overrides the toString()-method
+    * @return value of the enum
     */
+    
                 
     @Override 
     public String toString() {
