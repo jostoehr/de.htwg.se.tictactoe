@@ -46,5 +46,15 @@ public class PlayerTest {
         assertEquals(Value.EMPTY, player2.getCharacter());
     }
     
+    @Test
+    public void TestSetName(){
+        player1.setName("Hans");
+        assertEquals("Hans", player1.getName());
+    }
     
+    @Test
+    public void TestSetDrawCount(){
+        player1.setDrawCount(1);
+        assertEquals(1, player1.getDrawCount());
+    }
 }
