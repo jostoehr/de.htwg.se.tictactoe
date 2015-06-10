@@ -64,6 +64,9 @@ public class TextUI implements IObserver {
             controller.init();
             System.out.println("New Game is created");
             controller.setCurrentState(State.StateCrossPlaying);
+            if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
+                setCellAI();
+            }
         }
         
         if (line.equalsIgnoreCase("m")) {
@@ -74,10 +77,9 @@ public class TextUI implements IObserver {
         }
         
         if (line.equalsIgnoreCase("c")) {
-            if(controller.getCurrentState() == State.StateCrossWon
-                    || controller.getCurrentState() == State.StateNoughtWon
-                    || controller.getCurrentState() == State.StateDraw 
-                    || controller.isEmpty()) {
+            if(!controller.isEmpty()) {
+                System.out.println("Start first a new game to change Characters");
+            } else {
                 if(controller.getPlayer1().getCharacter().equals(Value.CROSS)) {
                     controller.getPlayer1().setCharacter(Value.NOUGHT);
                     controller.getPlayer2().setCharacter(Value.CROSS);
@@ -87,9 +89,10 @@ public class TextUI implements IObserver {
                 }
                 System.out.println("Changed Characters x and o");
                 System.out.println(controller.getPlayer1().getName() + is + controller.getPlayer1().getCharacter()
-                + ", " + controller.getPlayer2().getName() + is + controller.getPlayer2().getCharacter());
-            } else {
-                System.out.println("Can't change Cross and Nought while playing!");
+                    + ", " + controller.getPlayer2().getName() + is + controller.getPlayer2().getCharacter());
+                if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
+                    setCellAI();
+                }
             }
         }
         
@@ -114,16 +117,12 @@ public class TextUI implements IObserver {
             } else {
                 System.out.println("Game is over, press 'n' to restart");
             }
-            checkGame();
-            if(mode == 1) {
-                printTUI();
-                List<String> l = controller.getUnSetCells();
-                int random = controller.randInt(0, l.size());
-                int arg0 = Integer.parseInt(String.valueOf(l.get(random).charAt(0)));
-                int arg1 = Integer.parseInt(String.valueOf(l.get(random).charAt(1)));                
-                controller.setValue(arg0, arg1);
+            if(!checkGameEnd()) {
+                if(mode == 1 && controller.getCurrentPlayer()
+                        .getName().equals("Artificial Intelligence")) {
+                    setCellAI();
+                }
             }
-            checkGame();
         }
         
         if (line.equalsIgnoreCase("p")) {
@@ -186,19 +185,23 @@ public class TextUI implements IObserver {
                 + "\t\tDraw: " + controller.getPlayer2().getDrawCount() + "\n");
     }
 
-    private void checkGame() {
+    private boolean checkGameEnd() {
         String win = controller.win();
         if(win.equals(controller.getPlayer1().getName())) {
             System.out.println(controller.getPlayer1().getCharacter() + " wins!"
                     + " Press 'n' to restart");
+            return true;
         } else if(win.equals(controller.getPlayer2().getName())) {
             System.out.println(controller.getPlayer2().getCharacter() + " wins!"
                     + " Press 'n' to restart");
+            return true;
         } else if(win.equals("draw")) {
             System.out.println("Game is Draw! Press 'n' to restart");
+            return true;
         } else if(win.equals("playing")) {
             System.out.println("Game is not finished!");
         }
+        return false;
     }
     
     private void player() {
@@ -241,5 +244,15 @@ public class TextUI implements IObserver {
                 break;
             }    
         }
+    }
+
+    private void setCellAI() {
+        printTUI();
+        List<String> l = controller.getUnSetCells();
+        int random = controller.randInt(0, l.size() - 1);
+        int arg0 = Integer.parseInt(String.valueOf(l.get(random).charAt(0)));
+        int arg1 = Integer.parseInt(String.valueOf(l.get(random).charAt(1)));                
+        controller.setValue(arg0, arg1);
+        checkGameEnd();
     }
 }
