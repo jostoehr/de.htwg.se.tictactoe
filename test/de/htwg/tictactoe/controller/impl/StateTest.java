@@ -17,26 +17,26 @@ import static org.junit.Assert.*;
  * @author siegfried
  */
 public class StateTest {
-    private Enum StateCrossPlaying;
-    private Enum StateNoughtPlaying;
-    private Enum StateCrossWon;
-    private Enum StateNoughtWon;
-    private Enum StateDraw;
+    private Enum STATECROSSPLAYING;
+    private Enum STATENOUGHTPLAYING;
+    private Enum STATECROSSWON;
+    private Enum STATENOUGHTWON;
+    private Enum STATEDRAW;
     @Before
     public void setUp() throws Exception {
-        StateCrossPlaying = State.STATECROSSPLAYING;
-        StateNoughtPlaying = State.STATENOUGHTPLAYING;
-        StateCrossWon = State.STATECROSSWON;
-        StateNoughtWon = State.STATENOUGHTWON;
-        StateDraw = State.STATEDRAW;
+        STATECROSSPLAYING = State.STATECROSSPLAYING;
+        STATENOUGHTPLAYING = State.STATENOUGHTPLAYING;
+        STATECROSSWON = State.STATECROSSWON;
+        STATENOUGHTWON = State.STATENOUGHTWON;
+        STATEDRAW = State.STATEDRAW;
     }
     @Test
     public void TestValueOf(){
-        assertEquals(State.STATECROSSPLAYING, State.valueOf("StateCrossPlaying"));
-        assertEquals(State.STATENOUGHTPLAYING, State.valueOf("StateNoughtPlaying"));
-        assertEquals(State.STATECROSSWON, State.valueOf("StateCrossWon"));
-        assertEquals(State.STATENOUGHTWON, State.valueOf("StateNoughtWon"));
-        assertEquals(State.STATEDRAW, State.valueOf("StateDraw"));
+        assertEquals(State.STATECROSSPLAYING, State.valueOf("STATECROSSPLAYING"));
+        assertEquals(State.STATENOUGHTPLAYING, State.valueOf("STATENOUGHTPLAYING"));
+        assertEquals(State.STATECROSSWON, State.valueOf("STATECROSSWON"));
+        assertEquals(State.STATENOUGHTWON, State.valueOf("STATENOUGHTWON"));
+        assertEquals(State.STATEDRAW, State.valueOf("STATEDRAW"));
     }
     
     
