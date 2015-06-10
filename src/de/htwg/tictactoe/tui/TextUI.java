@@ -22,17 +22,17 @@ public class TextUI implements IObserver {
     /**
      * String literal for printStatus
      */
-    private final static String turn = " it's your turn!";
+    private static final String turn = " it's your turn!";
     
     /**
      * String literal is
      */
-    private final static String is = " is ";
+    private static final String is = " is ";
     
     /**
      * String literal -->
      */
-    private final static String in = "--> "; 
+    private static final String in = "--> "; 
     
     public TextUI(TictactoeController controller) {
         this.controller = controller;
