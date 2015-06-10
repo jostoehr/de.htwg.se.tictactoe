@@ -24,19 +24,19 @@ public class StateTest {
     private Enum StateDraw;
     @Before
     public void setUp() throws Exception {
-        StateCrossPlaying = State.StateCrossPlaying;
-        StateNoughtPlaying = State.StateNoughtPlaying;
-        StateCrossWon = State.StateCrossWon;
-        StateNoughtWon = State.StateNoughtWon;
-        StateDraw = State.StateDraw;
+        StateCrossPlaying = State.STATECROSSPLAYING;
+        StateNoughtPlaying = State.STATENOUGHTPLAYING;
+        StateCrossWon = State.STATECROSSWON;
+        StateNoughtWon = State.STATENOUGHTWON;
+        StateDraw = State.STATEDRAW;
     }
     @Test
     public void TestValueOf(){
-        assertEquals(State.StateCrossPlaying, State.valueOf("StateCrossPlaying"));
-        assertEquals(State.StateNoughtPlaying, State.valueOf("StateNoughtPlaying"));
-        assertEquals(State.StateCrossWon, State.valueOf("StateCrossWon"));
-        assertEquals(State.StateNoughtWon, State.valueOf("StateNoughtWon"));
-        assertEquals(State.StateDraw, State.valueOf("StateDraw"));
+        assertEquals(State.STATECROSSPLAYING, State.valueOf("StateCrossPlaying"));
+        assertEquals(State.STATENOUGHTPLAYING, State.valueOf("StateNoughtPlaying"));
+        assertEquals(State.STATECROSSWON, State.valueOf("StateCrossWon"));
+        assertEquals(State.STATENOUGHTWON, State.valueOf("StateNoughtWon"));
+        assertEquals(State.STATEDRAW, State.valueOf("StateDraw"));
     }
     
     

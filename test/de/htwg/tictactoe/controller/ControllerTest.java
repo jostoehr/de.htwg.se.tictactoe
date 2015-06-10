@@ -31,7 +31,7 @@ public class ControllerTest {
         controller.setPlayer1("Hans", Value.CROSS);
         controller.setPlayer2("Karle", Value.NOUGHT);
         controller.init();
-        controller.setCurrentState(State.StateCrossPlaying);
+        controller.setCurrentState(State.STATECROSSPLAYING);
     }
     
     @Test
@@ -81,7 +81,7 @@ public class ControllerTest {
     
     @Test
     public void testGetCurrentPlayer(){
-        assertEquals(controller.getCurrentState(), State.StateCrossPlaying);
+        assertEquals(controller.getCurrentState(), State.STATECROSSPLAYING);
         assertEquals(controller.getPlayer1(), controller.getCurrentPlayer());
         controller.getCurrentPlayer().setCharacter(Value.NOUGHT);
         assertEquals(controller.getPlayer2(), controller.getCurrentPlayer());

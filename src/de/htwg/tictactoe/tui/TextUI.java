@@ -37,7 +37,7 @@ public class TextUI implements IObserver {
     public TextUI(TictactoeController controller) {
         this.controller = controller;
         controller.init();
-        controller.setCurrentState(State.StateCrossPlaying);
+        controller.setCurrentState(State.STATECROSSPLAYING);
         scanner = new Scanner(System.in);
         modeChange();
         player();        
@@ -63,7 +63,7 @@ public class TextUI implements IObserver {
         if (line.equalsIgnoreCase("n")) {
             controller.init();
             System.out.println("New Game is created");
-            controller.setCurrentState(State.StateCrossPlaying);
+            controller.setCurrentState(State.STATECROSSPLAYING);
             if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
                 setCellAI();
             }
@@ -73,7 +73,7 @@ public class TextUI implements IObserver {
             modeChange();
             player();
             controller.init();
-            controller.setCurrentState(State.StateCrossPlaying);
+            controller.setCurrentState(State.STATECROSSPLAYING);
         }
         
         if (line.equalsIgnoreCase("c")) {
@@ -166,8 +166,8 @@ public class TextUI implements IObserver {
     }
     
     private void printStatus() {
-        if(controller.getCurrentState() == State.StateCrossPlaying ||
-                controller.getCurrentState() == State.StateNoughtPlaying) {
+        if(controller.getCurrentState() == State.STATECROSSPLAYING ||
+                controller.getCurrentState() == State.STATENOUGHTPLAYING) {
             System.out.println(controller.getCurrentPlayer().getName() + turn);
         }
     }
