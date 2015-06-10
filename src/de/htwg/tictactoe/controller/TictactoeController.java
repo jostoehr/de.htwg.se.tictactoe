@@ -39,10 +39,10 @@ public class TictactoeController extends Observable {
                 cell.setValue(Value.NOUGHT);
             }
             setStatusMessage("The cell " + cell.toString() + " was successfully set\n");
+            change();
         } else {
             setStatusMessage("The cell " + cell.toString() + " is already set\n");
         }
-        change();
         if(this.currentState == State.StateNoughtWon
                 || this.currentState == State.StateCrossWon
                 || this.currentState == State.StateDraw) {
