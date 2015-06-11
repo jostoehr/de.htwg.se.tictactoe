@@ -142,13 +142,11 @@ public class TextUI implements IObserver {
             } else {
                 System.out.println("Game is over, press 'n' to restart");
             }
-            if(!checkGameEnd()) {
-                if(mode == 1){
-                    if(controller.getCurrentPlayer().getName().equals("Artificial Intelligence"))
-                    {
-                        setCellAI();
-                    }
-                }
+            if(!checkGameEnd() &&
+               mode == 1 &&
+               controller.getCurrentPlayer().getName().equals("Artificial Intelligence")) {
+               
+                setCellAI(); 
             }
     }
     
