@@ -138,7 +138,37 @@ public class ControllerTest {
         controller.setValue(2, 0);
         controller.setValue(1, 0);
         assertEquals("playing", controller.win());
-       
+        controller.setPlayer1("Hansi", Value.NOUGHT);
+        controller.setPlayer2("Peterle", Value.CROSS);
+        controller.setValue(0, 1);
+        controller.setValue(0, 0);
+        controller.setValue(0, 2);
+        controller.setValue(1, 1);
+        controller.setValue(1, 2);
+        controller.setValue(2, 2);
+        assertEquals("Peterle", controller.win());
+        
+        
+        
+        
+        /*
+        *
+        *        drawTest
+        */
+        controller.init();
+        controller.setValue(0, 0);
+        controller.setValue(0, 1);
+        controller.setValue(0, 2);
+        controller.setValue(1, 0);
+        controller.setValue(1, 2);
+        controller.setValue(1, 1);
+        controller.setValue(2, 0);
+        controller.setValue(2, 2);
+        controller.setValue(2, 1);
+        assertEquals("draw", controller.win());
+
+        
+        
     }
     
 }
