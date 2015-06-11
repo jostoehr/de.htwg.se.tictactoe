@@ -61,39 +61,15 @@ public class TextUI implements IObserver {
             printIndexHelp();
         } 
         if (line.equalsIgnoreCase("n")) {
-            controller.init();
-            System.out.println("New Game is created");
-            controller.setCurrentState(State.STATECROSSPLAYING);
-            if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
-                setCellAI();
-            }
+            newGame();
         }
         
         if (line.equalsIgnoreCase("m")) {
-            modeChange();
-            player();
-            controller.init();
-            controller.setCurrentState(State.STATECROSSPLAYING);
+            modifyMode();
         }
         
         if (line.equalsIgnoreCase("c")) {
-            if(!controller.isEmpty()) {
-                System.out.println("Start first a new game to change Characters");
-            } else {
-                if(controller.getPlayer1().getCharacter().equals(Value.CROSS)) {
-                    controller.getPlayer1().setCharacter(Value.NOUGHT);
-                    controller.getPlayer2().setCharacter(Value.CROSS);
-                } else {
-                    controller.getPlayer1().setCharacter(Value.CROSS);
-                    controller.getPlayer2().setCharacter(Value.NOUGHT);                
-                }
-                System.out.println("Changed Characters x and o");
-                System.out.println(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
-                    + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
-                if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
-                    setCellAI();
-                }
-            }
+            characterChange();
         }
         
         if (line.equalsIgnoreCase("s")) {
@@ -133,6 +109,43 @@ public class TextUI implements IObserver {
         }
         return continu;
     }
+    
+    private void characterChange(){
+        if(!controller.isEmpty()) {
+                System.out.println("Start first a new game to change Characters");
+            } else {
+                if(controller.getPlayer1().getCharacter().equals(Value.CROSS)) {
+                    controller.getPlayer1().setCharacter(Value.NOUGHT);
+                    controller.getPlayer2().setCharacter(Value.CROSS);
+                } else {
+                    controller.getPlayer1().setCharacter(Value.CROSS);
+                    controller.getPlayer2().setCharacter(Value.NOUGHT);                
+                }
+                System.out.println("Changed Characters x and o");
+                System.out.println(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
+                    + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
+                if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
+                    setCellAI();
+                }
+            }
+    }
+    
+    private void modifyMode(){
+        modeChange();
+        player();
+        controller.init();
+        controller.setCurrentState(State.STATECROSSPLAYING);
+    }
+    
+    private void newGame() {
+        controller.init();
+        System.out.println("New Game is created");
+        controller.setCurrentState(State.STATECROSSPLAYING);
+        if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
+            setCellAI();
+        }
+    }
+    
     private int[] readToArray(String line) {
 		Pattern p = Pattern.compile("[0-2]");
 		Matcher m = p.matcher(line);
