@@ -119,17 +119,35 @@ public class ControllerTest {
         controller.setValue(0, 2);
         controller.setValue(2, 2);
         assertEquals(true, controller.hasWon(Value.CROSS));
+        assertEquals("Hans", controller.win());
         controller.setValue(0, 0);
         controller.setValue(0, 1);
         controller.setValue(1, 0);
         controller.setValue(1, 1);
         controller.setValue(2, 0);
         assertEquals(true, controller.hasWon(Value.CROSS));
+        
+        
     }
     
     @Test
     public void testWin(){
+        controller.setValue(0, 1);
+        controller.setValue(0, 0);
+        controller.setValue(1, 1);
+        controller.setValue(2, 0);
+        controller.setValue(1, 0);
+        assertEquals("playing", controller.win());
+        controller.setValue(0, 0);
+        controller.setValue(0, 1);
         
+        controller.setValue(1, 1);
+        controller.setValue(0, 2);
+        
+        controller.setValue(2, 2);
+        controller.setValue(1, 2);
+        controller.setValue(2, 0);
+        assertEquals("Karle", controller.win());
     }
     
 }
