@@ -6,7 +6,6 @@ import de.htwg.tictactoe.tui.TextUI;
 import java.util.Scanner;
 
 public final class Tictactoe {
-    private Tictactoe(){}
     private static Scanner scanner;
     
     public static void main(final String[] args) {
