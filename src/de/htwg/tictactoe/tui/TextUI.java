@@ -73,32 +73,7 @@ public class TextUI implements IObserver {
         }
         
         if (line.equalsIgnoreCase("s")) {
-            if(controller.win().equals("playing")) {
-                String line2;
-                do {
-                    System.out.print("Type in the Cell you want to set "
-                        + "(example: 00, choose 'h' to get a Indizes Help)\n" + IN);
-                    line2 = scanner.next();
-                    if (line2.equalsIgnoreCase("h")) {
-                        printIndexHelp();
-                        System.out.print("Type in the Cell you want to set\n"
-                            + IN);
-                        line2 = scanner.next();
-                    } 
-                    if (line2.matches("[0-2][0-2]")){
-                        int[] arg = readToArray(line2);
-                        controller.setValue(arg[0], arg[1]);
-                    } 
-                } while(!line2.matches("[0-2][0-2]")); 
-            } else {
-                System.out.println("Game is over, press 'n' to restart");
-            }
-            if(!checkGameEnd()) {
-                if(mode == 1 && controller.getCurrentPlayer()
-                        .getName().equals("Artificial Intelligence")) {
-                    setCellAI();
-                }
-            }
+            setCell();
         }
         
         if (line.equalsIgnoreCase("p")) {
@@ -144,6 +119,35 @@ public class TextUI implements IObserver {
         if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
             setCellAI();
         }
+    }
+    
+    private void setCell() {
+        if(controller.win().equals("playing")) {
+                String line2;
+                do {
+                    System.out.print("Type in the Cell you want to set "
+                        + "(example: 00, choose 'h' to get a Indizes Help)\n" + IN);
+                    line2 = scanner.next();
+                    if (line2.equalsIgnoreCase("h")) {
+                        printIndexHelp();
+                        System.out.print("Type in the Cell you want to set\n"
+                            + IN);
+                        line2 = scanner.next();
+                    } 
+                    if (line2.matches("[0-2][0-2]")){
+                        int[] arg = readToArray(line2);
+                        controller.setValue(arg[0], arg[1]);
+                    } 
+                } while(!line2.matches("[0-2][0-2]")); 
+            } else {
+                System.out.println("Game is over, press 'n' to restart");
+            }
+            if(!checkGameEnd()) {
+                if(mode == 1 && controller.getCurrentPlayer()
+                        .getName().equals("Artificial Intelligence")) {
+                    setCellAI();
+                }
+            }
     }
     
     private int[] readToArray(String line) {
