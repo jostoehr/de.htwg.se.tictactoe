@@ -22,22 +22,22 @@ public class TextUI implements IObserver {
     /**
      * String literal for printStatus
      */
-    private final String turn = " it's your turn!";
+    private static final String TURN = " it's your turn!";
     
     /**
      * String literal is
      */
-    private final String is = " is ";
+    private static final String IS = " is ";
     
     /**
      * String literal -->
      */
-    private final String in = "--> "; 
+    private static final String IN = "--> "; 
     
     public TextUI(TictactoeController controller) {
         this.controller = controller;
         controller.init();
-        controller.setCurrentState(State.StateCrossPlaying);
+        controller.setCurrentState(State.STATECROSSPLAYING);
         scanner = new Scanner(System.in);
         modeChange();
         player();        
@@ -61,68 +61,19 @@ public class TextUI implements IObserver {
             printIndexHelp();
         } 
         if (line.equalsIgnoreCase("n")) {
-            controller.init();
-            System.out.println("New Game is created");
-            controller.setCurrentState(State.StateCrossPlaying);
-            if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
-                setCellAI();
-            }
+            newGame();
         }
         
         if (line.equalsIgnoreCase("m")) {
-            modeChange();
-            player();
-            controller.init();
-            controller.setCurrentState(State.StateCrossPlaying);
+            modifyMode();
         }
         
         if (line.equalsIgnoreCase("c")) {
-            if(!controller.isEmpty()) {
-                System.out.println("Start first a new game to change Characters");
-            } else {
-                if(controller.getPlayer1().getCharacter().equals(Value.CROSS)) {
-                    controller.getPlayer1().setCharacter(Value.NOUGHT);
-                    controller.getPlayer2().setCharacter(Value.CROSS);
-                } else {
-                    controller.getPlayer1().setCharacter(Value.CROSS);
-                    controller.getPlayer2().setCharacter(Value.NOUGHT);                
-                }
-                System.out.println("Changed Characters x and o");
-                System.out.println(controller.getPlayer1().getName() + is + controller.getPlayer1().getCharacter()
-                    + ", " + controller.getPlayer2().getName() + is + controller.getPlayer2().getCharacter());
-                if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
-                    setCellAI();
-                }
-            }
+            characterChange();
         }
         
         if (line.equalsIgnoreCase("s")) {
-            if(controller.win().equals("playing")) {
-                String line2;
-                do {
-                    System.out.print("Type in the Cell you want to set "
-                        + "(example: 00, choose 'h' to get a Indizes Help)\n" + in);
-                    line2 = scanner.next();
-                    if (line2.equalsIgnoreCase("h")) {
-                        printIndexHelp();
-                        System.out.print("Type in the Cell you want to set\n"
-                            + in);
-                        line2 = scanner.next();
-                    } 
-                    if (line2.matches("[0-2][0-2]")){
-                        int[] arg = readToArray(line2);
-                        controller.setValue(arg[0], arg[1]);
-                    } 
-                } while(!line2.matches("[0-2][0-2]")); 
-            } else {
-                System.out.println("Game is over, press 'n' to restart");
-            }
-            if(!checkGameEnd()) {
-                if(mode == 1 && controller.getCurrentPlayer()
-                        .getName().equals("Artificial Intelligence")) {
-                    setCellAI();
-                }
-            }
+            setCell();
         }
         
         if (line.equalsIgnoreCase("p")) {
@@ -133,6 +84,72 @@ public class TextUI implements IObserver {
         }
         return continu;
     }
+    
+    private void characterChange(){
+        if(!controller.isEmpty()) {
+                System.out.println("Start first a new game to change Characters");
+            } else {
+                if(controller.getPlayer1().getCharacter().equals(Value.CROSS)) {
+                    controller.getPlayer1().setCharacter(Value.NOUGHT);
+                    controller.getPlayer2().setCharacter(Value.CROSS);
+                } else {
+                    controller.getPlayer1().setCharacter(Value.CROSS);
+                    controller.getPlayer2().setCharacter(Value.NOUGHT);                
+                }
+                System.out.println("Changed Characters x and o");
+                System.out.println(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
+                    + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
+                if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
+                    setCellAI();
+                }
+            }
+    }
+    
+    private void modifyMode(){
+        modeChange();
+        player();
+        controller.init();
+        controller.setCurrentState(State.STATECROSSPLAYING);
+    }
+    
+    private void newGame() {
+        controller.init();
+        System.out.println("New Game is created");
+        controller.setCurrentState(State.STATECROSSPLAYING);
+        if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
+            setCellAI();
+        }
+    }
+    
+    private void setCell() {
+        if(controller.win().equals("playing")) {
+                String line2;
+                do {
+                    System.out.print("Type in the Cell you want to set "
+                        + "(example: 00, choose 'h' to get a Indizes Help)\n" + IN);
+                    line2 = scanner.next();
+                    if (line2.equalsIgnoreCase("h")) {
+                        printIndexHelp();
+                        System.out.print("Type in the Cell you want to set\n"
+                            + IN);
+                        line2 = scanner.next();
+                    } 
+                    if (line2.matches("[0-2][0-2]")){
+                        int[] arg = readToArray(line2);
+                        controller.setValue(arg[0], arg[1]);
+                    } 
+                } while(!line2.matches("[0-2][0-2]")); 
+            } else {
+                System.out.println("Game is over, press 'n' to restart");
+            }
+            if(!checkGameEnd() &&
+               mode == 1 &&
+               controller.getCurrentPlayer().getName().equals("Artificial Intelligence")) {
+               
+                setCellAI(); 
+            }
+    }
+    
     private int[] readToArray(String line) {
 		Pattern p = Pattern.compile("[0-2]");
 		Matcher m = p.matcher(line);
@@ -153,7 +170,7 @@ public class TextUI implements IObserver {
                 + "s\t-\tSet Cell((x,y) like: 10\n"
                 + "p\t-\tprint Statistics\n"
                 + "q\t-\tquit\n");
-        System.out.print(in);
+        System.out.print(IN);
     }
     
     private void printIndexHelp() {
@@ -166,9 +183,9 @@ public class TextUI implements IObserver {
     }
     
     private void printStatus() {
-        if(controller.getCurrentState() == State.StateCrossPlaying ||
-                controller.getCurrentState() == State.StateNoughtPlaying) {
-            System.out.println(controller.getCurrentPlayer().getName() + turn);
+        if(controller.getCurrentState() == State.STATECROSSPLAYING ||
+                controller.getCurrentState() == State.STATENOUGHTPLAYING) {
+            System.out.println(controller.getCurrentPlayer().getName() + TURN);
         }
     }
     
@@ -208,18 +225,18 @@ public class TextUI implements IObserver {
         String playername[] = new String[mode];
         for (int i = 0; i < mode; i++) {
             System.out.print("Type in Playername" + (i + 1) + ":\n"
-                    + in);
+                    + IN);
             playername[i] = scanner.next();
         }
         controller.getPlayer1().setName(playername[0]);
         if(mode == 2) {
             controller.getPlayer2().setName(playername[1]);
-            System.out.println(controller.getPlayer1().getName() + is + controller.getPlayer1().getCharacter()
-                + ", " + controller.getPlayer2().getName() + is + controller.getPlayer2().getCharacter());
+            System.out.println(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
+                + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
         } else {
             controller.getPlayer2().setName("Artificial Intelligence");
-            System.out.println(controller.getPlayer1().getName() + is + controller.getPlayer1().getCharacter()
-                + ", " + controller.getPlayer2().getName() + is + controller.getPlayer2().getCharacter());
+            System.out.println(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
+                + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
         }
     }
     
@@ -228,7 +245,7 @@ public class TextUI implements IObserver {
             System.out.print("Choose your game Mode:\n"
                 + "1\t-\tvs Artificial Intelligence\n"
                 + "2\t-\tvs Player\n"
-                + in);
+                + IN);
                
             if(scanner.hasNextInt()) {
                 mode = scanner.nextInt();

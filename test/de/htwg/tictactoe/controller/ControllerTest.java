@@ -10,6 +10,8 @@ import de.htwg.tictactoe.entities.Grid;
 import de.htwg.tictactoe.entities.Value;
 import static de.htwg.tictactoe.entities.Grid.COLS;
 import static de.htwg.tictactoe.entities.Grid.ROWS;
+import java.util.LinkedList;
+import java.util.List;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -29,7 +31,7 @@ public class ControllerTest {
         controller.setPlayer1("Hans", Value.CROSS);
         controller.setPlayer2("Karle", Value.NOUGHT);
         controller.init();
-        controller.setCurrentState(State.StateCrossPlaying);
+        controller.setCurrentState(State.STATECROSSPLAYING);
     }
     
     @Test
@@ -73,7 +75,49 @@ public class ControllerTest {
         controller.init();
         assertTrue(controller.isEmpty());
         assertFalse(controller.isDraw());
+        
+        
     }
     
+    @Test
+    public void testGetCurrentPlayer(){
+        assertEquals(controller.getCurrentState(), State.STATECROSSPLAYING);
+        assertEquals(controller.getPlayer1(), controller.getCurrentPlayer());
+        controller.getCurrentPlayer().setCharacter(Value.NOUGHT);
+        assertEquals(controller.getPlayer2(), controller.getCurrentPlayer());
+        
+    }
+    
+    @Test
+    public void testRandInt(){
+        assertEquals(TictactoeController.randInt(2,2), TictactoeController.randInt(2,2));
+    }
+    @Test
+    public void testGetUnSetCells(){
+        List<String> l = new LinkedList<>();
+        for (int row = 0; row < ROWS; ++row) {
+            for (int col = 0; col < COLS; ++col) {
+                if (grid.getCell(row, col).isUnSet()) {
+                    String cell = row+""+col;
+                    l.add(cell);
+                }
+            }
+        }
+        assertEquals(l, controller.getUnSetCells());
+    }
+    
+    @Test
+    public void testHasWon(){
+        //controller.setValue(0, 0);
+        //controller.setValue(1, 1);
+        //controller.setValue(2, 2);
+        //grid.setCell(0, 0, Value.NOUGHT);
+        //assertEquals(true ,controller.hasWon(Value.CROSS));
+    }
+    
+    @Test
+    public void testWin(){
+        //controller.getPlayer2().setWinCount(COLS);
+    }
     
 }

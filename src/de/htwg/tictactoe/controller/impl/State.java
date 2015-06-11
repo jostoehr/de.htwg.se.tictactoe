@@ -5,9 +5,9 @@ package de.htwg.tictactoe.controller.impl;
  * @author Johannes Stöhr
  */
 public enum State {
-    StateCrossPlaying,
-    StateNoughtPlaying,
-    StateCrossWon,
-    StateNoughtWon,
-    StateDraw;
+    STATECROSSPLAYING,
+    STATENOUGHTPLAYING,
+    STATECROSSWON,
+    STATENOUGHTWON,
+    STATEDRAW;
 }

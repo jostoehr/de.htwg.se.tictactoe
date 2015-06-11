@@ -47,7 +47,7 @@ public class Cell {
 	return "(" + row + "," + column + ") = " + value;
     }
     
-    public void clear() {
+    public final void clear() {
         value = Value.EMPTY;
     }
 }

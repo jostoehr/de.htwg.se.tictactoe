@@ -35,7 +35,7 @@ public class TictactoeController extends Observable {
         Cell cell = grid.getCell(row, column);
         if (cell.isUnSet()) {
             cell.setValue(Value.CROSS);
-            if (currentState == State.StateNoughtPlaying) {
+            if (currentState == State.STATENOUGHTPLAYING) {
                 cell.setValue(Value.NOUGHT);
             }
             setStatusMessage("The cell " + cell.toString() + " was successfully set\n");
@@ -43,9 +43,9 @@ public class TictactoeController extends Observable {
         } else {
             setStatusMessage("The cell " + cell.toString() + " is already set\n");
         }
-        if(this.currentState == State.StateNoughtWon
-                || this.currentState == State.StateCrossWon
-                || this.currentState == State.StateDraw) {
+        if(this.currentState == State.STATENOUGHTWON
+                || this.currentState == State.STATECROSSWON
+                || this.currentState == State.STATEDRAW) {
             updateStatistic();
         }
         notifyObservers();
@@ -88,13 +88,13 @@ public class TictactoeController extends Observable {
     }
     
     public Player getCurrentPlayer() {
-        if(getCurrentState() == State.StateCrossPlaying) {
+        if(getCurrentState() == State.STATECROSSPLAYING) {
             if(getPlayer1().getCharacter().equals(Value.CROSS)) {
                 return getPlayer1();
             } else {
                 return getPlayer2();
             }
-        } else if(getCurrentState() == State.StateNoughtPlaying) {
+        } else if(getCurrentState() == State.STATENOUGHTPLAYING) {
             if(getPlayer2().getCharacter().equals(Value.NOUGHT)) {
                 return getPlayer2();
             } else {
@@ -196,20 +196,20 @@ public class TictactoeController extends Observable {
     
     public void change() {
         if(win().equals("playing")) {
-            if(getCurrentState() == State.StateCrossPlaying) {
-                setCurrentState(State.StateNoughtPlaying);
+            if(getCurrentState() == State.STATECROSSPLAYING) {
+                setCurrentState(State.STATENOUGHTPLAYING);
             } else {
-                setCurrentState(State.StateCrossPlaying);
+                setCurrentState(State.STATECROSSPLAYING);
             }
         } else {
             if(win().equals(getPlayer1().getName())) {
-                setCurrentState(State.StateCrossWon);
+                setCurrentState(State.STATECROSSWON);
             }
             if(win().equals(getPlayer2().getName())) {
-                setCurrentState(State.StateNoughtWon);
+                setCurrentState(State.STATENOUGHTWON);
             }
             if(win().equals("draw")) {
-                setCurrentState(State.StateDraw);
+                setCurrentState(State.STATEDRAW);
             }
         }
     }
@@ -246,7 +246,8 @@ public class TictactoeController extends Observable {
 
         // nextInt is normally exclusive of the top value,
         // so add 1 to make it inclusive
-        int randomNum = rand.nextInt((max - min) + 1) + min;
+        int randomNum = 0; 
+        randomNum = rand.nextInt((max - min) + 1) + min;
 
         return randomNum;
     }
