@@ -155,7 +155,7 @@ public class ControllerTest {
         *
         *        drawTest
         */
-        controller.init();
+        /*controller.init();
         controller.setValue(0, 0);
         controller.setValue(0, 1);
         controller.setValue(0, 2);
@@ -165,7 +165,8 @@ public class ControllerTest {
         controller.setValue(2, 0);
         controller.setValue(2, 2);
         controller.setValue(2, 1);
-        assertEquals("draw", controller.win());
+        controller.setValue(1,1);
+        assertEquals("draw", controller.win());*/
 
         
         
