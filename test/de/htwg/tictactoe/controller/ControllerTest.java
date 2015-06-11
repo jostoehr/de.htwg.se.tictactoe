@@ -6,6 +6,7 @@
 package de.htwg.tictactoe.controller;
 
 import de.htwg.tictactoe.controller.impl.State;
+import de.htwg.tictactoe.entities.Cell;
 import de.htwg.tictactoe.entities.Grid;
 import de.htwg.tictactoe.entities.Value;
 import static de.htwg.tictactoe.entities.Grid.COLS;
@@ -37,17 +38,11 @@ public class ControllerTest {
     @Test
     public void testGetValue(){
         controller.setValue(0, 0);
-        
-      /*  assertEquals(0, grid.getCell(0, 0).getRow());
-        assertEquals(0, grid.getCell(0, 0).getColumn());
-        assertEquals(Enum.CROSS, grid.getCell(0,0).getValue());
-        assertEquals("The cell (0,0) = x was successfully set", controller.getStatus());
-        Enum value2 = Enum.EMPTY;
-        controller.setValue(0, 1,value2 );
-        assertEquals(0, grid.getCell(0, 1).getRow());
-        assertEquals(1, grid.getCell(0, 1).getColumn());
-        assertEquals(value2, grid.getCell(0,1).getValue());
-        assertEquals("The cell (0,1) = x was successfully set", controller.getStatus());*/
+        controller.setValue(0, 0);
+        String string = "The cell (0,0) = x is already set\n";
+        assertEquals(string ,controller.getStatus());
+        controller.setValue(1, 1);
+        controller.setCurrentState(State.STATENOUGHTWON);
         
     }
     
@@ -85,6 +80,16 @@ public class ControllerTest {
         assertEquals(controller.getPlayer1(), controller.getCurrentPlayer());
         controller.getCurrentPlayer().setCharacter(Value.NOUGHT);
         assertEquals(controller.getPlayer2(), controller.getCurrentPlayer());
+        controller.setCurrentState(State.STATENOUGHTPLAYING);
+        assertEquals(controller.getPlayer2(), controller.getCurrentPlayer());
+        
+        controller.setCurrentState(State.STATENOUGHTPLAYING);
+        controller.getCurrentPlayer().setCharacter(Value.CROSS);
+        assertEquals(controller.getPlayer1(), controller.getCurrentPlayer());
+        
+        
+        controller.setCurrentState(State.STATEDRAW);
+        assertEquals(null, controller.getCurrentPlayer());
         
     }
     
@@ -108,16 +113,23 @@ public class ControllerTest {
     
     @Test
     public void testHasWon(){
-        //controller.setValue(0, 0);
-        //controller.setValue(1, 1);
-        //controller.setValue(2, 2);
-        //grid.setCell(0, 0, Value.NOUGHT);
-        //assertEquals(true ,controller.hasWon(Value.CROSS));
+        controller.setValue(0, 0);
+        controller.setValue(0, 1);
+        controller.setValue(1, 1);
+        controller.setValue(0, 2);
+        controller.setValue(2, 2);
+        assertEquals(true, controller.hasWon(Value.CROSS));
+        controller.setValue(0, 0);
+        controller.setValue(0, 1);
+        controller.setValue(1, 0);
+        controller.setValue(1, 1);
+        controller.setValue(2, 0);
+        assertEquals(true, controller.hasWon(Value.CROSS));
     }
     
     @Test
     public void testWin(){
-        //controller.getPlayer2().setWinCount(COLS);
+        
     }
     
 }
