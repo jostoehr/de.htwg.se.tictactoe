@@ -5,7 +5,8 @@
  */
 package de.htwg.tictactoe.controller;
 
-import de.htwg.tictactoe.controller.impl.State;
+import de.htwg.tictactoe.controller.impl.MasterController;
+import de.htwg.tictactoe.util.State;
 import de.htwg.tictactoe.entities.Cell;
 import de.htwg.tictactoe.entities.Grid;
 import de.htwg.tictactoe.entities.Value;
@@ -24,11 +25,11 @@ import org.junit.Before;
  */
 public class ControllerTest {
     private Grid grid;
-    private TictactoeController controller;
+    private MasterController controller;
     @Before
     public void setUp() throws Exception {
         grid = new Grid();
-        controller = new TictactoeController(grid);
+        controller = new MasterController(grid);
         controller.setPlayer1("Hans", Value.CROSS);
         controller.setPlayer2("Karle", Value.NOUGHT);
         controller.init();
@@ -95,7 +96,7 @@ public class ControllerTest {
     
     @Test
     public void testRandInt(){
-        assertEquals(TictactoeController.randInt(2,2), TictactoeController.randInt(2,2));
+        assertEquals(MasterController.randInt(2,2), MasterController.randInt(2,2));
     }
     @Test
     public void testGetUnSetCells(){

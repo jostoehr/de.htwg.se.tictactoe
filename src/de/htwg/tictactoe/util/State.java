@@ -1,4 +1,4 @@
-package de.htwg.tictactoe.controller.impl;
+package de.htwg.tictactoe.util;
 
 /**
  * Enumeration for state Pattern

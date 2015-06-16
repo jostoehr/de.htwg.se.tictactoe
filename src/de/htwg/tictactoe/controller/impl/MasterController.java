@@ -1,6 +1,7 @@
-package de.htwg.tictactoe.controller;
+package de.htwg.tictactoe.controller.impl;
 
-import de.htwg.tictactoe.controller.impl.State;
+import de.htwg.tictactoe.controller.IMasterController;
+import de.htwg.tictactoe.util.State;
 import de.htwg.tictactoe.entities.Cell;
 import de.htwg.tictactoe.entities.Grid;
 import de.htwg.tictactoe.entities.Value;
@@ -17,7 +18,7 @@ import java.util.Random;
  *
  * @author siegfried
  */
-public class TictactoeController extends Observable {
+public class MasterController extends Observable implements IMasterController {
 
     private String statusMessage = "Welcome to HTWG TicTacToe!";
     private final Grid grid;
@@ -25,7 +26,7 @@ public class TictactoeController extends Observable {
     private Player player1;
     private Player player2;
 
-    public TictactoeController(Grid grid) {
+    public MasterController(Grid grid) {
         this.grid = grid;
         setPlayer1("default", Value.CROSS);
         setPlayer2("default", Value.NOUGHT);
@@ -131,12 +132,10 @@ public class TictactoeController extends Observable {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
                 if (grid.getCell(row, col).isSet()) {
-                    /* an empty content found, not a draw */
                     return false;
                 }
             }
         }
-        /* no empty cell, draw! */
         return true;
     }
 

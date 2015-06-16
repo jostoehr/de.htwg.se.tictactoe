@@ -5,6 +5,7 @@
  */
 package de.htwg.tictactoe.controller.impl;
 
+import de.htwg.tictactoe.util.State;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

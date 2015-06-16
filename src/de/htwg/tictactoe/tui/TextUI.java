@@ -1,7 +1,7 @@
 package de.htwg.tictactoe.tui;
 
-import de.htwg.tictactoe.controller.TictactoeController;
-import de.htwg.tictactoe.controller.impl.State;
+import de.htwg.tictactoe.controller.impl.MasterController;
+import de.htwg.tictactoe.util.State;
 import de.htwg.tictactoe.entities.Value;
 import de.htwg.util.observer.IObserver;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 public class TextUI implements IObserver {
 
-    private TictactoeController controller;
+    private MasterController controller;
     private Scanner scanner;
     private int mode;
     
@@ -34,7 +34,7 @@ public class TextUI implements IObserver {
      */
     private static final String IN = "--> "; 
     
-    public TextUI(TictactoeController controller) {
+    public TextUI(MasterController controller) {
         this.controller = controller;
         controller.init();
         controller.setCurrentState(State.STATECROSSPLAYING);
