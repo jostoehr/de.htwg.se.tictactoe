@@ -11,8 +11,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
- * @author johannes
+ * Textual User Interface
+ * @author Johannes Stöhr
  */
 public class TUI implements IObserver {
 
