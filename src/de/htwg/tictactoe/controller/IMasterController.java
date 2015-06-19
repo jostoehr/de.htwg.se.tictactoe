@@ -1,5 +1,7 @@
 package de.htwg.tictactoe.controller;
 
+import de.htwg.tictactoe.entities.Player;
+import de.htwg.tictactoe.entities.Value;
 import de.htwg.tictactoe.util.State;
 
 /**
@@ -35,4 +37,53 @@ public interface IMasterController {
      */
     public void setCurrentState(State currentState);
 
+    /**
+     * Getter for the current State of State Pattern.
+     * @return current State
+     */
+    public State getCurrentState();
+    
+    /**
+     * Getter for Player 1. 
+     * @return player1
+     */
+    public Player getPlayer1();
+    
+    /**
+     * Getter for Player 2.
+     * @return player2
+     */
+    public Player getPlayer2();
+    
+    /**
+     * Setter for Player 1.
+     * @param name name of Player 1
+     * @param character playing character of Player 1
+     */
+    public void setPlayer1(String name, Value character);
+    
+    /**
+     * Setter for Player 2.
+     * @param name name of Player 2
+     * @param character playing character of Player 2
+     */
+    public void setPlayer2(String name, Value character);
+    
+    /**
+     * Getter for the current Player.
+     * @return current Player or null if no one is set
+     */
+    public Player getCurrentPlayer();
+
+    /**
+     * Method to initialize the current grid with Empty Cells.
+     */
+    public void init();
+    
+    /**
+     * Method to 
+     * @return 
+     */
+    public boolean isDraw();
+    
 }
