@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.htwg.tictactoe.controller;
 
 import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.tictactoe.util.State;
-import de.htwg.tictactoe.entities.Cell;
-import de.htwg.tictactoe.entities.Grid;
-import de.htwg.tictactoe.entities.Value;
-import static de.htwg.tictactoe.entities.Grid.COLS;
-import static de.htwg.tictactoe.entities.Grid.ROWS;
+import de.htwg.tictactoe.model.impl.Cell;
+import de.htwg.tictactoe.model.impl.Grid;
+import de.htwg.tictactoe.util.Value;
+import static de.htwg.tictactoe.model.impl.Grid.COLS;
+import static de.htwg.tictactoe.model.impl.Grid.ROWS;
 import java.util.LinkedList;
 import java.util.List;
 import static org.junit.Assert.*;

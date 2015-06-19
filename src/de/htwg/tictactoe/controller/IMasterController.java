@@ -1,8 +1,9 @@
 package de.htwg.tictactoe.controller;
 
-import de.htwg.tictactoe.entities.Player;
-import de.htwg.tictactoe.entities.Value;
+import de.htwg.tictactoe.model.IPlayer;
+import de.htwg.tictactoe.util.Value;
 import de.htwg.tictactoe.util.State;
+import java.util.List;
 
 /**
  * IMasterController is an Utitlity-Inferace
@@ -12,14 +13,14 @@ import de.htwg.tictactoe.util.State;
 public interface IMasterController {
     
     /**
-     * Method to set a Cell in grid.
+     * Setter for a Value in current grid.
      * @param row row of matrix
      * @param column column of matrix
      */
     public void setValue(int row, int column);
     
     /**
-     * Method to get the current status message of setValue.
+     * Getter for the current status Message of setValue.
      * @return current status Message
      */
     public String getStatus();
@@ -47,13 +48,13 @@ public interface IMasterController {
      * Getter for Player 1. 
      * @return player1
      */
-    public Player getPlayer1();
+    public IPlayer getPlayer1();
     
     /**
      * Getter for Player 2.
      * @return player2
      */
-    public Player getPlayer2();
+    public IPlayer getPlayer2();
     
     /**
      * Setter for Player 1.
@@ -73,7 +74,7 @@ public interface IMasterController {
      * Getter for the current Player.
      * @return current Player or null if no one is set
      */
-    public Player getCurrentPlayer();
+    public IPlayer getCurrentPlayer();
 
     /**
      * Method to initialize the current grid with Empty Cells.
@@ -81,9 +82,42 @@ public interface IMasterController {
     public void init();
     
     /**
-     * Method to 
-     * @return 
+     * Method to check if there is an empty cell in the current grid.
+     * @return true if draw
      */
     public boolean isDraw();
     
+    /**
+     * Method to check if there isn't an empty cell in the current grid.
+     * @return true if empty
+     */
+    public boolean isEmpty();
+    
+    /**
+     * Win check of current game. Check if player1 has won, if player2 
+     * has won and if game is draw.
+     * @return if game is end the case, which is true as String,
+     *         else String "playing"
+     */
+    public String win();
+    
+    /**
+     * Method to get all unset Cells and add them as String (row+""+col)
+     * to a LinkedList.
+     * @return List of all unset Cells as String
+     */
+    public List<String> getUnSetCells();
+    
+    /**
+     * Quelle: http://stackoverflow.com/questions/363681/generating-random-integers-in-a-range-with-java
+     * Returns a pseudo-random number between min and max, inclusive.
+     * The difference between min and max can be at most
+     * <code>Integer.MAX_VALUE - 1</code>.
+     *
+     * @param min Minimum value
+     * @param max Maximum value.  Must be greater than min.
+     * @return Integer between min and max, inclusive.
+     * @see java.util.Random#nextInt(int)
+     */
+    public int randInt(int min, int max);
 }

@@ -2,7 +2,7 @@ package de.htwg.tictactoe.tui;
 
 import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.tictactoe.util.State;
-import de.htwg.tictactoe.entities.Value;
+import de.htwg.tictactoe.util.Value;
 import de.htwg.util.observer.IObserver;
 import java.util.List;
 import java.util.Scanner;
@@ -196,8 +196,8 @@ public class TextUI implements IObserver {
                 + controller.getPlayer2().getCharacter() + ")");
         System.out.println("Wins: " + controller.getPlayer1().getWinCount()
                 + "\t\tWins: " + controller.getPlayer2().getWinCount());
-        System.out.println("Lost: " + controller.getPlayer1().getLooseCount()
-                + "\t\tLost: " + controller.getPlayer2().getLooseCount());
+        System.out.println("Lost: " + controller.getPlayer1().getLostCount()
+                + "\t\tLost: " + controller.getPlayer2().getLostCount());
         System.out.println("Draw: " + controller.getPlayer1().getDrawCount()
                 + "\t\tDraw: " + controller.getPlayer2().getDrawCount() + "\n");
     }

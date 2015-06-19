@@ -1,13 +1,14 @@
 package de.htwg.tictactoe.controller.impl;
 
 import de.htwg.tictactoe.controller.IMasterController;
+import de.htwg.tictactoe.model.ICell;
+import de.htwg.tictactoe.model.IGrid;
+import de.htwg.tictactoe.model.IPlayer;
 import de.htwg.tictactoe.util.State;
-import de.htwg.tictactoe.entities.Cell;
-import de.htwg.tictactoe.entities.Grid;
-import de.htwg.tictactoe.entities.Value;
-import static de.htwg.tictactoe.entities.Grid.COLS;
-import static de.htwg.tictactoe.entities.Grid.ROWS;
-import de.htwg.tictactoe.entities.Player;
+import de.htwg.tictactoe.util.Value;
+import static de.htwg.tictactoe.model.impl.Grid.COLS;
+import static de.htwg.tictactoe.model.impl.Grid.ROWS;
+import de.htwg.tictactoe.model.impl.Player;
 import de.htwg.util.observer.Observable;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,25 +16,27 @@ import java.util.Random;
 
 
 /**
- *
- * @author siegfried
+ * Master Controller class to controlles the game with methods 
+ * between Models and Views.
+ * @author Siegfried Kienzle
  */
 public class MasterController extends Observable implements IMasterController {
 
     private String statusMessage = "Welcome to HTWG TicTacToe!";
-    private final Grid grid;
+    private final IGrid grid;
     private State currentState;
-    private Player player1;
-    private Player player2;
+    private IPlayer player1;
+    private IPlayer player2;
 
-    public MasterController(Grid grid) {
+    public MasterController(IGrid grid) {
         this.grid = grid;
-        setPlayer1("default", Value.CROSS);
-        setPlayer2("default", Value.NOUGHT);
+        setPlayer1("default1", Value.CROSS);
+        setPlayer2("default2", Value.NOUGHT);
     }
     
+    @Override
     public void setValue(int row, int column) {
-        Cell cell = grid.getCell(row, column);
+        ICell cell = grid.getCell(row, column);
         if (cell.isUnSet()) {
             cell.setValue(Value.CROSS);
             if (currentState == State.STATENOUGHTPLAYING) {
@@ -52,6 +55,7 @@ public class MasterController extends Observable implements IMasterController {
         notifyObservers();
     }
 
+    @Override
     public String getStatus() {
         return statusMessage;
     }
@@ -60,35 +64,43 @@ public class MasterController extends Observable implements IMasterController {
         this.statusMessage = statusMessage;
     }
 
+    @Override
     public String getGridString() {
         return grid.toString();
     }
 
+    @Override
     public void setCurrentState(State currentState) {
         this.currentState = currentState;
     }
 
+    @Override
     public State getCurrentState() {
         return currentState;
     }
 
-    public Player getPlayer1() {
+    @Override
+    public IPlayer getPlayer1() {
         return player1;
     }
 
-    public Player getPlayer2() {
+    @Override
+    public IPlayer getPlayer2() {
         return player2;
     }
 
+    @Override
     public final void setPlayer1(String name, Value character) {
         this.player1 = new Player(name, character);
     }
 
+    @Override
     public final void setPlayer2(String name, Value character) {
         this.player2 = new Player(name, character);
     }
     
-    public Player getCurrentPlayer() {
+    @Override
+    public IPlayer getCurrentPlayer() {
         if(getCurrentState() == State.STATECROSSPLAYING) {
             if(getPlayer1().getCharacter().equals(Value.CROSS)) {
                 return getPlayer1();
@@ -106,6 +118,7 @@ public class MasterController extends Observable implements IMasterController {
         }
     }
 
+    @Override
     public void init() {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
@@ -115,19 +128,19 @@ public class MasterController extends Observable implements IMasterController {
         }
     }
 
+    @Override
     public boolean isDraw() {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
                 if (grid.getCell(row, col).isUnSet()) {
-                    /* an empty content found, not a draw */
                     return false;
                 }
             }
         }
-        /* no empty cell, draw! */
         return true;
     }
     
+    @Override
     public boolean isEmpty() {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
@@ -140,10 +153,12 @@ public class MasterController extends Observable implements IMasterController {
     }
 
     /**
-     * Win Ceck with hasWon and equal idea from:
-     * Quelle: http://wiki.byte-welt.net/wiki/Entwurfsmuster_%28Design_Patterns%29#Beispiel_von_TicTacToe 
+     * Check win situation of an character.
+     * Quelle: http://wiki.byte-welt.net/wiki/Entwurfsmuster_%28Design_Patterns%29#Beispiel_von_TicTacToe
+     * @param p character, which has to be checked
+     * @return 
      */
-    public boolean hasWon(Enum p) {
+    private boolean hasWon(Enum p) {
         for (int i=0; i<ROWS; i++) {
             if (grid.getCell(i,0).getValue() == p && equal(i,0, i,1, i,2)) {
                 return true;
@@ -155,19 +170,29 @@ public class MasterController extends Observable implements IMasterController {
         if (grid.getCell(0,0).getValue() == p && equal(0,0, 1,1, 2,2)) {
             return true;
         }
-        if (grid.getCell(0,2).getValue() == p && equal(0,2, 1,1, 2,0)) {
-            return true;
-        }
-        return false;
+        return grid.getCell(0,2).getValue() == p && equal(0,2, 1,1, 2,0);
     }
 
-    public boolean equal(int r0, int c0, int r1, int c1, int r2, int c2) {
+    /**
+     * Helping function for hasWon() Method.
+     * Checks 3 cells of matching in character.
+     * Quelle: http://wiki.byte-welt.net/wiki/Entwurfsmuster_%28Design_Patterns%29#Beispiel_von_TicTacToe
+     * @param r0 row of first cell
+     * @param c0 column of first cell
+     * @param r1 row of secend cell
+     * @param c1 column of second cell
+     * @param r2 row of third cell   
+     * @param c2 column of third cell   
+     * @return true if these 3 cells match in character
+     */
+    private boolean equal(int r0, int c0, int r1, int c1, int r2, int c2) {
         return(grid.getCell(r0, c0).getValue() == grid.getCell(r1, c1).getValue() &&
                 grid.getCell(r1, c1).getValue() == grid.getCell(r2, c2).getValue());
     }
 
+    @Override
     public String win() {
-        String win = null;
+        String win;
         if (hasWon(player1.getCharacter())) {
             win = player1.getName();
         } else if (hasWon(player2.getCharacter())) {
@@ -180,20 +205,26 @@ public class MasterController extends Observable implements IMasterController {
         return win;
     }
     
+    /**
+     * Method to update the win statistics of player1 and player2.
+     */
     private void updateStatistic() {
         if(win().equals(player1.getName())) {
             player1.setWinCount(player1.getWinCount() +1);
-            player2.setLooseCount(player2.getLooseCount() + 1);
+            player2.setLostCount(player2.getLostCount() + 1);
         } else if(win().equals(player2.getName())) {
             player2.setWinCount(player2.getWinCount() +1);
-            player1.setLooseCount(player1.getLooseCount() +1);
+            player1.setLostCount(player1.getLostCount() +1);
         } else {
             player1.setDrawCount(player1.getDrawCount() + 1);
             player2.setDrawCount(player2.getDrawCount() + 1);
         }
     }
     
-    public void change() {
+    /**
+     * Change Method of State Pattern to get the current state and update it.
+     */
+    private void change() {
         if(win().equals("playing")) {
             if(getCurrentState() == State.STATECROSSPLAYING) {
                 setCurrentState(State.STATENOUGHTPLAYING);
@@ -226,18 +257,8 @@ public class MasterController extends Observable implements IMasterController {
         return l;
     }
     
-    /**
-     * Quelle: http://stackoverflow.com/questions/363681/generating-random-integers-in-a-range-with-java
-     * Returns a pseudo-random number between min and max, inclusive.
-     * The difference between min and max can be at most
-     * <code>Integer.MAX_VALUE - 1</code>.
-     *
-     * @param min Minimum value
-     * @param max Maximum value.  Must be greater than min.
-     * @return Integer between min and max, inclusive.
-     * @see java.util.Random#nextInt(int)
-     */
-    public static int randInt(int min, int max) {
+    @Override
+    public int randInt(int min, int max) {
 
         // NOTE: Usually this should be a field rather than a method
         // variable so that it is not re-seeded every call.
@@ -245,7 +266,7 @@ public class MasterController extends Observable implements IMasterController {
 
         // nextInt is normally exclusive of the top value,
         // so add 1 to make it inclusive
-        int randomNum = 0; 
+        int randomNum; 
         randomNum = rand.nextInt((max - min) + 1) + min;
 
         return randomNum;

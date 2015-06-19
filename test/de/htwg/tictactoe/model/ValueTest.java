@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.htwg.tictactoe.entities;
+package de.htwg.tictactoe.model;
 
+import de.htwg.tictactoe.util.Value;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

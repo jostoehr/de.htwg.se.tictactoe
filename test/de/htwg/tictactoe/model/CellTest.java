@@ -1,5 +1,7 @@
-package de.htwg.tictactoe.entities;
+package de.htwg.tictactoe.model;
 
+import de.htwg.tictactoe.model.impl.Cell;
+import de.htwg.tictactoe.util.Value;
 import static org.junit.Assert.*;
 
 import org.junit.Test;

@@ -1,7 +1,7 @@
 package de.htwg.tictactoe;
 
 import de.htwg.tictactoe.controller.impl.MasterController;
-import de.htwg.tictactoe.entities.Grid;
+import de.htwg.tictactoe.model.impl.Grid;
 import de.htwg.tictactoe.tui.TextUI;
 import java.util.Scanner;
 

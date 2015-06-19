@@ -1,8 +1,8 @@
-package de.htwg.tictactoe.entities;
+package de.htwg.tictactoe.util;
 
 /**
- *
- * @author johannes
+ * Enumeration Value, which contains the possible characters.
+ * @author Johannes Stöhr
  */
 
 public enum Value {

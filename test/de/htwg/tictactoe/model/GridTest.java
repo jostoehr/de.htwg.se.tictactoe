@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.htwg.tictactoe.entities;
+package de.htwg.tictactoe.model;
 
-import static de.htwg.tictactoe.entities.Grid.COLS;
-import static de.htwg.tictactoe.entities.Grid.ROWS;
+import de.htwg.tictactoe.model.impl.Cell;
+import de.htwg.tictactoe.model.impl.Grid;
+import de.htwg.tictactoe.util.Value;
+import static de.htwg.tictactoe.model.impl.Grid.COLS;
+import static de.htwg.tictactoe.model.impl.Grid.ROWS;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

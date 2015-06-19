@@ -1,16 +1,21 @@
-package de.htwg.tictactoe.entities;
+package de.htwg.tictactoe.model.impl;
+
+import de.htwg.tictactoe.util.Value;
+import de.htwg.tictactoe.model.ICell;
+import de.htwg.tictactoe.model.IGrid;
+
 /**
- *
- * @author johannes
+ * Model Class to save a grid field with his Cells using Matrix.
+ * @author Johannes Stöhr
  */
-public class Grid {
+public class Grid implements IGrid {
     public static final int ROWS = 3;
     public static final int COLS = 3;
     
-    private Cell[][] cells;
+    private final ICell[][] cells;
     
     public Grid() {
-        cells = new Cell[ROWS][COLS];
+        cells = new ICell[ROWS][COLS];
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
                 cells[row][col] = new Cell(row, col); 
@@ -18,11 +23,12 @@ public class Grid {
         }
     }
     
-    public Cell getCell(int row, int column) {
+    @Override
+    public ICell getCell(int row, int column) {
 	return cells[row][column];
     }
     
-    	
+    @Override	
     public void setCell(int row, int column, Value value) {
 	cells[row][column].setValue(value);
     }
