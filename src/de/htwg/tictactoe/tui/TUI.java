@@ -6,6 +6,7 @@ import de.htwg.tictactoe.util.Value;
 import de.htwg.util.observer.IObserver;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +14,7 @@ import java.util.regex.Pattern;
  *
  * @author johannes
  */
-public class TextUI implements IObserver {
+public class TUI implements IObserver {
 
     private MasterController controller;
     private Scanner scanner;
@@ -34,7 +35,10 @@ public class TextUI implements IObserver {
      */
     private static final String IN = "--> "; 
     
-    public TextUI(MasterController controller) {
+    private final Logger logger =
+            Logger.getLogger("de.htwg.tictactoe.view.tui");
+    
+    public TUI(MasterController controller) {
         this.controller = controller;
         controller.init();
         controller.setCurrentState(State.STATECROSSPLAYING);
@@ -50,8 +54,8 @@ public class TextUI implements IObserver {
 
     public void printTUI() {
         printStatus();
-        System.out.print(controller.getGridString());
-	System.out.print(controller.getStatus());
+        logger.info(controller.getGridString());
+	logger.info(controller.getStatus());
         printHelp();
     }
     
@@ -87,7 +91,7 @@ public class TextUI implements IObserver {
     
     private void characterChange(){
         if(!controller.isEmpty()) {
-                System.out.println("Start first a new game to change Characters");
+                logger.info("Start first a new game to change Characters");
             } else {
                 if(controller.getPlayer1().getCharacter().equals(Value.CROSS)) {
                     controller.getPlayer1().setCharacter(Value.NOUGHT);
@@ -96,8 +100,8 @@ public class TextUI implements IObserver {
                     controller.getPlayer1().setCharacter(Value.CROSS);
                     controller.getPlayer2().setCharacter(Value.NOUGHT);                
                 }
-                System.out.println("Changed Characters x and o");
-                System.out.println(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
+                logger.info("Changed Characters x and o");
+                logger.info(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
                     + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
                 if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
                     setCellAI();
@@ -114,7 +118,7 @@ public class TextUI implements IObserver {
     
     private void newGame() {
         controller.init();
-        System.out.println("New Game is created");
+        logger.info("New Game is created");
         controller.setCurrentState(State.STATECROSSPLAYING);
         if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
             setCellAI();
@@ -125,12 +129,12 @@ public class TextUI implements IObserver {
         if(controller.win().equals("playing")) {
                 String line2;
                 do {
-                    System.out.print("Type in the Cell you want to set "
+                    logger.info("Type in the Cell you want to set "
                         + "(example: 00, choose 'h' to get a Indizes Help)\n" + IN);
                     line2 = scanner.next();
                     if (line2.equalsIgnoreCase("h")) {
                         printIndexHelp();
-                        System.out.print("Type in the Cell you want to set\n"
+                        logger.info("Type in the Cell you want to set\n"
                             + IN);
                         line2 = scanner.next();
                     } 
@@ -140,7 +144,7 @@ public class TextUI implements IObserver {
                     } 
                 } while(!line2.matches("[0-2][0-2]")); 
             } else {
-                System.out.println("Game is over, press 'n' to restart");
+                logger.info("Game is over, press 'n' to restart");
             }
             if(!checkGameEnd() &&
                mode == 1 &&
@@ -162,7 +166,7 @@ public class TextUI implements IObserver {
 	}
     
     private void printHelp() {
-        System.out.print("\n-----MENU-----\n"
+        logger.info("\n-----MENU-----\n"
                 + "h\t-\tMatrix Indizes Help\n"
                 + "n\t-\tNew Game\n"
                 + "m\t-\tGame Mode\n"
@@ -170,11 +174,11 @@ public class TextUI implements IObserver {
                 + "s\t-\tSet Cell((x,y) like: 10\n"
                 + "p\t-\tprint Statistics\n"
                 + "q\t-\tquit\n");
-        System.out.print(IN);
+        logger.info(IN);
     }
     
     private void printIndexHelp() {
-        System.out.println("Matrix Indizes to set a cell:\n\n"
+        logger.info("Matrix Indizes to set a cell:\n\n"
             + "00 | 01 | 02\n"
             + "------------\n"
             + "10 | 11 | 12\n"
@@ -185,38 +189,38 @@ public class TextUI implements IObserver {
     private void printStatus() {
         if(controller.getCurrentState() == State.STATECROSSPLAYING ||
                 controller.getCurrentState() == State.STATENOUGHTPLAYING) {
-            System.out.println(controller.getCurrentPlayer().getName() + TURN);
+            logger.info(controller.getCurrentPlayer().getName() + TURN);
         }
     }
     
     private void printStatistic() {
-        System.out.println("\n" + controller.getPlayer1().getName() + "(" 
+        logger.info("\n" + controller.getPlayer1().getName() + "(" 
                 + controller.getPlayer1().getCharacter() + ")\t" 
                 + controller.getPlayer2().getName() + "(" 
                 + controller.getPlayer2().getCharacter() + ")");
-        System.out.println("Wins: " + controller.getPlayer1().getWinCount()
+        logger.info("Wins: " + controller.getPlayer1().getWinCount()
                 + "\t\tWins: " + controller.getPlayer2().getWinCount());
-        System.out.println("Lost: " + controller.getPlayer1().getLostCount()
+        logger.info("Lost: " + controller.getPlayer1().getLostCount()
                 + "\t\tLost: " + controller.getPlayer2().getLostCount());
-        System.out.println("Draw: " + controller.getPlayer1().getDrawCount()
+        logger.info("Draw: " + controller.getPlayer1().getDrawCount()
                 + "\t\tDraw: " + controller.getPlayer2().getDrawCount() + "\n");
     }
 
     private boolean checkGameEnd() {
         String win = controller.win();
         if(win.equals(controller.getPlayer1().getName())) {
-            System.out.println(controller.getPlayer1().getCharacter() + " wins!"
+            logger.info(controller.getPlayer1().getCharacter() + " wins!"
                     + " Press 'n' to restart");
             return true;
         } else if(win.equals(controller.getPlayer2().getName())) {
-            System.out.println(controller.getPlayer2().getCharacter() + " wins!"
+            logger.info(controller.getPlayer2().getCharacter() + " wins!"
                     + " Press 'n' to restart");
             return true;
         } else if(win.equals("draw")) {
-            System.out.println("Game is Draw! Press 'n' to restart");
+            logger.info("Game is Draw! Press 'n' to restart");
             return true;
         } else if(win.equals("playing")) {
-            System.out.println("Game is not finished!");
+            logger.info("Game is not finished!");
         }
         return false;
     }
@@ -224,25 +228,25 @@ public class TextUI implements IObserver {
     private void player() {
         String playername[] = new String[mode];
         for (int i = 0; i < mode; i++) {
-            System.out.print("Type in Playername" + (i + 1) + ":\n"
+            logger.info("Type in Playername" + (i + 1) + ":\n"
                     + IN);
             playername[i] = scanner.next();
         }
         controller.getPlayer1().setName(playername[0]);
         if(mode == 2) {
             controller.getPlayer2().setName(playername[1]);
-            System.out.println(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
+            logger.info(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
                 + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
         } else {
             controller.getPlayer2().setName("Artificial Intelligence");
-            System.out.println(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
+            logger.info(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
                 + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
         }
     }
     
     private void modeChange() {
         while(true) {
-            System.out.print("Choose your game Mode:\n"
+            logger.info("Choose your game Mode:\n"
                 + "1\t-\tvs Artificial Intelligence\n"
                 + "2\t-\tvs Player\n"
                 + IN);
