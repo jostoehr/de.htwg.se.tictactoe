@@ -4,6 +4,7 @@ import de.htwg.tictactoe.controller.IMasterController;
 import de.htwg.tictactoe.model.ICell;
 import de.htwg.tictactoe.model.IGrid;
 import de.htwg.tictactoe.model.IPlayer;
+import de.htwg.tictactoe.model.impl.Grid;
 import de.htwg.tictactoe.util.State;
 import de.htwg.tictactoe.util.Value;
 import static de.htwg.tictactoe.model.impl.Grid.COLS;
@@ -28,8 +29,8 @@ public class MasterController extends Observable implements IMasterController {
     private IPlayer player1;
     private IPlayer player2;
 
-    public MasterController(IGrid grid) {
-        this.grid = grid;
+    public MasterController() {
+        this.grid = new Grid();
         setPlayer1("default1", Value.CROSS);
         setPlayer2("default2", Value.NOUGHT);
     }

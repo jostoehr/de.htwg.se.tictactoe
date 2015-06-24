@@ -1,5 +1,6 @@
-package de.htwg.tictactoe.tui;
+package de.htwg.tictactoe.aview.tui;
 
+import de.htwg.tictactoe.controller.IMasterController;
 import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.tictactoe.util.State;
 import de.htwg.tictactoe.util.Value;
@@ -16,7 +17,7 @@ import java.util.regex.Pattern;
  */
 public class TUI implements IObserver {
 
-    private MasterController controller;
+    private IMasterController controller;
     private Scanner scanner;
     private int mode;
     
@@ -38,7 +39,7 @@ public class TUI implements IObserver {
     private final Logger logger =
             Logger.getLogger("de.htwg.tictactoe.view.tui");
     
-    public TUI(MasterController controller) {
+    public TUI(IMasterController controller) {
         this.controller = controller;
         controller.init();
         controller.setCurrentState(State.STATECROSSPLAYING);
