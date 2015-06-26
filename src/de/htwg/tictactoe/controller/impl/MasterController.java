@@ -161,7 +161,7 @@ public class MasterController extends Observable implements IMasterController {
      * @param p character, which has to be checked
      * @return 
      */
-    private boolean hasWon(Enum p) {
+    public boolean hasWon(Enum p) {
         for (int i=0; i<ROWS; i++) {
             if (grid.getCell(i,0).getValue() == p && equal(i,0, i,1, i,2)) {
                 return true;
