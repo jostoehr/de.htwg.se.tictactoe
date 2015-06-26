@@ -14,15 +14,17 @@ public final class Tictactoe {
     public static void main(final String[] args) {
         
         
-        //TUI tui = new TUI(master);
-        //tui.printTUI();
-        new GUI(master);
+        TUI tui = new TUI(master);
+        tui.printTUI();
+        //new GUI(master);
 
-        /*boolean continu = true;
+        boolean continu = true;
         scanner = new Scanner(System.in);
         while(continu) {
             continu = tui.processInputLine(scanner.next());
             tui.printTUI();
-        }*/
+        }
     }
+    
+    
 }

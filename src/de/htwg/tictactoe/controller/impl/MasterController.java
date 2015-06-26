@@ -1,5 +1,6 @@
 package de.htwg.tictactoe.controller.impl;
 
+import com.google.inject.Inject;
 import de.htwg.tictactoe.controller.IMasterController;
 import de.htwg.tictactoe.model.ICell;
 import de.htwg.tictactoe.model.IGrid;
@@ -28,7 +29,8 @@ public class MasterController extends Observable implements IMasterController {
     private State currentState;
     private IPlayer player1;
     private IPlayer player2;
-
+    
+    @Inject
     public MasterController() {
         this.grid = new Grid();
         setPlayer1("default1", Value.CROSS);
