@@ -13,59 +13,59 @@ public interface IPlayer {
      * Setter for the character of a player.
      * @param character Value.CROSS or Value.NOUGHT
      */
-    public void setCharacter(Value character);
+    void setCharacter(Value character);
     
     /**
      * Getter for the character of a player.
      * @return character
      */
-    public Enum getCharacter();
+    Enum getCharacter();
     
     /**
      * Setter for the name of a player.
      * @param name playername
      */
-    public void setName(String name);
+    void setName(String name);
     
     /**
      * Getter for the name of a player
      * @return playername
      */
-    public String getName();
+    String getName();
     
     /**
      * Setter for the Draw Count of a player
      * @param draw new count of draws
      */
-    public void setDrawCount(int draw);
+    void setDrawCount(int draw);
     
     /**
      * Getter for the Draw Count of a player.
      * @return count of Draws.
      */
-    public int getDrawCount();
+    int getDrawCount();
     
     /**
      * Setter for the Win Count of a player.
      * @param win new count of wins
      */
-    public void setWinCount(int win);
+    void setWinCount(int win);
     
     /**
      * Getter for the Win Count of a player.
      * @return count of Wins.
      */
-    public int getWinCount();
+    int getWinCount();
     
         /**
      * Setter for the Win Count of a player.
      * @param win new count of wins
      */
-    public void setLostCount(int win);
+    void setLostCount(int win);
     
     /**
      * Getter for the Win Count of a player.
      * @return count of Wins.
      */
-    public int getLostCount();
+    int getLostCount();
 }

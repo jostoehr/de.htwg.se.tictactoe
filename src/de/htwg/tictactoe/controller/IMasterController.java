@@ -17,81 +17,81 @@ public interface IMasterController {
      * @param row row of matrix
      * @param column column of matrix
      */
-    public void setValue(int row, int column);
+    void setValue(int row, int column);
     
     /**
      * Getter for the current status Message of setValue.
      * @return current status Message
      */
-    public String getStatus();
+    String getStatus();
     
     /**
      * Getter for the current grid to get it as String.
      * Grid.toString() builds the playing field for the TUI.
      * @return toString() of current grid
      */
-    public String getGridString();
+    String getGridString();
     
     /**
      * Setter for the current State of State Pattern.
      * @param currentState new State
      */
-    public void setCurrentState(State currentState);
+    void setCurrentState(State currentState);
 
     /**
      * Getter for the current State of State Pattern.
      * @return current State
      */
-    public State getCurrentState();
+    State getCurrentState();
     
     /**
      * Getter for Player 1. 
      * @return player1
      */
-    public IPlayer getPlayer1();
+    IPlayer getPlayer1();
     
     /**
      * Getter for Player 2.
      * @return player2
      */
-    public IPlayer getPlayer2();
+    IPlayer getPlayer2();
     
     /**
      * Setter for Player 1.
      * @param name name of Player 1
      * @param character playing character of Player 1
      */
-    public void setPlayer1(String name, Value character);
+    void setPlayer1(String name, Value character);
     
     /**
      * Setter for Player 2.
      * @param name name of Player 2
      * @param character playing character of Player 2
      */
-    public void setPlayer2(String name, Value character);
+    void setPlayer2(String name, Value character);
     
     /**
      * Getter for the current Player.
      * @return current Player or null if no one is set
      */
-    public IPlayer getCurrentPlayer();
+    IPlayer getCurrentPlayer();
 
     /**
      * Method to initialize the current grid with Empty Cells.
      */
-    public void init();
+    void init();
     
     /**
      * Method to check if there is an empty cell in the current grid.
      * @return true if draw
      */
-    public boolean isDraw();
+    boolean isDraw();
     
     /**
      * Method to check if there isn't an empty cell in the current grid.
      * @return true if empty
      */
-    public boolean isEmpty();
+    boolean isEmpty();
     
     /**
      * Win check of current game. Check if player1 has won, if player2 
@@ -99,14 +99,14 @@ public interface IMasterController {
      * @return if game is end the case, which is true as String,
      *         else String "playing"
      */
-    public String win();
+    String win();
     
     /**
      * Method to get all unset Cells and add them as String (row+""+col)
      * to a LinkedList.
      * @return List of all unset Cells as String
      */
-    public List<String> getUnSetCells();
+    List<String> getUnSetCells();
     
     /**
      * Quelle: http://stackoverflow.com/questions/363681/generating-random-integers-in-a-range-with-java
@@ -119,5 +119,5 @@ public interface IMasterController {
      * @return Integer between min and max, inclusive.
      * @see java.util.Random#nextInt(int)
      */
-    public int randInt(int min, int max);
+    int randInt(int min, int max);
 }

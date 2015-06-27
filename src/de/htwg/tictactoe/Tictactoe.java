@@ -13,7 +13,6 @@ import java.util.Scanner;
 public final class Tictactoe {
     private Tictactoe(){}
     private static Scanner scanner;
-    private static MasterController master = new MasterController();
     
     public static void main(final String[] args) {
         
@@ -28,21 +27,5 @@ public final class Tictactoe {
         while (continu) {
             continu = tui.processInputLine(scanner.next());		
         }
-
-        //TUI tui = new TUI(master);
-        //tui.printTUI();
-        //new GUISwing(master);
-
-        //new GUI(master);
-
-        /*
-        boolean continu = true;
-        scanner = new Scanner(System.in);
-        while(continu) {
-            continu = tui.processInputLine(scanner.next());
-            tui.printTUI();
-        }*/
     }
-    
-    
 }

@@ -14,7 +14,7 @@ public interface IGrid {
      * @param column column of the cell
      * @return Cell in Matrix
      */
-    public ICell getCell(int row, int column);
+    ICell getCell(int row, int column);
     
     /**
      * Setter for the cell of Matrix cells.
@@ -22,11 +22,11 @@ public interface IGrid {
      * @param column column of the cell
      * @param value character of the cell
      */
-    public void setCell(int row, int column, Value value);
+    void setCell(int row, int column, Value value);
     
     /**
      * Method to get a grid field as String using StringBuilder.
      * @return grid as String
      */
-    public String toString();
+    String toString();
 }

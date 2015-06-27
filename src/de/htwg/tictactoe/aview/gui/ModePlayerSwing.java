@@ -43,9 +43,14 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
     private JButton reset;
     private JButton apply;    
     private ButtonGroup group;
+    private static float ROT = 20;
+    private static float GRUEN = 100;
+    private static float BLAU = 150;
+    private int TEXTFIELDCOLUMN = 18;
+    private int WIDTH = 700;
+    private int HEIGHT = 250;
     
-    
-    private static Color bluecolor = new Color(20 , 100, 150);
+    private static Color bluecolor = new Color(ROT , GRUEN, BLAU);
     @Inject
     public ModePlayerSwing(MasterController master) {
         this.master = master;
@@ -65,8 +70,8 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         LblmodeTitle = new JLabel("Wählen Sie einen Modus: ");
         LblplayerTitle1 = new JLabel("Geben Sie Ihren Namen ein: ");
         LblplayerTitle2 = new JLabel("Geben Sie Ihren Namen ein: ");
-        txtBoxplayer1 = new JTextField("", 18);
-        txtBoxplayer2 = new JTextField("", 18);
+        txtBoxplayer1 = new JTextField("", TEXTFIELDCOLUMN);
+        txtBoxplayer2 = new JTextField("", TEXTFIELDCOLUMN);
         reset = new JButton("Zurücksetzen");
         apply = new JButton("Übernehmen");
         
@@ -127,7 +132,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         setContentPane(panel);
         
         pack();
-        setSize(700, 250);
+        setSize(WIDTH, HEIGHT);
         setResizable(false);
         setVisible(true);
         Toolkit tk = getToolkit();

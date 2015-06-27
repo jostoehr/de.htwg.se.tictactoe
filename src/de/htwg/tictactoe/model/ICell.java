@@ -12,47 +12,47 @@ public interface ICell {
      * Setter for the Value of a Cell.
      * @param value character of Enum value
      */
-    public void setValue(Value value);
+    void setValue(Value value);
     
     /**
      * Getter for the Value of a Cell.
      * @return value of cell
      */
-    public Value getValue();
+    Value getValue();
     
     /**
      * Getter for the Row of a cell.
      * @return row of cell
      */
-    public int getRow();
+    int getRow();
     
     /**
      * Getter for the Column of a cell.
      * @return column of cell
      */
-    public int getColumn();
+    int getColumn();
     
     /**
      * Method to check if a cell is set.
      * @return true if set
      */
-    public boolean isSet();
+    boolean isSet();
     
     /**
      * Method to check if a cell is unset;
      * @return true if unset
      */
-    public boolean isUnSet();
+    boolean isUnSet();
     
     /**
      * Method to get a Cell in String format like 
      * "(0,0) = x".
      * @return Cell in String
      */
-    public String toString();
+    String toString();
     
     /**
      * Method to set a cell to Value.EMPTY.
      */
-    public void clear();
+    void clear();
 }

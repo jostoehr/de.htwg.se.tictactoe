@@ -46,7 +46,9 @@ public class GameMenuBar extends JMenuBar {
             JOptionPane.YES_NO_OPTION);
 
             if (result == JOptionPane.YES_OPTION)
-        	System.exit(0);    
+            {
+        	System.exit(0);
+            }
         }
     }
 }
