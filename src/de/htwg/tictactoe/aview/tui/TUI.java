@@ -2,7 +2,6 @@ package de.htwg.tictactoe.aview.tui;
 
 import com.google.inject.Inject;
 import de.htwg.tictactoe.controller.IMasterController;
-import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.tictactoe.util.State;
 import de.htwg.tictactoe.util.Value;
 import de.htwg.util.observer.IObserver;

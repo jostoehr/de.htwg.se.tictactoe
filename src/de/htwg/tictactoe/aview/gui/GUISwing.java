@@ -7,6 +7,8 @@ import java.awt.MenuBar;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -27,6 +29,10 @@ public class GUISwing extends JFrame implements IObserver {
         this.master = master;
 
         setTitle("TicTacToe");
+        URL iconURL = getClass().getResource("icon.png");
+        ImageIcon icon = new ImageIcon(iconURL);
+        this.setIconImage(icon.getImage());
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         this.setJMenuBar(new GameMenuBar());

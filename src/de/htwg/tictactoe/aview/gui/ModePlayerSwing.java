@@ -12,11 +12,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -78,7 +81,9 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         group = new ButtonGroup();
         group.add(aintelligence);
         group.add(player);
-        
+        URL iconURL = getClass().getResource("icon.png");
+        ImageIcon icon = new ImageIcon(iconURL);
+        this.setIconImage(icon.getImage());
         intelligence();
         
         JPanel panel1 = new JPanel();
@@ -153,6 +158,8 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        URL iconURL = getClass().getResource("okay.png");
+        ImageIcon iconOkay = new ImageIcon(iconURL);
         if(aintelligence.isSelected()) {
             intelligence();
         } 
@@ -165,7 +172,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         if(e.getSource() == apply) {
             if(aintelligence.isSelected()) {
                 if(txtBoxplayer1.getText().equals("")) { 
-                    showMessageDialog(null, "Bitte einen Namen wählen!");
+                    showMessageDialog(null, "Bitte geben Sie einen Namen ein!","Name fehlt!", JOptionPane.ERROR_MESSAGE);
                     return;
                 } else {
                     master.setPlayer1(txtBoxplayer1.getText(), Value.CROSS);
@@ -176,7 +183,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
             if(player.isSelected()) {
                 if(txtBoxplayer1.getText().equals("") || 
                         txtBoxplayer2.getText().equals("")) {
-                    showMessageDialog(null, "Bitte einen Namen wählen!");
+                    showMessageDialog(null, "Bitte geben Sie einen Namen ein!","Name fehlt!", JOptionPane.ERROR_MESSAGE);
                     return;
                 } else {
                     master.setPlayer1(txtBoxplayer1.getText(), Value.CROSS);
@@ -185,7 +192,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
                 }
             }
             showMessageDialog(null, master.getPlayer1().getName() + " ist x\n"
-                              + master.getPlayer2().getName() + " ist o");
+                              + master.getPlayer2().getName() + " ist o", "Player gesetzt", JOptionPane.INFORMATION_MESSAGE, iconOkay);
             this.dispose();
             new GUISwing(this.master);
         }
