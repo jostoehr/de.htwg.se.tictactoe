@@ -2,7 +2,6 @@ package de.htwg.tictactoe;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import de.htwg.tictactoe.aview.gui.GUI;
 import de.htwg.tictactoe.aview.gui.GUISwing;
 import de.htwg.tictactoe.aview.gui.ModePlayerSwing;
 import de.htwg.tictactoe.controller.impl.MasterController;
