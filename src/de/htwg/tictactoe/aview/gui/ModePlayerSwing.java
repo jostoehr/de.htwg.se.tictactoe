@@ -35,8 +35,8 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
     
     private JRadioButton aintelligence;
     private JRadioButton player;
-    private JLabel LblplayerTitle2;
-    private JLabel Lblplayer2;
+    private JLabel lblPlayerTitleTwo;
+    private JLabel lblPlayerTwo;
     private JTextField txtBoxplayer1;
     private JTextField txtBoxplayer2;
     private JButton reset;
@@ -157,8 +157,8 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
     }
     
     public void intelligence(){
-        LblplayerTitle2.setVisible(false);
-        Lblplayer2.setVisible(false);
+        lblPlayerTitleTwo.setVisible(false);
+        lblPlayerTwo.setVisible(false);
         txtBoxplayer2.setVisible(false);
     }
 
@@ -170,8 +170,8 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
             intelligence();
         } 
         if(player.isSelected()) {
-            LblplayerTitle2.setVisible(true);
-            Lblplayer2.setVisible(true);
+            lblPlayerTitleTwo.setVisible(true);
+            lblPlayerTwo.setVisible(true);
             txtBoxplayer2.setVisible(true);
         }
         
