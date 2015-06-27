@@ -149,7 +149,7 @@ public class TUI implements IObserver {
             }
             if(!checkGameEnd() &&
                mode == 1 &&
-               controller.getCurrentPlayer().getName().equals("Artificial Intelligence")) {
+               controller.getCurrentPlayer().getName().equals("AIntelligence")) {
                
                 setCellAI(); 
             }
@@ -239,7 +239,7 @@ public class TUI implements IObserver {
             logger.info(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
                 + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
         } else {
-            controller.getPlayer2().setName("Artificial Intelligence");
+            controller.getPlayer2().setName("AIntelligence");
             logger.info(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
                 + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
         }

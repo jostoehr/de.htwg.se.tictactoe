@@ -21,7 +21,8 @@ public class GUI implements IObserver {
     public GUI(MasterController master) {
         master.addObserver(this);
         this.master = master;
-        Application.launch(ModePlayer.class);
+        
+        //Application.launch(new ModePlayer());
         //Application.launch(GameField.class);
     }
 

@@ -1,6 +1,7 @@
 package de.htwg.tictactoe;
 
 import de.htwg.tictactoe.aview.gui.GUI;
+import de.htwg.tictactoe.aview.gui.GUISwing;
 import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.tictactoe.model.impl.Grid;
 import de.htwg.tictactoe.aview.tui.TUI;
@@ -16,7 +17,7 @@ public final class Tictactoe {
         
         //TUI tui = new TUI(master);
         //tui.printTUI();
-        new GUI(master);
+        new GUISwing(master);
 
         /*boolean continu = true;
         scanner = new Scanner(System.in);
