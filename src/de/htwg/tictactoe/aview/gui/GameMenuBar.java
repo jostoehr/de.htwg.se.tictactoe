@@ -12,19 +12,14 @@ import javax.swing.JOptionPane;
  * @author Johannes Stöhr
  */
 public class GameMenuBar extends JMenuBar {
-    private JMenu menu;
-    private JMenuItem newGame;
-    private JMenuItem modePlayer;
-    private JMenuItem change;
-    private JMenuItem close;
     
     public GameMenuBar() {
         
-        menu = new JMenu("Menü");
-        newGame = new JMenuItem("Neues Spiel");
-        modePlayer = new JMenuItem("Modus/Player Auswahl");
-        change = new JMenuItem("x-o Tausch");
-        close = new JMenuItem("Spiel beenden");
+        JMenu menu = new JMenu("Menü");
+        JMenuItem newGame = new JMenuItem("Neues Spiel");
+        JMenuItem modePlayer = new JMenuItem("Modus/Player Auswahl");
+        JMenuItem change = new JMenuItem("x-o Tausch");
+        JMenuItem close = new JMenuItem("Spiel beenden");
         
         menu.add(newGame);
         menu.add(modePlayer);
