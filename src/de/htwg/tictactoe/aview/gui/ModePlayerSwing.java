@@ -35,17 +35,12 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
     
     private JRadioButton aintelligence;
     private JRadioButton player;
-    private JLabel Lbltop;
-    private JLabel LblmodeTitle;
-    private JLabel LblplayerTitle1;
     private JLabel LblplayerTitle2;
-    private JLabel Lblplayer1;
     private JLabel Lblplayer2;
     private JTextField txtBoxplayer1;
     private JTextField txtBoxplayer2;
     private JButton reset;
-    private JButton apply;    
-    private ButtonGroup group;
+    private JButton apply;
     private static final int ROT = 20;
     private static final int GRUEN = 100;
     private static final int BLAU = 150;
@@ -77,19 +72,19 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         aintelligence.setSelected(true);
         player = new JRadioButton("Gegen Spieler spielen");
         player.setBackground(Color.white);
-        Lbltop = new JLabel("Auswahl treffen:");
+        JLabel Lbltop = new JLabel("Auswahl treffen:");
         Lbltop.setForeground(Color.white);
-        Lblplayer1 = new JLabel("Spielername 1: ");
-        Lblplayer2 = new JLabel("Spielername 2: ");
-        LblmodeTitle = new JLabel("Wählen Sie einen Modus: ");
-        LblplayerTitle1 = new JLabel("Geben Sie Ihren Namen ein: ");
-        LblplayerTitle2 = new JLabel("Geben Sie Ihren Namen ein: ");
+        JLabel Lblplayer1 = new JLabel("Spielername 1: ");
+        JLabel Lblplayer2 = new JLabel("Spielername 2: ");
+        JLabel LblmodeTitle = new JLabel("Wählen Sie einen Modus: ");
+        JLabel LblplayerTitle1 = new JLabel("Geben Sie Ihren Namen ein: ");
+        JLabel LblplayerTitle2 = new JLabel("Geben Sie Ihren Namen ein: ");
         txtBoxplayer1 = new JTextField("", TEXTFIELDCOLUMN);
         txtBoxplayer2 = new JTextField("", TEXTFIELDCOLUMN);
         reset = new JButton("Zurücksetzen");
         apply = new JButton("Übernehmen");
         
-        group = new ButtonGroup();
+        ButtonGroup group = new ButtonGroup();
         group.add(aintelligence);
         group.add(player);
         URL iconURL = getClass().getResource("icon.png");

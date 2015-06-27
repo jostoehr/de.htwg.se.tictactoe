@@ -21,8 +21,8 @@ import javax.swing.JOptionPane;
 public class GUISwing extends JFrame implements IObserver {
     
     private MasterController master;
-    private int WIDTH = 700;
-    private int HEIGHT = 700;
+    private static final int WIDTH = 700;
+    private static final int HEIGHT = 700;
     
     @Inject
     public GUISwing(MasterController master) {
