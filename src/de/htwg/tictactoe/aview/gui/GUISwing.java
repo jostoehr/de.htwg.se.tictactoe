@@ -3,16 +3,12 @@ package de.htwg.tictactoe.aview.gui;
 import com.google.inject.Inject;
 import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.util.observer.IObserver;
-import java.awt.MenuBar;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 
 /**
  *

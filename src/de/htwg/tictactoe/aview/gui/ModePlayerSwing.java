@@ -72,13 +72,13 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         aintelligence.setSelected(true);
         player = new JRadioButton("Gegen Spieler spielen");
         player.setBackground(Color.white);
-        JLabel Lbltop = new JLabel("Auswahl treffen:");
-        Lbltop.setForeground(Color.white);
-        JLabel Lblplayer1 = new JLabel("Spielername 1: ");
-        JLabel Lblplayer2 = new JLabel("Spielername 2: ");
-        JLabel LblmodeTitle = new JLabel("Wählen Sie einen Modus: ");
-        JLabel LblplayerTitle1 = new JLabel("Geben Sie Ihren Namen ein: ");
-        JLabel LblplayerTitle2 = new JLabel("Geben Sie Ihren Namen ein: ");
+        JLabel lblTop = new JLabel("Auswahl treffen:");
+        lblTop.setForeground(Color.white);
+        JLabel lblPlayer1 = new JLabel("Spielername 1: ");
+        JLabel lblPlayer2 = new JLabel("Spielername 2: ");
+        JLabel lblModeTitle = new JLabel("Wählen Sie einen Modus: ");
+        JLabel lblPlayerTitle1 = new JLabel("Geben Sie Ihren Namen ein: ");
+        JLabel lblPlayerTitle2 = new JLabel("Geben Sie Ihren Namen ein: ");
         txtBoxplayer1 = new JTextField("", TEXTFIELDCOLUMN);
         txtBoxplayer2 = new JTextField("", TEXTFIELDCOLUMN);
         reset = new JButton("Zurücksetzen");
@@ -95,28 +95,28 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayout(ROWPANELONE,COLPANEL));
         panel1.setBackground(Color.white);
-        panel1.add(LblmodeTitle);
+        panel1.add(lblModeTitle);
         panel1.add(aintelligence);
         panel1.add(player);
         
         JPanel panel2 = new JPanel();
         panel2.setLayout(new FlowLayout());
         panel2.setBackground(Color.white);
-        panel2.add(Lblplayer1);
+        panel2.add(lblPlayer1);
         panel2.add(txtBoxplayer1);
         
         JPanel panel3 = new JPanel();
         panel3.setLayout(new FlowLayout());
         panel3.setBackground(Color.white);
-        panel3.add(Lblplayer2);
+        panel3.add(lblPlayer2);
         panel3.add(txtBoxplayer2);
                 
         JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayout(ROWPANELFOUR,COLPANEL));
         panel4.setBackground(Color.white);
-        panel4.add(LblplayerTitle1);
+        panel4.add(lblPlayerTitle1);
         panel4.add(panel2);
-        panel4.add(LblplayerTitle2);
+        panel4.add(lblPlayerTitle2);
         panel4.add(panel3);
 
         JPanel panel5 = new JPanel();
@@ -125,7 +125,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         panel5.add(apply);
         
         JPanel panel6 = new JPanel();
-        panel6.add(Lbltop);
+        panel6.add(lblTop);
         panel6.setBackground(bluecolor);
         
         JPanel panel7 = new JPanel();
