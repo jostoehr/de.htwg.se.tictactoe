@@ -46,12 +46,23 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
     private JButton reset;
     private JButton apply;    
     private ButtonGroup group;
-    private int ROT = 20;
-    private int GRUEN = 100;
-    private int BLAU = 150;
-    private int TEXTFIELDCOLUMN = 18;
-    private int WIDTH = 700;
-    private int HEIGHT = 250;
+    private static final int ROT = 20;
+    private static final int GRUEN = 100;
+    private static final int BLAU = 150;
+    private static final int TEXTFIELDCOLUMN = 18;
+    private static final int WIDTH = 700;
+    private static final int HEIGHT = 250;
+    private static final int ROWPANELONE = 3;
+    private static final int ROWPANELFOUR = 4;
+    private static final int ROWPANELFIFEANDSEVEN = 1;
+    private static final int COLPANELFIFEANDSEVEN = 2;
+    private static final int COLPANEL = 1;
+    private static final int TOP = 10;
+    private static final int LEFTANDRIGHT = 0;
+    private static final int BOTTOM = 20;
+    private static final int HALF = 2;
+    
+    
     
     private  Color bluecolor = new Color(ROT , GRUEN, BLAU);
     @Inject
@@ -87,7 +98,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         intelligence();
         
         JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayout(3,1));
+        panel1.setLayout(new GridLayout(ROWPANELONE,COLPANEL));
         panel1.setBackground(Color.white);
         panel1.add(LblmodeTitle);
         panel1.add(aintelligence);
@@ -106,7 +117,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         panel3.add(txtBoxplayer2);
                 
         JPanel panel4 = new JPanel();
-        panel4.setLayout(new GridLayout(4,1));
+        panel4.setLayout(new GridLayout(ROWPANELFOUR,COLPANEL));
         panel4.setBackground(Color.white);
         panel4.add(LblplayerTitle1);
         panel4.add(panel2);
@@ -114,7 +125,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         panel4.add(panel3);
 
         JPanel panel5 = new JPanel();
-        panel5.setLayout(new GridLayout(1,2));
+        panel5.setLayout(new GridLayout(ROWPANELFIFEANDSEVEN,COLPANELFIFEANDSEVEN));
         panel5.add(reset);
         panel5.add(apply);
         
@@ -123,7 +134,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         panel6.setBackground(bluecolor);
         
         JPanel panel7 = new JPanel();
-        panel7.setLayout(new GridLayout(1,2));
+        panel7.setLayout(new GridLayout(ROWPANELFIFEANDSEVEN,COLPANELFIFEANDSEVEN));
         panel7.add(panel1);
         panel7.add(panel4);
         
@@ -133,7 +144,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         panel.add(panel7, BorderLayout.CENTER);
         panel.add(panel5, BorderLayout.PAGE_END);
         panel.setBackground(bluecolor);
-        panel.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));
+        panel.setBorder(BorderFactory.createEmptyBorder(TOP, LEFTANDRIGHT, BOTTOM, LEFTANDRIGHT));
         setContentPane(panel);
         
         pack();
@@ -141,8 +152,8 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         setResizable(false);
         setVisible(true);
         Toolkit tk = getToolkit();
-        setLocation((tk.getScreenSize().width-this.getWidth())/2,
-                    (tk.getScreenSize().height-this.getHeight())/2);
+        setLocation((tk.getScreenSize().width-this.getWidth())/HALF,
+                    (tk.getScreenSize().height-this.getHeight())/HALF);
         
         aintelligence.addActionListener(this);
         player.addActionListener(this);
