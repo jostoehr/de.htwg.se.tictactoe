@@ -17,12 +17,18 @@ public class GUI implements IObserver {
     
     /* Controller Instance Variable */
     private MasterController master;
-    
+    private ModePlayer playerMode;
     public GUI(MasterController master) {
         master.addObserver(this);
         this.master = master;
         
         //Application.launch(new ModePlayer());
+
+        playerMode = new ModePlayer(master);
+        
+        Application.launch(ModePlayer.class);
+        
+
         //Application.launch(GameField.class);
     }
 
@@ -30,4 +36,6 @@ public class GUI implements IObserver {
     public void update() {
         
     }
+    
+    
 }

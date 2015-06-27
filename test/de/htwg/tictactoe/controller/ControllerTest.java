@@ -24,7 +24,7 @@ public class ControllerTest {
     @Before
     public void setUp() throws Exception {
         grid = new Grid();
-        controller = new MasterController(grid);
+        controller = new MasterController();
         controller.setPlayer1("Hans", Value.CROSS);
         controller.setPlayer2("Karle", Value.NOUGHT);
         controller.init();
@@ -91,7 +91,7 @@ public class ControllerTest {
     
     @Test
     public void testRandInt(){
-        assertEquals(MasterController.randInt(2,2), MasterController.randInt(2,2));
+        assertEquals(controller.randInt(2,2), controller.randInt(2,2));
     }
     @Test
     public void testGetUnSetCells(){
@@ -114,6 +114,7 @@ public class ControllerTest {
         controller.setValue(1, 1);
         controller.setValue(0, 2);
         controller.setValue(2, 2);
+        
         assertEquals(true, controller.hasWon(Value.CROSS));
         assertEquals("Hans", controller.win());
         controller.setValue(0, 0);

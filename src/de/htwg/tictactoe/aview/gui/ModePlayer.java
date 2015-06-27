@@ -64,6 +64,7 @@ public class ModePlayer extends Application {
         txtBoxplayer2 = new TextField();
         reset = new Button("Zurücksetzen");
         apply = new Button("Übernehmen");
+        
         intelligence();
     }
 
@@ -118,6 +119,12 @@ public class ModePlayer extends Application {
         
         return grid;
     }
+    
+    public ModePlayer(MasterController master){
+        this.master = master;
+        
+    }
+    
     
     public void intelligence(){
         LblplayerTitle2.setVisible(false);
@@ -176,8 +183,14 @@ public class ModePlayer extends Application {
             @Override public void handle(ActionEvent e) {
                 //txtBoxplayer1.toString(), Value.CROSS);
                 //txtBoxplayer2.clear();
-
+                master.setPlayer1(txtBoxplayer1.getText(), Value.CROSS);
+                if(!txtBoxplayer2.getText().isEmpty()){
+                    master.setPlayer2(txtBoxplayer2.getText(), Value.NOUGHT);
+                
+                }
+                System.out.println(master.getPlayer1());
                 Platform.exit();
+                
             }
         });
         
