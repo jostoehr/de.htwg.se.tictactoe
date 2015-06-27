@@ -33,8 +33,8 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
     
     private JRadioButton aintelligence;
     private JRadioButton player;
-    private JLabel lblPlayerTitleTwo;
-    private JLabel lblPlayerTwo;
+    private JLabel lblPlayerTitle2;
+    private JLabel lblPlayer2;
     private JTextField txtBoxplayer1;
     private JTextField txtBoxplayer2;
     private JButton reset;
@@ -70,13 +70,14 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         aintelligence.setSelected(true);
         player = new JRadioButton("Gegen Spieler spielen");
         player.setBackground(Color.white);
+        
         JLabel lblTop = new JLabel("Auswahl treffen:");
         lblTop.setForeground(Color.white);
         JLabel lblPlayer1 = new JLabel("Spielername 1: ");
-        JLabel lblPlayer2 = new JLabel("Spielername 2: ");
+        lblPlayer2 = new JLabel("Spielername 2: ");
         JLabel lblModeTitle = new JLabel("Wählen Sie einen Modus: ");
         JLabel lblPlayerTitle1 = new JLabel("Geben Sie Ihren Namen ein: ");
-        JLabel lblPlayerTitle2 = new JLabel("Geben Sie Ihren Namen ein: ");
+        lblPlayerTitle2 = new JLabel("Geben Sie Ihren Namen ein: ");
         txtBoxplayer1 = new JTextField("", TEXTFIELDCOLUMN);
         txtBoxplayer2 = new JTextField("", TEXTFIELDCOLUMN);
         reset = new JButton("Zurücksetzen");
@@ -155,8 +156,8 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
     }
     
     private void intelligence(){
-        lblPlayerTitleTwo.setVisible(false);
-        lblPlayerTwo.setVisible(false);
+        lblPlayerTitle2.setVisible(false);
+        lblPlayer2.setVisible(false);
         txtBoxplayer2.setVisible(false);
     }
 
@@ -168,8 +169,8 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
             intelligence();
         } 
         if(player.isSelected()) {
-            lblPlayerTitleTwo.setVisible(true);
-            lblPlayerTwo.setVisible(true);
+            lblPlayerTitle2.setVisible(true);
+            lblPlayer2.setVisible(true);
             txtBoxplayer2.setVisible(true);
         }
         
