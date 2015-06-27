@@ -16,9 +16,9 @@ import javax.swing.JFrame;
  */
 public class GUISwing extends JFrame implements IObserver {
     
-    private MasterController master;
     private static final int WIDTH = 700;
     private static final int HEIGHT = 700;
+    private final MasterController master;
     
     @Inject
     public GUISwing(MasterController master) {
