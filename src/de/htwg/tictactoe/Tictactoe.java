@@ -2,10 +2,8 @@ package de.htwg.tictactoe;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import de.htwg.tictactoe.aview.gui.GUISwing;
 import de.htwg.tictactoe.aview.gui.ModePlayerSwing;
 import de.htwg.tictactoe.controller.impl.MasterController;
-import de.htwg.tictactoe.model.impl.Grid;
 import de.htwg.tictactoe.aview.tui.TUI;
 import de.htwg.tictactoe.controller.IMasterController;
 import java.util.Scanner;
@@ -13,6 +11,7 @@ import java.util.Scanner;
 public final class Tictactoe {
     private Tictactoe(){}
     private static Scanner scanner;
+    private static MasterController master = new MasterController();
     
     public static void main(final String[] args) {
         
@@ -28,4 +27,5 @@ public final class Tictactoe {
             continu = tui.processInputLine(scanner.next());		
         }
     }
+    
 }
