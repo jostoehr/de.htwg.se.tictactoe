@@ -1,5 +1,6 @@
 package de.htwg.tictactoe.aview.tui;
 
+import com.google.inject.Inject;
 import de.htwg.tictactoe.controller.IMasterController;
 import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.tictactoe.util.State;
@@ -39,6 +40,7 @@ public class TUI implements IObserver {
     private final Logger logger =
             Logger.getLogger("de.htwg.tictactoe.view.tui");
     
+    @Inject
     public TUI(IMasterController controller) {
         this.controller = controller;
         controller.init();

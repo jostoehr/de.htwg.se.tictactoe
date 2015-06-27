@@ -1,5 +1,6 @@
 package de.htwg.tictactoe.aview.gui;
 
+import com.google.inject.Inject;
 import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.util.observer.IObserver;
 import java.awt.MenuBar;
@@ -19,6 +20,7 @@ public class GUISwing extends JFrame implements IObserver {
     
     private MasterController master;
     
+    @Inject
     public GUISwing(MasterController master) {
         this.master = master;
 
