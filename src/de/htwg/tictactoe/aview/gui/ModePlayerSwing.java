@@ -156,7 +156,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
         apply.addActionListener(this);
     }
     
-    public void intelligence(){
+    private void intelligence(){
         lblPlayerTitleTwo.setVisible(false);
         lblPlayerTwo.setVisible(false);
         txtBoxplayer2.setVisible(false);
@@ -200,7 +200,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
             showMessageDialog(null, master.getPlayer1().getName() + " ist x\n"
                               + master.getPlayer2().getName() + " ist o", "Player gesetzt", JOptionPane.INFORMATION_MESSAGE, iconOkay);
             this.dispose();
-            new GUISwing(this.master);
+            GUISwing guiSwing = new GUISwing(this.master);
         }
         
         if(e.getSource() == reset) {
