@@ -43,14 +43,14 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
     private JButton reset;
     private JButton apply;    
     private ButtonGroup group;
-    private static int ROT = 20;
-    private static int GRUEN = 100;
-    private static int BLAU = 150;
+    private int ROT = 20;
+    private int GRUEN = 100;
+    private int BLAU = 150;
     private int TEXTFIELDCOLUMN = 18;
     private int WIDTH = 700;
     private int HEIGHT = 250;
     
-    private static Color bluecolor = new Color(ROT , GRUEN, BLAU);
+    private  Color bluecolor = new Color(ROT , GRUEN, BLAU);
     @Inject
     public ModePlayerSwing(MasterController master) {
         this.master = master;

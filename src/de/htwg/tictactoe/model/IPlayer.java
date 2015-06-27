@@ -1,6 +1,5 @@
 package de.htwg.tictactoe.model;
 
-import de.htwg.tictactoe.model.impl.Player;
 import de.htwg.tictactoe.util.Value;
 
 /**

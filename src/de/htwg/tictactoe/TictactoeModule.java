@@ -6,7 +6,6 @@
 package de.htwg.tictactoe;
 
 import com.google.inject.AbstractModule;
-import com.google.common.collect.Sets;
 import de.htwg.tictactoe.controller.IMasterController;
 
 /**

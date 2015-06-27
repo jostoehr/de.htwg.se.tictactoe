@@ -19,6 +19,8 @@ import javax.swing.JOptionPane;
 public class GUISwing extends JFrame implements IObserver {
     
     private MasterController master;
+    private int WIDTH = 700;
+    private int HEIGHT = 700;
     
     @Inject
     public GUISwing(MasterController master) {
@@ -29,7 +31,7 @@ public class GUISwing extends JFrame implements IObserver {
         
         this.setJMenuBar(new GameMenuBar());
         pack();
-        setSize(700, 700);
+        setSize(WIDTH, HEIGHT);
         setResizable(false);
         setVisible(true);
         
@@ -38,7 +40,6 @@ public class GUISwing extends JFrame implements IObserver {
         setLocation((tk.getScreenSize().width-this.getWidth())/2,
                     (tk.getScreenSize().height-this.getHeight())/2);
         
-        //new ModePlayerSwing(this.master);
     }
 
     @Override
