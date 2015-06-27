@@ -4,6 +4,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import de.htwg.tictactoe.aview.gui.GUI;
 import de.htwg.tictactoe.aview.gui.GUISwing;
+import de.htwg.tictactoe.aview.gui.ModePlayerSwing;
 import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.tictactoe.model.impl.Grid;
 import de.htwg.tictactoe.aview.tui.TUI;
@@ -20,7 +21,7 @@ public final class Tictactoe {
         Injector injector = Guice.createInjector(new TictactoeModule());
         IMasterController controller = injector.getInstance(IMasterController.class);
         @SuppressWarnings("unused")
-        GUISwing gui = injector.getInstance(GUISwing.class);
+        ModePlayerSwing gui = injector.getInstance(ModePlayerSwing.class);
         TUI tui = injector.getInstance(TUI.class);
         tui.printTUI();
         boolean continu = true;

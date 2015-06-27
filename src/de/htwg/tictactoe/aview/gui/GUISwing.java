@@ -28,16 +28,17 @@ public class GUISwing extends JFrame implements IObserver {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         this.setJMenuBar(new GameMenuBar());
-
         pack();
         setSize(700, 700);
         setResizable(false);
         setVisible(true);
+        
         Toolkit tk = getToolkit();
+        
         setLocation((tk.getScreenSize().width-this.getWidth())/2,
                     (tk.getScreenSize().height-this.getHeight())/2);
         
-        new ModePlayerSwing(this.master);
+        //new ModePlayerSwing(this.master);
     }
 
     @Override

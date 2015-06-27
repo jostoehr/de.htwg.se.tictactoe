@@ -1,5 +1,6 @@
 package de.htwg.tictactoe.aview.gui;
 
+import com.google.inject.Inject;
 import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.tictactoe.util.Value;
 import java.awt.BorderLayout;
@@ -43,8 +44,9 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
     private JButton apply;    
     private ButtonGroup group;
     
-    private static Color bluecolor = new Color(20 , 100, 150);
     
+    private static Color bluecolor = new Color(20 , 100, 150);
+    @Inject
     public ModePlayerSwing(MasterController master) {
         this.master = master;
         
@@ -163,6 +165,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
                 } else {
                     master.setPlayer1(txtBoxplayer1.getText(), Value.CROSS);
                     master.setPlayer2("AIntelligence", Value.NOUGHT);
+                    
                 }
             } 
             if(player.isSelected()) {
@@ -173,12 +176,13 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
                 } else {
                     master.setPlayer1(txtBoxplayer1.getText(), Value.CROSS);
                     master.setPlayer2(txtBoxplayer2.getText(), Value.NOUGHT);
+                    
                 }
             }
             showMessageDialog(null, master.getPlayer1().getName() + " ist x\n"
                               + master.getPlayer2().getName() + " ist o");
             this.dispose();
-            
+            new GUISwing(this.master);
         }
         
         if(e.getSource() == reset) {
