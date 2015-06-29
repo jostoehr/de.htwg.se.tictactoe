@@ -227,7 +227,7 @@ public class MasterController extends Observable implements IMasterController {
     /**
      * Change Method of State Pattern to get the current state and update it.
      */
-    private void change() {
+    public void change() {
         if(win().equals("playing")) {
             if(getCurrentState() == State.STATECROSSPLAYING) {
                 setCurrentState(State.STATENOUGHTPLAYING);

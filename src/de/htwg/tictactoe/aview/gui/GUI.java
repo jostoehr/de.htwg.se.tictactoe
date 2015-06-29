@@ -2,6 +2,7 @@ package de.htwg.tictactoe.aview.gui;
 
 import com.google.inject.Inject;
 import de.htwg.tictactoe.controller.impl.MasterController;
+import de.htwg.tictactoe.util.State;
 import de.htwg.tictactoe.util.Value;
 import de.htwg.util.observer.IObserver;
 import java.awt.Color;
@@ -68,10 +69,6 @@ public class GUI extends JFrame implements IObserver {
             panelButtons.add(buttons[i]);
             buttons[i].addActionListener(new Buttonlistener());
         }
-        buttons[0].setIcon(X);
-        buttons[0].setIcon(O);
-        buttons[1].setIcon(X);
-        buttons[5].setIcon(O);
         
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(1,1));
@@ -118,19 +115,37 @@ public class GUI extends JFrame implements IObserver {
     }
     
     private void newGame() {
+        master.init();
         for(int i = 0; i < 9; i++) {
             buttons[i].setIcon(null);
         }
+        master.setCurrentState(State.STATECROSSPLAYING);
     }
 
 
-    private static class Buttonlistener implements ActionListener {
+    private class Buttonlistener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        
+            Object source = e.getSource();
+            ImageIcon value;
+            if(master.win().equals("playing")) {
+                if(master.getCurrentState() == State.STATECROSSPLAYING) {
+                    value = X;
+                } else {
+                    value = O;
+                }
+                
+                for(int i = 0; i < 9; i++) {
+                    if(source == buttons[i]) {
+                        buttons[i].setIcon(value);
+                    }
+                }
+                master.change();
+            } else {
+                showMessageDialog(null, "Spiel ist vorbei", "Spielneustart erforderlich!", JOptionPane.ERROR_MESSAGE);
+            }
         }
-
     }
 
     private class menuListener implements ActionListener {
