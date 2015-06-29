@@ -27,7 +27,7 @@ import javax.swing.JTextField;
  *
  * @author johannes
  */
-public class ModePlayerSwing extends JFrame implements ActionListener {
+public class ModePlayer extends JFrame implements ActionListener {
     
     private MasterController master;
     
@@ -59,7 +59,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
     
     private  Color bluecolor = new Color(ROT , GRUEN, BLAU);
     @Inject
-    public ModePlayerSwing(MasterController master) {
+    public ModePlayer(MasterController master) {
         this.master = master;
         
         setTitle("Bitte Auswählen...");
@@ -199,7 +199,7 @@ public class ModePlayerSwing extends JFrame implements ActionListener {
             showMessageDialog(null, master.getPlayer1().getName() + " ist x\n"
                               + master.getPlayer2().getName() + " ist o", "Player gesetzt", JOptionPane.INFORMATION_MESSAGE, iconOkay);
             this.dispose();
-            GUISwing guiSwing = new GUISwing(this.master);
+            GUI guiSwing = new GUI(this.master);
         }
         
         if(e.getSource() == reset) {

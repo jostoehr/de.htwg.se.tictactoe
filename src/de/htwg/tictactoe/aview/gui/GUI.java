@@ -2,6 +2,7 @@ package de.htwg.tictactoe.aview.gui;
 
 import com.google.inject.Inject;
 import de.htwg.tictactoe.controller.impl.MasterController;
+import de.htwg.tictactoe.util.Value;
 import de.htwg.util.observer.IObserver;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,13 +18,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
 
 /**
  *
  * @author Johannes Stöhr
  */
-public class GUISwing extends JFrame implements IObserver, ActionListener {
+public class GUI extends JFrame implements IObserver {
     
     private final MasterController master;
     
@@ -37,10 +39,11 @@ public class GUISwing extends JFrame implements IObserver, ActionListener {
     
     private JButton buttons[];
     
-    ImageIcon X,O;
+    ImageIcon X,O,iconOkay;
     
     @Inject
-    public GUISwing(MasterController master) {
+    public GUI(MasterController master) {
+        master.addObserver(this);
         this.master = master;
 
         setTitle("TicTacToe");
@@ -54,6 +57,7 @@ public class GUISwing extends JFrame implements IObserver, ActionListener {
         
         X = new ImageIcon(this.getClass().getResource("cross2.png"));
         O = new ImageIcon(this.getClass().getResource("nought.png"));
+        iconOkay = new ImageIcon(this.getClass().getResource("okay.png"));
         
         JPanel panelButtons = new JPanel();
         panelButtons.setLayout(new GridLayout(3,3));
@@ -72,7 +76,7 @@ public class GUISwing extends JFrame implements IObserver, ActionListener {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(1,1));
         panel.add(panelButtons);
-        
+
         this.add(panel);
         pack();
         setSize(WIDTH, HEIGHT);
@@ -107,16 +111,18 @@ public class GUISwing extends JFrame implements IObserver, ActionListener {
         mBar.add(menu);
         this.setJMenuBar(mBar);
         
-        newGame.addActionListener(new newGameListener());
-        close.addActionListener(new closeListener());
-        modePlayer.addActionListener(this);
+        newGame.addActionListener(new menuListener());
+        close.addActionListener(new menuListener());
+        modePlayer.addActionListener(new menuListener());
+        change.addActionListener(new menuListener());
+    }
+    
+    private void newGame() {
+        for(int i = 0; i < 9; i++) {
+            buttons[i].setIcon(null);
+        }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        this.dispose();
-        new ModePlayerSwing(master);
-    }
 
     private static class Buttonlistener implements ActionListener {
 
@@ -126,30 +132,52 @@ public class GUISwing extends JFrame implements IObserver, ActionListener {
         }
 
     }
-    
-    private class closeListener implements ActionListener {
+
+    private class menuListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            int result = JOptionPane.showConfirmDialog(
-            getParent(),
-            "Are you sure you want to exit the application?",
-            "Exit Application",
-            JOptionPane.YES_NO_OPTION);
+            String source = e.getActionCommand();
+            
+            switch(source) {
+                case "Neues Spiel":
+                    newGame();
+                    break;
+                case "x-o Tausch":
+                    if(!master.isEmpty()) {
+                        showMessageDialog(null, "Starten Sie zuerst ein neues Spiel!", "Spielneustart erforderlich!", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        if(master.getPlayer1().getCharacter().equals(Value.CROSS)) {
+                            master.getPlayer1().setCharacter(Value.NOUGHT);
+                            master.getPlayer2().setCharacter(Value.CROSS);
+                        } else {
+                            master.getPlayer1().setCharacter(Value.CROSS);
+                            master.getPlayer2().setCharacter(Value.NOUGHT);                
+                        }
+                        showMessageDialog(null, "Charakter X und O getauscht", "Player getauscht", JOptionPane.INFORMATION_MESSAGE, iconOkay);
 
-            if (result == JOptionPane.YES_OPTION)
-            {
-        	System.exit(0);
-            }
-        }
-    }
-    
-    private class newGameListener implements ActionListener {
+                        /*if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
+                            setCellAI();
+                        }*/
+                    }
+                    break;
+                case "Modus/Player Auswahl":
+                    dispose();
+                    new ModePlayer(master);
+                    newGame();
+                    break;
+                case "Spiel beenden":
+                    int result = JOptionPane.showConfirmDialog(
+                    getParent(),
+                    "Are you sure you want to exit the application?",
+                    "Exit Application",
+                    JOptionPane.YES_NO_OPTION);
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            for(int i = 0; i < 9; i++) {
-                buttons[i].setIcon(null);
+                    if (result == JOptionPane.YES_OPTION)
+                    {
+                        System.exit(0);
+                    }
+                    break;
             }
         }
     }

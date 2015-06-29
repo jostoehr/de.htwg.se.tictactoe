@@ -94,21 +94,21 @@ public class TUI implements IObserver {
     private void characterChange(){
         if(!controller.isEmpty()) {
                 logger.info("Start first a new game to change Characters");
+        } else {
+            if(controller.getPlayer1().getCharacter().equals(Value.CROSS)) {
+                controller.getPlayer1().setCharacter(Value.NOUGHT);
+                controller.getPlayer2().setCharacter(Value.CROSS);
             } else {
-                if(controller.getPlayer1().getCharacter().equals(Value.CROSS)) {
-                    controller.getPlayer1().setCharacter(Value.NOUGHT);
-                    controller.getPlayer2().setCharacter(Value.CROSS);
-                } else {
-                    controller.getPlayer1().setCharacter(Value.CROSS);
-                    controller.getPlayer2().setCharacter(Value.NOUGHT);                
-                }
-                logger.info("Changed Characters x and o");
-                logger.info(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
-                    + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
-                if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
-                    setCellAI();
-                }
+                controller.getPlayer1().setCharacter(Value.CROSS);
+                controller.getPlayer2().setCharacter(Value.NOUGHT);                
             }
+            logger.info("Changed Characters x and o");
+            logger.info(controller.getPlayer1().getName() + IS + controller.getPlayer1().getCharacter()
+                + ", " + controller.getPlayer2().getName() + IS + controller.getPlayer2().getCharacter());
+            if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
+                setCellAI();
+            }
+        }
     }
     
     private void modifyMode(){
