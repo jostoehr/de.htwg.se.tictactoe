@@ -38,7 +38,7 @@ public class GUI extends JFrame implements IObserver {
     private JMenuItem change;
     private JMenuItem close;
     
-    private JButton buttons[];
+    private JButton buttons[][];
     
     ImageIcon X,O,iconOkay;
     
@@ -46,7 +46,9 @@ public class GUI extends JFrame implements IObserver {
     public GUI(MasterController master) {
         master.addObserver(this);
         this.master = master;
-
+        master.init();
+        master.setCurrentState(State.STATECROSSPLAYING);
+        
         setTitle("TicTacToe");
         URL iconURL = getClass().getResource("icon.png");
         ImageIcon icon = new ImageIcon(iconURL);
@@ -61,13 +63,15 @@ public class GUI extends JFrame implements IObserver {
         iconOkay = new ImageIcon(this.getClass().getResource("okay.png"));
         
         JPanel panelButtons = new JPanel();
-        panelButtons.setLayout(new GridLayout(3,3));
-        buttons = new JButton[9];
-        for(int i = 0; i < 9; i++) {
-            buttons[i] = new JButton();
-            buttons[i].setBackground(Color.white);
-            panelButtons.add(buttons[i]);
-            buttons[i].addActionListener(new Buttonlistener());
+        panelButtons.setLayout(new GridLayout(3,1));
+        buttons = new JButton[3][3];
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+            buttons[i][j] = new JButton();
+            buttons[i][j].setBackground(Color.white);
+            panelButtons.add(buttons[i][j]);
+            buttons[i][j].addActionListener(new Buttonlistener());
+            }
         }
         
         JPanel panel = new JPanel();
@@ -116,15 +120,15 @@ public class GUI extends JFrame implements IObserver {
     
     private void newGame() {
         master.init();
-        for(int i = 0; i < 9; i++) {
-            buttons[i].setIcon(null);
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                buttons[i][j].setIcon(null);
+            }
         }
         master.setCurrentState(State.STATECROSSPLAYING);
     }
 
-
     private class Buttonlistener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
@@ -136,14 +140,19 @@ public class GUI extends JFrame implements IObserver {
                     value = O;
                 }
                 
-                for(int i = 0; i < 9; i++) {
-                    if(source == buttons[i]) {
-                        buttons[i].setIcon(value);
+                for(int i = 0; i < 3; i++) {
+                    for(int j = 0; j < 3; j++) {
+                        if(source == buttons[i][j]) {
+                            if(buttons[i][j].getIcon() == null) {
+                                buttons[i][j].setIcon(value);
+                                master.setValue(i, j);
+                            }
+                        }
                     }
                 }
                 master.change();
             } else {
-                showMessageDialog(null, "Spiel ist vorbei", "Spielneustart erforderlich!", JOptionPane.ERROR_MESSAGE);
+                showMessageDialog(null, "Starten Sie zuerst ein neues Spiel!", "Spielneustart erforderlich!", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

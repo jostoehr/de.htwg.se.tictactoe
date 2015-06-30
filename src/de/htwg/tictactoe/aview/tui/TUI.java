@@ -129,31 +129,31 @@ public class TUI implements IObserver {
     
     private void setCell() {
         if(master.win().equals("playing")) {
-                String line2;
-                do {
-                    logger.info("Type in the Cell you want to set "
-                        + "(example: 00, choose 'h' to get a Indizes Help)\n" + IN);
+            String line2;
+            do {
+                logger.info("Type in the Cell you want to set "
+                    + "(example: 00, choose 'h' to get a Indizes Help)\n" + IN);
+                line2 = scanner.next();
+                if (line2.equalsIgnoreCase("h")) {
+                    printIndexHelp();
+                    logger.info("Type in the Cell you want to set\n"
+                        + IN);
                     line2 = scanner.next();
-                    if (line2.equalsIgnoreCase("h")) {
-                        printIndexHelp();
-                        logger.info("Type in the Cell you want to set\n"
-                            + IN);
-                        line2 = scanner.next();
-                    } 
-                    if (line2.matches("[0-2][0-2]")){
-                        int[] arg = readToArray(line2);
-                        master.setValue(arg[0], arg[1]);
-                    } 
-                } while(!line2.matches("[0-2][0-2]")); 
-            } else {
-                logger.info("Game is over, press 'n' to restart");
-            }
-            if(!checkGameEnd() &&
-               mode == 1 &&
-               master.getCurrentPlayer().getName().equals("AIntelligence")) {
+                } 
+                if (line2.matches("[0-2][0-2]")){
+                    int[] arg = readToArray(line2);
+                    master.setValue(arg[0], arg[1]);
+                } 
+            } while(!line2.matches("[0-2][0-2]")); 
+        } else {
+            logger.info("Game is over, press 'n' to restart");
+        }
+        if(!checkGameEnd() &&
+            mode == 1 &&
+            master.getCurrentPlayer().getName().equals("AIntelligence")) {
                
-                setCellAI(); 
-            }
+            setCellAI(); 
+        }
     }
     
     private int[] readToArray(String line) {
