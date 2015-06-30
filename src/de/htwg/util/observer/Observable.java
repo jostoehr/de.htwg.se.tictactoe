@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author siegfried
  */
-public class Observable {
+public class Observable implements IObservable{
     private List<IObserver> subscribers = new LinkedList<IObserver>();
     
     public void addObserver(IObserver s){
@@ -24,15 +24,17 @@ public class Observable {
     }
     
     public void removeAllObservers(){
-        for(int i = 0; i < subscribers.size(); i++)
-        {
-            subscribers.remove(i);
-        }
+        subscribers.clear();
     }
     
-    public void notifyObservers(){
+    public void notifyObservers() {
+    	notifyObservers(null);
+    }
+
+    
+    public void notifyObservers(Event e){
         for(IObserver observe: subscribers){
-            observe.update();
+            observe.update(e);
         }
     }
 }

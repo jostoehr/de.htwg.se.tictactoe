@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.tictactoe.util.State;
 import de.htwg.tictactoe.util.Value;
+import de.htwg.util.observer.Event;
 import de.htwg.util.observer.IObserver;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -92,10 +93,6 @@ public class GUI extends JFrame implements IObserver {
 
     }
 
-    @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     private void setMenu() {
         menu = new JMenu("Menü");
@@ -126,6 +123,11 @@ public class GUI extends JFrame implements IObserver {
             }
         }
         master.setCurrentState(State.STATECROSSPLAYING);
+    }
+
+    @Override
+    public void update(Event e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private class Buttonlistener implements ActionListener {

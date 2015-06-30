@@ -9,6 +9,6 @@ package de.htwg.util.observer;
  *
  * @author siegfried
  */
-public interface IObserver {
-    void update(Event e);
+public abstract class Event {
+    
 }

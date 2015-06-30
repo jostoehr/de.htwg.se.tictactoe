@@ -9,6 +9,11 @@ package de.htwg.util.observer;
  *
  * @author siegfried
  */
-public interface IObserver {
-    void update(Event e);
+public interface IObservable {
+
+	 void addObserver(IObserver s);
+	 void removeObserver(IObserver s);
+	 void removeAllObservers();
+	 void notifyObservers();
+	 void notifyObservers(Event e);
 }
