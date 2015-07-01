@@ -95,10 +95,12 @@ public class ControllerTest {
     }
     @Test
     public void testGetUnSetCells(){
+        controller.init();
         List<String> l = new LinkedList<>();
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
                 if (grid.getCell(row, col).isUnSet()) {
+                    assertTrue(grid.getCell(row, col).isUnSet());
                     String cell = row+""+col;
                     l.add(cell);
                 }
@@ -129,6 +131,23 @@ public class ControllerTest {
     
     @Test
     public void testWin(){
+        controller.init();
+        controller.setCurrentState(State.STATECROSSPLAYING);
+        assertTrue(controller.isEmpty());
+        assertEquals("playing", controller.win());
+        controller.setValue(0, 1);
+        controller.setValue(0, 0);
+        controller.setValue(1, 0);
+        controller.setValue(0, 2);
+        controller.setValue(1, 2);
+        controller.setValue(1, 1);
+        controller.setValue(2, 0);
+        controller.setValue(2, 1);
+        controller.setValue(2, 2);
+        assertEquals("draw", controller.win());
+        
+        controller.init();
+        controller.setCurrentState(State.STATECROSSPLAYING);
         controller.setValue(0, 1);
         controller.setValue(0, 0);
         controller.setValue(1, 1);
@@ -144,29 +163,16 @@ public class ControllerTest {
         controller.setValue(1, 2);
         controller.setValue(2, 2);
         assertEquals("Peterle", controller.win());
-        
-        
-        
-        
-        /*
-        *
-        *        drawTest
-        */
-        /*controller.init();
-        controller.setValue(0, 0);
-        controller.setValue(0, 1);
-        controller.setValue(0, 2);
-        controller.setValue(1, 0);
-        controller.setValue(1, 2);
-        controller.setValue(1, 1);
-        controller.setValue(2, 0);
-        controller.setValue(2, 2);
-        controller.setValue(2, 1);
-        controller.setValue(1,1);
-        assertEquals("draw", controller.win());*/
-
-        
-        
+    }
+    
+    public void testChange() {
+        for(int i = 0; i < ROWS; i++) {
+            for(int j = 0; j < COLS; j++) {
+                controller.setValue(i, j);
+            }
+        }
+        controller.change();
+        assertTrue(controller.getCurrentState().equals(State.STATEDRAW));
     }
     
 }
