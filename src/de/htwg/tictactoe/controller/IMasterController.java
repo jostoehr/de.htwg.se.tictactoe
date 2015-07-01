@@ -3,6 +3,7 @@ package de.htwg.tictactoe.controller;
 import de.htwg.tictactoe.model.IPlayer;
 import de.htwg.tictactoe.util.Value;
 import de.htwg.tictactoe.util.State;
+import de.htwg.util.observer.IObservable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * for different Controllers
  * @author Johannes Stöhr
  */
-public interface IMasterController {
+public interface IMasterController extends IObservable {
     
     /**
      * Setter for a Value in current grid.

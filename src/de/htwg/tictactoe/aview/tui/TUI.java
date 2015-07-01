@@ -43,11 +43,13 @@ public class TUI implements IObserver {
     @Inject
     public TUI(IMasterController controller) {
         this.master = controller;
+        controller.addObserver(this);
         controller.init();
         controller.setCurrentState(State.STATECROSSPLAYING);
         scanner = new Scanner(System.in);
         modeChange();
-        player();        
+        player();    
+        
     }
     
     @Override
