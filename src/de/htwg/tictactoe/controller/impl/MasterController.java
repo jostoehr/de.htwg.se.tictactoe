@@ -29,6 +29,7 @@ public class MasterController extends Observable implements IMasterController {
     private State currentState;
     private IPlayer player1;
     private IPlayer player2;
+    private int mode;
     
     @Inject
     public MasterController() {
@@ -273,5 +274,15 @@ public class MasterController extends Observable implements IMasterController {
         randomNum = rand.nextInt((max - min) + 1) + min;
 
         return randomNum;
+    }
+
+    @Override
+    public void setMode(int mode) {
+        this.mode = mode;
+    }
+
+    @Override
+    public int getMode() {
+        return this.mode;
     }
 }

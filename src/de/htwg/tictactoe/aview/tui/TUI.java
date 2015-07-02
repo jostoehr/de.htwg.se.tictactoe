@@ -20,7 +20,6 @@ public class TUI implements IObserver {
 
     private IMasterController master;
     private Scanner scanner;
-    private int mode;
     
     /**
      * String literal for printStatus
@@ -108,7 +107,7 @@ public class TUI implements IObserver {
             logger.info("Changed Characters x and o");
             logger.info(master.getPlayer1().getName() + IS + master.getPlayer1().getCharacter()
                 + ", " + master.getPlayer2().getName() + IS + master.getPlayer2().getCharacter());
-            if(mode == 1 && (master.getPlayer2().getCharacter() == Value.CROSS)) {
+            if(master.getMode() == 1 && (master.getPlayer2().getCharacter() == Value.CROSS)) {
                 setCellAI();
             }
         }
@@ -125,7 +124,7 @@ public class TUI implements IObserver {
         master.init();
         logger.info("New Game is created");
         master.setCurrentState(State.STATECROSSPLAYING);
-        if(mode == 1 && (master.getPlayer2().getCharacter() == Value.CROSS)) {
+        if(master.getMode() == 1 && (master.getPlayer2().getCharacter() == Value.CROSS)) {
             setCellAI();
         }
     }
@@ -152,7 +151,7 @@ public class TUI implements IObserver {
             logger.info("Game is over, press 'n' to restart");
         }
         if(!checkGameEnd() &&
-            mode == 1 &&
+            master.getMode() == 1 &&
             master.getCurrentPlayer().getName().equals("AIntelligence")) {
                
             setCellAI(); 
@@ -231,14 +230,14 @@ public class TUI implements IObserver {
     }
     
     private void player() {
-        String playername[] = new String[mode];
-        for (int i = 0; i < mode; i++) {
+        String playername[] = new String[master.getMode()];
+        for (int i = 0; i < master.getMode(); i++) {
             logger.info("Type in Playername" + (i + 1) + ":\n"
                     + IN);
             playername[i] = scanner.next();
         }
         master.getPlayer1().setName(playername[0]);
-        if(mode == 2) {
+        if(master.getMode() == 2) {
             master.getPlayer2().setName(playername[1]);
             logger.info(master.getPlayer1().getName() + IS + master.getPlayer1().getCharacter()
                 + ", " + master.getPlayer2().getName() + IS + master.getPlayer2().getCharacter());
@@ -257,16 +256,14 @@ public class TUI implements IObserver {
                 + IN);
                
             if(scanner.hasNextInt()) {
-                mode = scanner.nextInt();
+                master.setMode(scanner.nextInt());
             } else {
                 scanner.next();
                 continue;
             }
-            if(mode == 1) {
-            this.mode = mode;
+            if(master.getMode() == 1) {
                 break;
-            } else if(mode == 2) {
-                this.mode = mode;            
+            } else if(master.getMode() == 2) {
                 break;
             }    
         }

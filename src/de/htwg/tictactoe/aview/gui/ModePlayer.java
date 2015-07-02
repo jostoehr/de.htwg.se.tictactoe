@@ -167,11 +167,13 @@ public class ModePlayer extends JFrame implements ActionListener {
         ImageIcon iconOkay = new ImageIcon(iconURL);
         if(aintelligence.isSelected()) {
             intelligence();
+            master.setMode(1);
         } 
         if(player.isSelected()) {
             lblPlayerTitle2.setVisible(true);
             lblPlayer2.setVisible(true);
             txtBoxplayer2.setVisible(true);
+            master.setMode(2);
         }
         
         if(e.getSource() == apply) {

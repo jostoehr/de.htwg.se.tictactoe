@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -149,6 +150,21 @@ public class GUI extends JFrame implements IObserver {
         change.addActionListener(new menuListener());
     }
     
+    private void setCellAI() {
+        List<String> l = master.getUnSetCells();
+        int random = master.randInt(0, l.size() - 1);
+        int arg0 = Integer.parseInt(String.valueOf(l.get(random).charAt(0)));
+        int arg1 = Integer.parseInt(String.valueOf(l.get(random).charAt(1)));                
+        ImageIcon value;
+        if(master.getCurrentState() == State.STATECROSSPLAYING) {
+                    value = X;
+                } else {
+                    value = O;
+                }
+        buttons[arg0][arg1].setIcon(value);
+        master.setValue(arg0, arg1);
+    }
+    
     private void newGame() {
         master.init();
         for(int i = 0; i < 3; i++) {
@@ -157,6 +173,9 @@ public class GUI extends JFrame implements IObserver {
             }
         }
         master.setCurrentState(State.STATECROSSPLAYING);
+        if(master.getMode() == 1 && (master.getPlayer2().getCharacter() == Value.CROSS)) {
+            setCellAI();
+        }
     }
 
     @Override
@@ -174,6 +193,27 @@ public class GUI extends JFrame implements IObserver {
             win2.setText("Gewonnen: " + master.getPlayer2().getWinCount());
             lost2.setText("Verloren: " + master.getPlayer2().getLostCount());
             draw2.setText("Unentschieden: " + master.getPlayer2().getDrawCount());
+        }
+    }
+    
+    private void checkGameWin() {
+        updateStatistic();
+        if(master.getCurrentState() == State.STATECROSSWON) {
+            if(master.win().equals(master.getPlayer1().getName())) {
+                showMessageDialog(null, master.getPlayer1().getCharacter() + " hat gewonnen!", "Spiel vorbei", JOptionPane.INFORMATION_MESSAGE, iconOkay);
+            } else {
+                showMessageDialog(null, master.getPlayer2().getCharacter() + " hat gewonnen!", "Spiel vorbei", JOptionPane.INFORMATION_MESSAGE, iconOkay);
+            }
+        }
+        if(master.getCurrentState() == State.STATENOUGHTWON) {
+            if(master.win().equals(master.getPlayer1().getName())) {
+                showMessageDialog(null, master.getPlayer1().getCharacter() + " hat gewonnen!", "Spiel vorbei", JOptionPane.INFORMATION_MESSAGE, iconOkay);
+            } else {
+                showMessageDialog(null, master.getPlayer2().getCharacter() + " hat gewonnen!", "Spiel vorbei", JOptionPane.INFORMATION_MESSAGE, iconOkay);
+            }
+        }
+        if(master.getCurrentState() == State.STATEDRAW) {
+            showMessageDialog(null, "Unentschieden!", "Spiel vorbei", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -199,15 +239,12 @@ public class GUI extends JFrame implements IObserver {
                         }
                     }
                 }
-                updateStatistic();
-                if(master.getCurrentState() == State.STATECROSSWON) {
-                    showMessageDialog(null, "X hat gewonnen!", "Spiel vorbei", JOptionPane.INFORMATION_MESSAGE, iconOkay);
-                }
-                if(master.getCurrentState() == State.STATENOUGHTWON) {
-                    showMessageDialog(null, "O hat gewonnen!", "Spiel vorbei", JOptionPane.INFORMATION_MESSAGE, iconOkay);
-                }
-                if(master.getCurrentState() == State.STATEDRAW) {
-                    showMessageDialog(null, "Unentschieden!", "Spiel vorbei", JOptionPane.ERROR_MESSAGE);
+                checkGameWin();
+                if(master.win().equals("playing") &&
+                    master.getMode() == 1 &&
+                    master.getCurrentPlayer().getName().equals("AIntelligence")) {
+                        setCellAI();
+                        checkGameWin();
                 }
             } else {
                 showMessageDialog(null, "Spiel zu Ende, startet Sie ein neues Spiel!", "Spielneustart erforderlich!", JOptionPane.ERROR_MESSAGE);
@@ -237,10 +274,9 @@ public class GUI extends JFrame implements IObserver {
                             master.getPlayer2().setCharacter(Value.NOUGHT);                
                         }
                         showMessageDialog(null, "Charakter X und O getauscht", "Player getauscht", JOptionPane.INFORMATION_MESSAGE, iconOkay);
-
-                        /*if(mode == 1 && (controller.getPlayer2().getCharacter() == Value.CROSS)) {
+                        if(master.getMode() == 1 && (master.getPlayer2().getCharacter() == Value.CROSS)) {
                             setCellAI();
-                        }*/
+                        }
                     }
                     break;
                 case "Modus/Player Auswahl":

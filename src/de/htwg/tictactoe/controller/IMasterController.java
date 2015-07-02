@@ -78,6 +78,17 @@ public interface IMasterController extends IObservable {
     IPlayer getCurrentPlayer();
 
     /**
+     * Setter for Game Mode.
+     * @param mode mode in int
+     */
+    void setMode(int mode);
+    
+    /**
+     * Getter for Game Mode.
+     */
+    int getMode();
+    
+    /**
      * Method to initialize the current grid with Empty Cells.
      */
     void init();
