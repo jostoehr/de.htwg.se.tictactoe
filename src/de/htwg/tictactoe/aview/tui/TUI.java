@@ -281,8 +281,4 @@ public class TUI implements IObserver {
         master.setValue(arg0, arg1);
         checkGameEnd();
     }
-    
-    public void setMode(int mode) {
-        this.mode = mode;
-    }
 }

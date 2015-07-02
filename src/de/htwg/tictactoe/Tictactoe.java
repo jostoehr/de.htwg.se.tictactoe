@@ -18,8 +18,8 @@ public final class Tictactoe {
         Injector injector = Guice.createInjector(new TictactoeModule());
         IMasterController controller = injector.getInstance(IMasterController.class);
         @SuppressWarnings("unused")
-        TUI tui = injector.getInstance(TUI.class);
         ModePlayer gui = injector.getInstance(ModePlayer.class);
+        TUI tui = injector.getInstance(TUI.class);
         tui.printTUI();
         boolean continu = true;
         scanner = new Scanner(System.in);
