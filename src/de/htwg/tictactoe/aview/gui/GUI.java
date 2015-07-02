@@ -2,14 +2,13 @@ package de.htwg.tictactoe.aview.gui;
 
 import com.google.inject.Inject;
 import de.htwg.tictactoe.controller.impl.MasterController;
+import static de.htwg.tictactoe.model.impl.Grid.ROWS;
 import de.htwg.tictactoe.util.State;
 import de.htwg.tictactoe.util.Value;
 import de.htwg.util.observer.Event;
 import de.htwg.util.observer.IObserver;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -27,7 +26,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 
 /**
  *
@@ -39,13 +37,6 @@ public class GUI extends JFrame implements IObserver {
     
     private static final int WIDTH = 700;
     private static final int HEIGHT = 800;
-    private JMenu menu;
-    private JMenuItem newGame;
-    private JMenuItem modePlayer;
-    private JMenuItem change;
-    private JMenuItem close;
-    private JLabel player1;
-    private JLabel player2;
     private JLabel win1;
     private JLabel lost1;
     private JLabel draw1;
@@ -53,9 +44,12 @@ public class GUI extends JFrame implements IObserver {
     private JLabel lost2;
     private JLabel draw2;
     
+    private static final String spielvorbei = "Spiel vorbei";
+    private static final String hatgewonnen = " hat gewonnen!";
+    
     private JButton buttons[][];
     
-    ImageIcon X,O,iconOkay;
+    private ImageIcon x,o,iconOkay;
     
     @Inject
     public GUI(MasterController master) {
@@ -73,13 +67,13 @@ public class GUI extends JFrame implements IObserver {
         
         setMenu();
         
-        X = new ImageIcon(this.getClass().getResource("cross2.png"));
-        O = new ImageIcon(this.getClass().getResource("nought.png"));
+        x = new ImageIcon(this.getClass().getResource("cross2.png"));
+        o = new ImageIcon(this.getClass().getResource("nought.png"));
         iconOkay = new ImageIcon(this.getClass().getResource("okay.png"));
         
-        player1 = new JLabel(master.getPlayer1().getName());
+        JLabel player1 = new JLabel(master.getPlayer1().getName());
         player1.setFont(player1.getFont().deriveFont(Font.BOLD));
-        player2 = new JLabel(master.getPlayer2().getName());
+        JLabel player2 = new JLabel(master.getPlayer2().getName());
         player2.setFont(player2.getFont().deriveFont(Font.BOLD));
         win1 = new JLabel("Gewonnen: 0");
         lost1 = new JLabel("Verloren: 0");
@@ -90,7 +84,6 @@ public class GUI extends JFrame implements IObserver {
         
         JPanel panelButtons = new JPanel();
         panelButtons.setLayout(new GridLayout(3,1));
-        //panelButtons.setPreferredSize(new Dimension(700,700));
         buttons = new JButton[3][3];
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
@@ -130,11 +123,11 @@ public class GUI extends JFrame implements IObserver {
     }
 
     private void setMenu() {
-        menu = new JMenu("Menü");
-        newGame = new JMenuItem("Neues Spiel");
-        modePlayer = new JMenuItem("Modus/Player Auswahl");
-        change = new JMenuItem("x-o Tausch");
-        close = new JMenuItem("Spiel beenden");
+        JMenu menu = new JMenu("Menü");
+        JMenuItem newGame = new JMenuItem("Neues Spiel");
+        JMenuItem modePlayer = new JMenuItem("Modus/Player Auswahl");
+        JMenuItem change = new JMenuItem("x-o Tausch");
+        JMenuItem close = new JMenuItem("Spiel beenden");
         
         menu.add(newGame);
         menu.add(modePlayer);
@@ -157,9 +150,9 @@ public class GUI extends JFrame implements IObserver {
         int arg1 = Integer.parseInt(String.valueOf(l.get(random).charAt(1)));                
         ImageIcon value;
         if(master.getCurrentState() == State.STATECROSSPLAYING) {
-                    value = X;
+                    value = x;
                 } else {
-                    value = O;
+                    value = o;
                 }
         buttons[arg0][arg1].setIcon(value);
         master.setValue(arg0, arg1);
@@ -167,8 +160,8 @@ public class GUI extends JFrame implements IObserver {
     
     private void newGame() {
         master.init();
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
+        for(int i = 0; i < ROWS; i++) {
+            for(int j = 0; j < ROWS; j++) {
                 buttons[i][j].setIcon(null);
             }
         }
@@ -200,16 +193,16 @@ public class GUI extends JFrame implements IObserver {
         updateStatistic();
         if(master.getCurrentState() == State.STATECROSSWON) {
             if(master.win().equals(master.getPlayer1().getName())) {
-                showMessageDialog(null, master.getPlayer1().getCharacter() + " hat gewonnen!", "Spiel vorbei", JOptionPane.INFORMATION_MESSAGE, iconOkay);
+                showMessageDialog(null, master.getPlayer1().getCharacter() + hatgewonnen, spielvorbei, JOptionPane.INFORMATION_MESSAGE, iconOkay);
             } else {
-                showMessageDialog(null, master.getPlayer2().getCharacter() + " hat gewonnen!", "Spiel vorbei", JOptionPane.INFORMATION_MESSAGE, iconOkay);
+                showMessageDialog(null, master.getPlayer2().getCharacter() + hatgewonnen, spielvorbei, JOptionPane.INFORMATION_MESSAGE, iconOkay);
             }
         }
         if(master.getCurrentState() == State.STATENOUGHTWON) {
             if(master.win().equals(master.getPlayer1().getName())) {
-                showMessageDialog(null, master.getPlayer1().getCharacter() + " hat gewonnen!", "Spiel vorbei", JOptionPane.INFORMATION_MESSAGE, iconOkay);
+                showMessageDialog(null, master.getPlayer1().getCharacter() + hatgewonnen, spielvorbei, JOptionPane.INFORMATION_MESSAGE, iconOkay);
             } else {
-                showMessageDialog(null, master.getPlayer2().getCharacter() + " hat gewonnen!", "Spiel vorbei", JOptionPane.INFORMATION_MESSAGE, iconOkay);
+                showMessageDialog(null, master.getPlayer2().getCharacter() + hatgewonnen, spielvorbei, JOptionPane.INFORMATION_MESSAGE, iconOkay);
             }
         }
         if(master.getCurrentState() == State.STATEDRAW) {
@@ -224,13 +217,13 @@ public class GUI extends JFrame implements IObserver {
             ImageIcon value;
             if(master.win().equals("playing")) {
                 if(master.getCurrentState() == State.STATECROSSPLAYING) {
-                    value = X;
+                    value = x;
                 } else {
-                    value = O;
+                    value = o;
                 }
                 
-                for(int i = 0; i < 3; i++) {
-                    for(int j = 0; j < 3; j++) {
+                for(int i = 0; i < ROWS; i++) {
+                    for(int j = 0; j < ROWS; j++) {
                         if(source == buttons[i][j]) {
                             if(buttons[i][j].getIcon() == null) {
                                 buttons[i][j].setIcon(value);

@@ -11,12 +11,11 @@ import java.util.Scanner;
 public final class Tictactoe {
     private Tictactoe(){}
     private static Scanner scanner;
-    private static MasterController master = new MasterController();
     
     public static void main(final String[] args) {
         
         Injector injector = Guice.createInjector(new TictactoeModule());
-        IMasterController controller = injector.getInstance(IMasterController.class);
+        IMasterController master = injector.getInstance(IMasterController.class);
         @SuppressWarnings("unused")
         ModePlayer gui = injector.getInstance(ModePlayer.class);
         TUI tui = injector.getInstance(TUI.class);
