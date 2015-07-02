@@ -1,8 +1,12 @@
 package de.htwg.tictactoe.aview.gui;
 
 import com.google.inject.Inject;
+import de.htwg.tictactoe.aview.tui.TUI.*;
 import de.htwg.tictactoe.controller.impl.MasterController;
 import de.htwg.tictactoe.util.Value;
+import de.htwg.util.observer.Event;
+import de.htwg.util.observer.IObserver;
+import de.htwg.util.observer.Observable;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -27,7 +31,7 @@ import javax.swing.JTextField;
  *
  * @author johannes
  */
-public class ModePlayer extends JFrame implements ActionListener {
+public class ModePlayer extends JFrame implements ActionListener, IObserver {
     
     private MasterController master;
     
@@ -207,5 +211,10 @@ public class ModePlayer extends JFrame implements ActionListener {
             txtBoxplayer1.setText("");
             txtBoxplayer2.setText("");
         }
+    }
+
+    @Override
+    public void update(Event e) {
+        
     }
 }
