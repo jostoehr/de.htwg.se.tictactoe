@@ -95,11 +95,13 @@ public class MasterController extends Observable implements IMasterController {
     @Override
     public final void setPlayer1(String name, Value character) {
         this.player1 = new Player(name, character);
+        notifyObservers();
     }
 
     @Override
     public final void setPlayer2(String name, Value character) {
         this.player2 = new Player(name, character);
+        notifyObservers();
     }
     
     @Override
@@ -129,6 +131,7 @@ public class MasterController extends Observable implements IMasterController {
                 grid.getCell(row, col).clear();
             }
         }
+        notifyObservers();
     }
 
     @Override
@@ -222,6 +225,7 @@ public class MasterController extends Observable implements IMasterController {
             player1.setDrawCount(player1.getDrawCount() + 1);
             player2.setDrawCount(player2.getDrawCount() + 1);
         }
+        notifyObservers();
     }
     
     /**
